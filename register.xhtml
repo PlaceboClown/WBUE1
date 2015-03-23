@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="Gruppe 45" content="WEUE1" />
+<title xml:lang="de">Jeopardy!</title>
+</head>
+<body>
+	<header>
+	<img></img>
+	<h1>Jeopardy!</h1>
+	<a class="button" href="./jeopardy.xhtml">Anmelden</a>
+	</header>
+	<section>
+	<form action="process.jsp" method="post">
+		<article>
+		<h2>Persönliche Daten</h2>
+		<p>
+			<label for="firstname">Vorname:</label> <input type="text"
+				id="firstname" name="firstname" />
+		</p>
+		<p>
+			<label for="lastname">Nachname:</label> <input type="text"
+				id="lastname" name="lastname" />
+		</p>
+		<p>
+			<label for="birthdate">Geburtsdatum:</label> <input type="text"
+				id="birthdate" name="birthdate" />
+		</p>
+		<p>
+			<label for="sex">Geschlecht:</label> <label for="male">Männlich</label>
+			<input type="radio" name="sex" id="male" value="male" /> <label
+				for="female">Weiblich</label> <input type="radio" name="sex"
+				id="female" value="female" />
+		</p>
+		</article>
+		<article>
+		<h2>Spielerdaten</h2>
+		<p>
+			<label for="avatar">Avatar:</label> <input type="text" id="avatar"
+				name="avatar" />
+		</p>
+		<p>
+			<label for="username">Benutzername*:</label> <input type="text"
+				id="username" name="username" />
+		</p>
+		<p>
+			<label for="password">Passwort*:</label> <input type="password"
+				id="password" name="password" />
+		</p>
+		</article>
+		<article>
+		<p>
+			<input type="submit" value="Registrieren" name="action" />
+		</p>
+		<p>
+			<a>Fehler!</a>
+		</p>
+		<p>
+			<a>Mit "*" gekennzeichnete Felder sind Pflichtfelder</a>
+		</p>
+		</article>
+	</form>
+	</section>
+	<footer>@ 2015 BIG Jeopardy</footer>
+</body>
+</html>
