@@ -4,48 +4,52 @@
 <head>
 <meta name="Gruppe 45" content="WEUE1" />
 <title xml:lang="de">Jeopardy!</title>
+
+
+<link href="styles/style1.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-	<header>
-	<img></img>
-	<h1>Jeopardy!</h1>
-	<a class="button" href="./jeopardy.xhtml">Anmelden</a>
-	</header>
-	<section>
+	<header id="head">
+	<img src="img/big-logo-small.png" id="bigLogo" style="float: left;"></img>
+	<a id="jeoprady">Jeopardy!</a>
+	<a class="button" id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
+   
+</header>
+	<section id="regData">
 	<form action="process.jsp" method="post">
-		<article>
+		<article id="persData">
 		<h2>Persönliche Daten</h2>
 		<p>
-			<label for="firstname">Vorname:</label> <input type="text"
+			<label class="labels" for="firstname">Vorname:</label> <input class="fields" type="text"
 				id="firstname" name="firstname" />
 		</p>
 		<p>
-			<label for="lastname">Nachname:</label> <input type="text"
+			<label class="labels" for="lastname">Nachname:</label> <input class="fields" type="text"
 				id="lastname" name="lastname" />
 		</p>
 		<p>
-			<label for="birthdate">Geburtsdatum:</label> <input type="text"
+			<label class="labels" for="birthdate">Geburtsdatum:</label> <input class="fields" type="text"
 				id="birthdate" name="birthdate" />
 		</p>
 		<p>
-			<label for="sex">Geschlecht:</label> <label for="male">Männlich</label>
-			<input type="radio" name="sex" id="male" value="male" /> <label
-				for="female">Weiblich</label> <input type="radio" name="sex"
-				id="female" value="female" />
+			<label class="labels" for="sex">Geschlecht:</label>
+			<input type="radio" name="sex" id="male" value="male" /> <label class="fields" for="male">Männlich</label>  				<input type="radio" name="sex"
+				id="female" value="female" /><label class="fields"
+				for="female">Weiblich</label>
 		</p>
 		</article>
 		<article>
 		<h2>Spielerdaten</h2>
 		<p>
-			<label for="avatar">Avatar:</label> <input type="text" id="avatar"
+			<label class="labels" for="avatar">Avatar:</label> <input class="fields" type="text" id="avatar"
 				name="avatar" />
 		</p>
 		<p>
-			<label for="username">Benutzername*:</label> <input type="text"
+			<label class="labels" for="username">Benutzername*:</label> <input class="fields" type="text"
 				id="username" name="username" />
 		</p>
 		<p>
-			<label for="password">Passwort*:</label> <input type="password"
+			<label class="labels" for="password">Passwort*:</label> <input class="fields" type="password"
 				id="password" name="password" />
 		</p>
 		</article>
