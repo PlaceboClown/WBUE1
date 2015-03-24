@@ -10,7 +10,7 @@
 </head>
 <body>
 	<header id="head">
-	<img src="img/big-logo-small.png" id="bigLogo" style="float: left;"></img>
+	<img src="img/big-logo-small.png" id="bigLogo"></img>
 	<a id="jeoprady">Jeopardy!</a>
 	<a class="button" id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
    
@@ -33,7 +33,7 @@
 		</p>
 		<p>
 			<label class="labels" for="sex">Geschlecht:</label>
-			<input type="radio" name="sex" id="male" value="male" /> <label class="fields" for="male">Männlich</label>  				<input type="radio" name="sex"
+			<input class="fields" type="radio" name="sex" id="male" value="male" /> <label class="fields" for="male">Männlich</label>  				<input class="fields" type="radio" name="sex"
 				id="female" value="female" /><label class="fields"
 				for="female">Weiblich</label>
 		</p>
@@ -55,13 +55,13 @@
 		</article>
 		<article>
 		<p>
-			<input type="submit" value="Registrieren" name="action" />
+			<input class="fields" id="register" type="submit" value="Registrieren" name="action" />
 		</p>
 		<p>
 			<a>Fehler!</a>
 		</p>
 		<p>
-			<a>Mit "*" gekennzeichnete Felder sind Pflichtfelder</a>
+			<a class="pflichtFelder">Mit "*" gekennzeichnete Felder sind Pflichtfelder</a>
 		</p>
 		</article>
 	</form>
