@@ -1,71 +1,134 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> -->
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
 <meta name="Gruppe 45" content="WEUE1" />
 <title xml:lang="de">Jeopardy!</title>
-
 
 <link href="styles/style1.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 	<header id="head">
-	<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img>
-	<a id="jeoprady">Jeopardy!</a>
-	<a class="button" id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
-   
-</header>
+		<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
+			id="jeoprady">Jeopardy!</a> <a class="button" id="loginBtn"
+			href="./jeopardy.xhtml">Anmelden</a>
+	</header>
 	<section id="regData">
-	<form action="process.jsp" method="post">
-		<article id="persData">
-		<h2>Persönliche Daten</h2>
-		<p>
-			<label class="labels" for="firstname">Vorname:</label> <input class="fields" type="text"
-				id="firstname" name="firstname" />
-		</p>
-		<p>
-			<label class="labels" for="lastname">Nachname:</label> <input class="fields" type="text"
-				id="lastname" name="lastname" />
-		</p>
-		<p>
-			<label class="labels" for="birthdate">Geburtsdatum:</label> <input class="fields" type="text"
-				id="birthdate" name="birthdate" />
-		</p>
-		<p>
-			<label class="labels" for="sex">Geschlecht:</label>
-			<input class="fields" type="radio" name="sex" id="male" value="male" /> <label class="fields" for="male">Männlich</label>  				<input class="fields" type="radio" name="sex"
-				id="female" value="female" /><label class="fields"
-				for="female">Weiblich</label>
-		</p>
-		</article>
-		<article>
-		<h2>Spielerdaten</h2>
-		<p>
-			<label class="labels" for="avatar">Avatar:</label> <input class="fields" type="text" id="avatar"
-				name="avatar" />
-		</p>
-		<p>
-			<label class="labels" for="username">Benutzername*:</label> <input class="fields" type="text"
-				id="username" name="username" />
-		</p>
-		<p>
-			<label class="labels" for="password">Passwort*:</label> <input class="fields" type="password"
-				id="password" name="password" />
-		</p>
-		</article>
-		<article>
-		<p>
-			<input class="fields" id="register" type="submit" value="Registrieren" name="action" />
-		</p>
-		<p>
-			<a>Fehler!</a>
-		</p>
-		<p>
-			<a class="pflichtFelder">Mit "*" gekennzeichnete Felder sind Pflichtfelder</a>
-		</p>
-		</article>
-	</form>
+		<form method="POST" onsubmit="return validate();">
+			<article id="persData">
+				<h2>Persönliche Daten</h2>
+				<p>
+					<label class="labels" for="firstname">Vorname:</label> <input
+						class="fields" type="text" id="firstname" name="firstname" />
+				</p>
+				<p>
+					<label class="labels" for="lastname">Nachname:</label> <input
+						class="fields" type="text" id="lastname" name="lastname" />
+				</p>
+				<p>
+					<label class="labels" for="birthdate">Geburtsdatum:</label> <input
+						class="fields" type="date" id="birthdate" name="birthdate"/>
+				</p>
+				<p>
+					<label class="labels" for="sex">Geschlecht:</label> <input
+						class="fields" type="radio" name="sex" id="male" value="male" />
+					<label class="fields" for="male">Männlich</label> <input
+						class="fields" type="radio" name="sex" id="female" value="female" />
+					<label class="fields" for="female">Weiblich</label>
+				</p>
+			</article>
+			<article>
+				<h2>Spielerdaten</h2>
+				<p>
+					<label class="labels" for="avatar">Avatar:</label> 
+<!-- 					<input class="fields" type="file" id="avatar" name="avatar" /> -->
+					<input list="avatars" />
+						<datalist id="avatars">
+							<option value="Deadpool" />
+							<option value="Black Widow" />
+							<option value="Aldrich Killian" />
+						</datalist>
+						
+				</p>
+				<p>
+					<label class="labels" for="username">Benutzername*:</label> <input
+						class="fields" type="text" id="username" name="username"
+						required="true"/>
+				</p>
+				<p>
+					<label class="labels" for="password">Passwort*:</label> <input
+						class="fields" type="password" id="password" name="password"
+						required="true" />
+				</p>
+			</article>
+			<article>
+				<p>
+					<input class="fields" id="register" type="submit" value="Registrieren" name="action"/>
+				</p>
+				<p>
+					<a id="error"></a>
+				</p>
+				<p>
+					<a class="pflichtFelder">Mit "*" gekennzeichnete Felder sind
+						Pflichtfelder</a>
+				</p>
+			</article>
+		</form>
 	</section>
 	<footer>@ 2015 BIG Jeopardy</footer>
+
+	<script type="text/javascript" src="js/framework.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+	<script type="text/javascript">
+		//<![CDATA[
+
+		function validate() {
+			var errorfield = document.getElementById('error');
+			var errortext = '';
+			var success = true;
+			var username = document.getElementById('username').value;
+			var password = document.getElementById('password').value;
+
+			if(!hasNativeDateInput() && !validateBDate()){
+				success = success && false;
+				errortext += 'Wählen sie ein gültiges Geburtsdatum! <br />';
+			}
+			
+			if (username.length > 8 || username.length < 4) {
+				success = success && false;
+				errortext += 'Username muss zwischen 4 und 8 Zeichen lang sein! <br />';
+			}
+
+			if (password.length > 8 || password.length < 4) {
+				success = success && false;
+				errortext += 'Password muss zwischen 4 und 8 Zeichen lang sein! <br />';
+			}
+
+			errorfield.innerHTML = errortext;
+			errorfield.style.color = "red";
+			
+			return success;
+		}
+		
+		function validateBDate() {
+			var birthdate = document.getElementById('birthdate');
+			
+			if(birthdate.value.length > 0){
+				
+				var date = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/;
+				
+			    if(getNormalizedDateString(birthdate).match(date)){
+					return true;
+				}
+				return false;
+			}
+			return true;
+		}
+		//]]>
+	</script>
 </body>
 </html>

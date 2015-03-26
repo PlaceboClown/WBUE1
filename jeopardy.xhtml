@@ -6,10 +6,10 @@
 <title xml:lang="de">Jeopardy!</title>
 <link href="styles/style1.css" rel="stylesheet" type="text/css" />
 </head>
-<body>
-	<header id="head"> <img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img>
-	<a id="jeoprady">Jeopardy!</a>
-	<a class="button" id="logoutBtn" href="./register.xhtml">Abmelden</a> </header>
+<body onload="lastPlay()">
+	<header id="head"> <img alt="Logo"
+		src="img/big-logo-small.png" id="bigLogo"></img> <a id="jeoprady">Jeopardy!</a>
+	<a class="button" id="logoutBtn" href="./register.xhtml" onclick="curPlay()" >Abmelden</a> </header>
 	<section> <article>
 	<div class="correct">Richtig</div>
 	<div class="wrong">Falsch</div>
@@ -49,28 +49,65 @@
 	</div>
 	<div class="container">
 		<div class="category">TUWIEN</div>
-			<div class="level">100</div>
+		<div class="level">100</div>
 		<div class="level">200</div>
 		<div class="level">500</div>
 		<div class="level">750</div>
 		<div class="level">1000</div>
 	</div>
 	</article> <article>
-	<p>Letztes Spiel: 22.2.2015 11:07:00</p>
-	<a class="button" href="./nirvana.xhtml">Wählen</a>  </article> </section>
+	<p>Letztes Spiel: <a id="lastPlay">22.2.2015 11:07:00</a></p>
+	<a class="button" href="./nirvana.xhtml">Wählen</a> </article> </section>
 	<aside>
 	<div class="player">
-		<img alt="Black Widow (Du) Bild" src="img/avatar/black-widow_head.png" id="pic_pl1"></img>
+		<img alt="Black Widow (Du) Bild" src="img/avatar/black-widow_head.png"
+			id="pic_pl1"></img>
 		<p>Black Widow (Du)</p>
 		<p>2000 €</p>
 	</div>
 	<div class="player">
-		<img alt="Deadpool Bild" src="img/avatar/deadpool_head.png" id="pic_pl2"></img>
+		<img alt="Deadpool Bild" src="img/avatar/deadpool_head.png"
+			id="pic_pl2"></img>
 		<p>Deadpool</p>
 		<p>400 €</p>
 	</div>
-	<div><p>Fragen: 2/10</p></div>
+	<div>
+		<p>Fragen: 2/10</p>
+	</div>
 	</aside>
 	<footer>@ 2015 BIG Jeopardy</footer>
+	<script type="text/javascript" src="js/framework.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+	
+	<script type="text/javascript">
+	//<![CDATA[
+	
+	function lastPlay(){
+		if(supportsLocalStorage()){
+			var storage = localStorage;
+			
+			if(storage["lastplay"]) {
+				var timefield = document.getElementById('lastPlay');
+				timefield.innerHTML = storage["lastplay"];
+			}
+		}
+	}
+	
+	function curPlay(){
+		if(supportsLocalStorage()){
+			var storage = localStorage;
+			var time = new Date();
+			var datetime = time.getDate() + "."
+            	+ (time.getMonth()+1)  + "." 
+            	+ time.getFullYear() + " "  
+            	+ time.getHours() + ":"  
+            	+ time.getMinutes() + ":" 
+            	+ time.getSeconds();
+    		storage["lastplay"] =  datetime;
+		}
+	}
+
+		//]]>
+	</script>
 </body>
 </html>
