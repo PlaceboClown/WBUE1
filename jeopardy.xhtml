@@ -101,8 +101,7 @@
             	+ (time.getMonth()+1)  + "." 
             	+ time.getFullYear() + " "  
             	+ time.getHours() + ":"  
-            	+ time.getMinutes() + ":" 
-            	+ time.getSeconds();
+            	+ secToMMSS(time.getSeconds());
     		storage["lastplay"] =  datetime;
 		}
 	}
