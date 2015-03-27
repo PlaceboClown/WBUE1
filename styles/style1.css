@@ -3,12 +3,16 @@
 
 
 html, body{
-	background-image: linear-gradient(#f0f1f7, #99aded);
+	background-image: linear-gradient(#e8ebf3, #d3d8e8);
 	background-repeat: no-repeat;
 	height:100%;
 	margin:0;
 	padding:0;
+	
+
 }
+
+
 
 header {
 	background-color: #2d4983;
@@ -37,35 +41,93 @@ header {
 	background-color: #ee7100;
 	text-align: center;
 	text-decoration: none;
-	/*margin:1.5%;*/
+	margin-top: 0.8em;
+	margin-bottom: 0.8em;
+	margin-right: 0.5em;
 	width: 10em;
 	height: 1.5em;
 	float: right;
 }
 
-#regData{
-	margin-left:auto;
-	margin-right: auto;
-	width: 30em;
-	position: relative;
+ #wrapper {
+	width: auto;
+	 float: left;
+	 margin-left: 35%;
+	
+ }
+ 
+ #inner{
+	 width: auto;
+ }
+ 
+ #sexRadioBox{
+	 float: right;
+ }
+ 
+
+ 
+.register{
+float: right;	
+color: white;
+	border-style:solit;
+	border-width:0.1em;
+	border-color:#000;
+	border-radius:0.25em;
+	background-color:#CCC;
+	height: 2em;
+  width: 8em;
+
+}
+
+.register_active{
+float: right;	
+color: white;
+	border-style:solit;
+	border-width:0.1em;
+	border-color:#000;
+	border-radius:0.25em;
+	background-color:#2dc73b;
+	height: 2em;
+  width: 8em;
+
+}
+ 
+#pflichtFelder{
+	float: right;
+	
+}
+
+ #hinweis{
+	 float: left;
+	text-align:center; 
+ }
+
+#errors{
+	float: left;
+	line-height:1.5em;
 }
 
 h1{
-	color:#006bSbe;
+	color: #006bac;
 	font-size: 2em;
+	line-height: 2em;
 }
 
 .labels{
 	width: 10em;
 	color:#000;
-	float: left;
 }
-
 
 .fields{
 	width: 20em;
+	height: 1.5em;
 	float: right;
+	border-style:solit;
+	border-width:0.1em;
+	border-color:#000;
+	border-radius:0.25em;
 }
+
 
 .pflichtFelder{
 	text-align: center;
@@ -73,28 +135,26 @@ h1{
 
 footer{
 	text-align:center;
-	margin: 0.5%;
+	margin-left: 10.5%;
+	float: left;
 }
 
 .correct{
 	border-style: solid;
 	border-color: #0F3;
-	border-width:0.1em;
-		
+	border-width:0.1em;	
 }
 
 .wrong{
 	border-style: solid;
 	border-color: #F00;
-	border-width:0.1em;
-		
+	border-width:0.1em;		
 }
 
 .standard{
 	border-style: solid;
 	border-color: #000;
-	border-width:0.1em;
-		
+	border-width:0.1em;	
 }
 
 .container{

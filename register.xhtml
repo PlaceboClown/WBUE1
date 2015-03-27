@@ -15,33 +15,37 @@
 		<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
 			id="jeoprady">Jeopardy!</a> <a id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
 	</header>
-	<div id="regData">
+    <div id="wrapper">
 		<form method="POST" onsubmit="return validate();">
-			<div id="persData">
+				<div id="inner">
 				<h1>Persönliche Daten</h1>
 				<p>
-					<label class="labels" for="firstname">Vorname:</label> <input
-						class="fields" type="text" id="firstname" name="firstname" />
+					<label class="labels" for="firstname">Vorname:</label> 
+                    <input	class="fields" type="text" id="firstname" name="firstname" />
+				</p>
+              
+				<p>
+					<label class="labels" for="lastname">Nachname:</label>
+                    <input	class="fields" type="text" id="lastname" name="lastname" />
+                        
 				</p>
 				<p>
-					<label class="labels" for="lastname">Nachname:</label> <input
-						class="fields" type="text" id="lastname" name="lastname" />
+					<label class="labels" for="birthdate">Geburtsdatum:</label> 
+                    <input class="fields" type="date" id="birthdate" name="birthdate" />
 				</p>
-				<p>
-					<label class="labels" for="birthdate">Geburtsdatum:</label> <input
-						class="fields" type="date" id="birthdate" name="birthdate" />
-				</p>
-				<p>
-					<label class="labels" for="sex">Geschlecht:</label>
-					<div class="fields">
+              
+			
+					<label class="labels" id="labelSex" for="sex">Geschlecht:</label>
+					<div  id="sexRadioBox">
 						<input class="radiobox" type="radio" name="sex" id="male" value="male" />
 						<label class="radiolable" for="male">Männlich</label>
+                       
 						<input class="radiobox" type="radio" name="sex" id="female" value="female" />
 						<label class="radiolable" for="female">Weiblich</label>
-					</div>
-				</p>
-			</div>
-			<div>
+					</div><!-- end fields-->
+			
+			
+           
 				<h1>Spielerdaten</h1>
 				<p>
 					<label class="labels" for="avatar">Avatar:</label>
@@ -54,32 +58,35 @@
 					</datalist>
 				</p>
 				<p>
-					<label class="labels" for="username">Benutzername*:</label> <input
-						class="fields" type="text" id="username" name="username"
+					<label class="labels" for="username">Benutzername*:</label> 
+                    <input	class="fields" type="text" id="username" name="username" required="true" />
+				</p>
+				<p>
+					<label class="labels" for="password">Passwort*:</label>
+                     <input	class="fields" type="password" id="password" name="password"
 						required="true" />
 				</p>
-				<p>
-					<label class="labels" for="password">Passwort*:</label> <input
-						class="fields" type="password" id="password" name="password"
-						required="true" />
-				</p>
-			</div>
-			<div>
-				<p>
-					<input class="" id="register" type="submit" value="Registrieren"
-						name="action" />
+			 
+			          	
+					<p>
+					<input class="register" id="registerID" type="submit" value="Registrieren" name="action" />
 				</p>
 				<p>
+                <div id="errors">
 					<a id="inputerror"></a>
+                    </div>
 				</p>
-				<p>
-					<a class="pflichtFelder">Mit "*" gekennzeichnete Felder sind
-						Pflichtfelder</a>
-				</p>
+				<div id="hinweis">
+					<a class="pflichtFelder" ><p>Mit "*" gekennzeichnete Felder sind
+						Pflichtfelder</p></a>
 			</div>
+				
+               </div> <!--inner end-->
 		</form>
-	</div>
-	<footer>@ 2015 BIG Jeopardy</footer>
+        	<footer>@ 2015 BIG Jeopardy</footer>
+
+	</div><!-- end wrapper-->
+   
 
 	<script type="text/javascript" src="js/framework.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
