@@ -2,12 +2,12 @@
 /* CSS Document */
 
 
-body{
+html, body{
 	background-image: linear-gradient(#f0f1f7, #99aded);
 	background-repeat: no-repeat;
+	height:100%;
 	margin:0;
 	padding:0;
-	height: 100%;
 }
 
 header {
@@ -46,29 +46,25 @@ header {
 #regData{
 	margin-left:auto;
 	margin-right: auto;
-	width: 50em;
+	width: 30em;
 	position: relative;
 }
 
 h1{
-		color:#006bbe;	
+	color:#006bSbe;
+	font-size: 2em;
 }
 
 .labels{
-		width: 12em;
-		color:#000;
-		vertical-align:middle;
-		float: left;
+	width: 10em;
+	color:#000;
+	float: left;
 }
 
 
 .fields{
-			vertical-align:middle;
-			width: auto;
-}
-
-#register{
-	vertical-align:middle;	
+	width: 20em;
+	float: right;
 }
 
 .pflichtFelder{

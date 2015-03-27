@@ -12,15 +12,14 @@
 </head>
 <body>
 	<header id="head">
-			<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
-				id="jeoprady">Jeopardy!</a>
-			<a id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
+		<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
+			id="jeoprady">Jeopardy!</a> <a id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
 	</header>
-	<section id="regData">
+	<div id="regData">
 		<form method="POST" onsubmit="return validate();">
-			<article id="persData">
+			<div id="persData">
 				<h1>Persönliche Daten</h1>
-				<p style="width: auto">
+				<p>
 					<label class="labels" for="firstname">Vorname:</label> <input
 						class="fields" type="text" id="firstname" name="firstname" />
 				</p>
@@ -33,25 +32,26 @@
 						class="fields" type="date" id="birthdate" name="birthdate" />
 				</p>
 				<p>
-					<label class="labels" for="sex">Geschlecht:</label> <input
-						class="radiobox" type="radio" name="sex" id="male" value="male" />
-					<label class="radiolable" for="male">Männlich</label> <input
-						class="radiobox" type="radio" name="sex" id="female" value="female" />
-					<label class="radiolable" for="female">Weiblich</label>
+					<label class="labels" for="sex">Geschlecht:</label>
+					<div class="fields">
+						<input class="radiobox" type="radio" name="sex" id="male" value="male" />
+						<label class="radiolable" for="male">Männlich</label>
+						<input class="radiobox" type="radio" name="sex" id="female" value="female" />
+						<label class="radiolable" for="female">Weiblich</label>
+					</div>
 				</p>
-			</article>
-			<article>
+			</div>
+			<div>
 				<h1>Spielerdaten</h1>
 				<p>
 					<label class="labels" for="avatar">Avatar:</label>
 					<!-- 					<input class="fields" type="file" id="avatar" name="avatar" /> -->
-					<input list="avatars" />
+					<input class="fields" list="avatars" />
 					<datalist id="avatars">
 						<option value="Deadpool" />
 						<option value="Black Widow" />
 						<option value="Aldrich Killian" />
 					</datalist>
-
 				</p>
 				<p>
 					<label class="labels" for="username">Benutzername*:</label> <input
@@ -63,11 +63,11 @@
 						class="fields" type="password" id="password" name="password"
 						required="true" />
 				</p>
-			</article>
-			<article>
+			</div>
+			<div>
 				<p>
-					<input class="fields" id="register" type="submit"
-						value="Registrieren" name="action" />
+					<input class="" id="register" type="submit" value="Registrieren"
+						name="action" />
 				</p>
 				<p>
 					<a id="inputerror"></a>
@@ -76,9 +76,9 @@
 					<a class="pflichtFelder">Mit "*" gekennzeichnete Felder sind
 						Pflichtfelder</a>
 				</p>
-			</article>
+			</div>
 		</form>
-	</section>
+	</div>
 	<footer>@ 2015 BIG Jeopardy</footer>
 
 	<script type="text/javascript" src="js/framework.js"></script>
