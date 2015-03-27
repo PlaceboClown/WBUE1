@@ -122,8 +122,9 @@
 					errortext = 'Geben Sie bitte ein gültiges Datum ein! <br />';
 				}
 			}
-			errorfield.innerHTML = errortext;
-
+			if (!success) {
+				errorfield.innerHTML = errortext;
+			}
 			return success;
 		}
 
@@ -157,6 +158,10 @@
 			var success = true;
 			var username = document.getElementById('username').value;
 			var password = document.getElementById('password').value;
+
+			if (!validateBDate()) {
+				success = success && false;
+			}
 
 			if (username.length > 8 || username.length < 4) {
 				success = success && false;
