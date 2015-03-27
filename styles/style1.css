@@ -7,25 +7,27 @@ body{
 	background-repeat: no-repeat;
 	margin:0;
 	padding:0;
+	height: 100%;
 }
 
-#head {
+header {
 	background-color: #2d4983;
 	height: auto;
 	position: relative;
-	vertical-align:middle;
-	
+	padding: 0.5%;
 }
 
 #jeoprady{
+	font-weight: bold;
+	font-size: 2em;
 	color: #fff;
-	font-weight: bold;	
+	vertical-align: middle;
 }
 
 #bigLogo{
 	position: relative;
 	vertical-align:middle;
-	margin: 0.5%;
+	/*margin: 0.5%;*/
 }
 
 #loginBtn, #logoutBtn{
@@ -34,7 +36,7 @@ body{
 	text-align: center;
 	text-decoration: none;
 	float:right;
-	margin:1.5%;
+	/*margin:1.5%;*/
 	width: 10em;
 	height: 1.5em;	
 }
@@ -120,4 +122,8 @@ footer{
 	border-style: solid;
 	border-width:0.1em;
 	border-color: #000;	
+}
+
+#inputerror{
+	color: #ff0000;
 }

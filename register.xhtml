@@ -30,7 +30,7 @@
 				</p>
 				<p>
 					<label class="labels" for="birthdate">Geburtsdatum:</label> <input
-						class="fields" type="date" id="birthdate" name="birthdate"/>
+						class="fields" type="date" id="birthdate" name="birthdate" />
 				</p>
 				<p>
 					<label class="labels" for="sex">Geschlecht:</label> <input
@@ -43,20 +43,20 @@
 			<article>
 				<h2>Spielerdaten</h2>
 				<p>
-					<label class="labels" for="avatar">Avatar:</label> 
-<!-- 					<input class="fields" type="file" id="avatar" name="avatar" /> -->
+					<label class="labels" for="avatar">Avatar:</label>
+					<!-- 					<input class="fields" type="file" id="avatar" name="avatar" /> -->
 					<input list="avatars" />
-						<datalist id="avatars">
-							<option value="Deadpool" />
-							<option value="Black Widow" />
-							<option value="Aldrich Killian" />
-						</datalist>
-						
+					<datalist id="avatars">
+						<option value="Deadpool" />
+						<option value="Black Widow" />
+						<option value="Aldrich Killian" />
+					</datalist>
+
 				</p>
 				<p>
 					<label class="labels" for="username">Benutzername*:</label> <input
 						class="fields" type="text" id="username" name="username"
-						required="true"/>
+						required="true" />
 				</p>
 				<p>
 					<label class="labels" for="password">Passwort*:</label> <input
@@ -66,10 +66,11 @@
 			</article>
 			<article>
 				<p>
-					<input class="fields" id="register" type="submit" value="Registrieren" name="action"/>
+					<input class="fields" id="register" type="submit"
+						value="Registrieren" name="action" />
 				</p>
 				<p>
-					<a id="error"></a>
+					<a id="inputerror"></a>
 				</p>
 				<p>
 					<a class="pflichtFelder">Mit "*" gekennzeichnete Felder sind
@@ -87,17 +88,17 @@
 		//<![CDATA[
 
 		function validate() {
-			var errorfield = document.getElementById('error');
+			var errorfield = document.getElementById('inputerror');
 			var errortext = '';
 			var success = true;
 			var username = document.getElementById('username').value;
 			var password = document.getElementById('password').value;
 
-			if(!hasNativeDateInput() && !validateBDate()){
+			if (!hasNativeDateInput() && !validateBDate()) {
 				success = success && false;
 				errortext += 'Wählen sie ein gültiges Geburtsdatum! <br />';
 			}
-			
+
 			if (username.length > 8 || username.length < 4) {
 				success = success && false;
 				errortext += 'Username muss zwischen 4 und 8 Zeichen lang sein! <br />';
@@ -109,19 +110,18 @@
 			}
 
 			errorfield.innerHTML = errortext;
-			errorfield.style.color = "red";
-			
+
 			return success;
 		}
-		
+
 		function validateBDate() {
 			var birthdate = document.getElementById('birthdate');
-			
-			if(birthdate.value.length > 0){
-				
+
+			if (birthdate.value.length > 0) {
+
 				var date = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/;
-				
-			    if(getNormalizedDateString(birthdate).match(date)){
+
+				if (getNormalizedDateString(birthdate).match(date)) {
 					return true;
 				}
 				return false;
