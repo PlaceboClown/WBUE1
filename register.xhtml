@@ -8,7 +8,11 @@
 <meta name="Gruppe 45" content="WEUE1" />
 <title xml:lang="de">Jeopardy!</title>
 
-<link href="styles/style1.css" rel="stylesheet" type="text/css" />
+<link href="styles/style1.css" rel="stylesheet" type="text/css"
+	media="screen and (min-width:800px)" />
+<link href="styles/mobile.css" rel="stylesheet" type="text/css"
+	media="screen and (max-width:801px )" />
+
 </head>
 <body>
 	<header id="head">
@@ -19,24 +23,24 @@
 		<form method="POST" onsubmit="return validateBDate()">
 			<div id="inner">
 				<h1>Persönliche Daten</h1>
-				<p>
+				<p class="inputgroups">
 					<label class="labels" for="firstname">Vorname:</label> <input
 						class="fields" type="text" id="firstname" name="firstname" />
 				</p>
 
-				<p>
+				<p class="inputgroups">
 					<label class="labels" for="lastname">Nachname:</label> <input
 						class="fields" type="text" id="lastname" name="lastname" />
 
 				</p>
-				<p>
+				<p class="inputgroups">
 					<label class="labels" for="birthdate">Geburtsdatum:</label> <input
 						class="fields" type="date" id="birthdate" name="birthdate"
 						oninput="validateBDate()" onblur="clearErrors()" />
 				</p>
 
-
-				<label class="labels" id="labelSex" for="sex">Geschlecht:</label>
+				<p class="inputgroups">
+					<label class="labels" id="labelSex" for="sex">Geschlecht:</label>
 				<div id="sexRadioBox">
 					<input class="radiobox" type="radio" name="sex" id="male"
 						value="male" /> <label class="radiolable" for="male">Männlich</label>
@@ -44,12 +48,13 @@
 					<input class="radiobox" type="radio" name="sex" id="female"
 						value="female" /> <label class="radiolable" for="female">Weiblich</label>
 				</div>
+				</p>
 				<!-- end fields-->
 
 
 
 				<h1>Spielerdaten</h1>
-				<p>
+				<p class="inputgroups">
 					<label class="labels" for="avatar">Avatar:</label>
 					<!-- 					<input class="fields" type="file" id="avatar" name="avatar" /> -->
 					<input class="fields" list="avatars" />
@@ -59,13 +64,13 @@
 						<option value="Aldrich Killian" />
 					</datalist>
 				</p>
-				<p>
+				<p class="inputgroups">
 					<label class="labels" for="username">Benutzername*:</label> <input
 						class="fields" type="text" id="username" name="username"
 						required="true" oninput="validateUsername()"
 						onblur="clearErrors()" />
 				</p>
-				<p>
+				<p class="inputgroups">
 					<label class="labels" for="password">Passwort*:</label> <input
 						class="fields" type="password" id="password" name="password"
 						required="true" oninput="validatePassword()"
@@ -73,15 +78,14 @@
 				</p>
 
 
-				<p>
+				<p class="inputgroups">
 					<input class="register" id="registerBtn" type="submit"
 						value="Registrieren" name="action" disabled="true" />
 				</p>
-				<p>
-
-					<div id="errors"><a id="inputerror"></a></div>
-				</p>
-				<p>
+				<div id="errors">
+					<a id="inputerror"></a>
+				</div>
+				<p class="inputgroups">
 				<div id="hinweis">
 					<a class="pflichtFelder"><p>Mit "*" gekennzeichnete Felder
 							sind Pflichtfelder</p></a>
@@ -91,9 +95,9 @@
 			</div>
 			<!--inner end-->
 		</form>
-		<footer>@ 2015 BIG Jeopardy</footer>
 
 	</div>
+		<footer>@ 2015 BIG Jeopardy</footer>
 	<!-- end wrapper-->
 
 
