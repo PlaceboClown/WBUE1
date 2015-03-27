@@ -15,37 +15,39 @@
 		<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
 			id="jeoprady">Jeopardy!</a> <a id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
 	</header>
-    <div id="wrapper">
-		<form method="POST" onsubmit="return validate();">
-				<div id="inner">
+	<div id="wrapper">
+		<form method="POST" onsubmit="return validateBDate()">
+			<div id="inner">
 				<h1>Persönliche Daten</h1>
 				<p>
-					<label class="labels" for="firstname">Vorname:</label> 
-                    <input	class="fields" type="text" id="firstname" name="firstname" />
+					<label class="labels" for="firstname">Vorname:</label> <input
+						class="fields" type="text" id="firstname" name="firstname" />
 				</p>
-              
+
 				<p>
-					<label class="labels" for="lastname">Nachname:</label>
-                    <input	class="fields" type="text" id="lastname" name="lastname" />
-                        
+					<label class="labels" for="lastname">Nachname:</label> <input
+						class="fields" type="text" id="lastname" name="lastname" />
+
 				</p>
 				<p>
-					<label class="labels" for="birthdate">Geburtsdatum:</label> 
-                    <input class="fields" type="date" id="birthdate" name="birthdate" />
+					<label class="labels" for="birthdate">Geburtsdatum:</label> <input
+						class="fields" type="date" id="birthdate" name="birthdate"
+						oninput="validateBDate()" onblur="clearErrors()" />
 				</p>
-              
-			
-					<label class="labels" id="labelSex" for="sex">Geschlecht:</label>
-					<div  id="sexRadioBox">
-						<input class="radiobox" type="radio" name="sex" id="male" value="male" />
-						<label class="radiolable" for="male">Männlich</label>
-                       
-						<input class="radiobox" type="radio" name="sex" id="female" value="female" />
-						<label class="radiolable" for="female">Weiblich</label>
-					</div><!-- end fields-->
-			
-			
-           
+
+
+				<label class="labels" id="labelSex" for="sex">Geschlecht:</label>
+				<div id="sexRadioBox">
+					<input class="radiobox" type="radio" name="sex" id="male"
+						value="male" /> <label class="radiolable" for="male">Männlich</label>
+
+					<input class="radiobox" type="radio" name="sex" id="female"
+						value="female" /> <label class="radiolable" for="female">Weiblich</label>
+				</div>
+				<!-- end fields-->
+
+
+
 				<h1>Spielerdaten</h1>
 				<p>
 					<label class="labels" for="avatar">Avatar:</label>
@@ -58,41 +60,96 @@
 					</datalist>
 				</p>
 				<p>
-					<label class="labels" for="username">Benutzername*:</label> 
-                    <input	class="fields" type="text" id="username" name="username" required="true" />
+					<label class="labels" for="username">Benutzername*:</label> <input
+						class="fields" type="text" id="username" name="username"
+						required="true" oninput="validateUsername()"
+						onblur="clearErrors()" />
 				</p>
 				<p>
-					<label class="labels" for="password">Passwort*:</label>
-                     <input	class="fields" type="password" id="password" name="password"
-						required="true" />
+					<label class="labels" for="password">Passwort*:</label> <input
+						class="fields" type="password" id="password" name="password"
+						required="true" oninput="validatePassword()"
+						onblur="clearErrors()" />
 				</p>
-			 
-			          	
-					<p>
-					<input class="register" id="registerID" type="submit" value="Registrieren" name="action" />
-				</p>
-				<p>
-                <div id="errors">
-					<a id="inputerror"></a>
-                    </div>
-				</p>
-				<div id="hinweis">
-					<a class="pflichtFelder" ><p>Mit "*" gekennzeichnete Felder sind
-						Pflichtfelder</p></a>
-			</div>
-				
-               </div> <!--inner end-->
-		</form>
-        	<footer>@ 2015 BIG Jeopardy</footer>
 
-	</div><!-- end wrapper-->
-   
+
+				<p>
+					<input class="register" id="registerBtn" type="submit"
+						value="Registrieren" name="action" disabled="true" />
+				</p>
+				<p>
+
+					<div id="errors"><a id="inputerror"></a></div>
+				</p>
+				<p>
+				<div id="hinweis">
+					<a class="pflichtFelder"><p>Mit "*" gekennzeichnete Felder
+							sind Pflichtfelder</p></a>
+				</div>
+				</p>
+
+			</div>
+			<!--inner end-->
+		</form>
+		<footer>@ 2015 BIG Jeopardy</footer>
+
+	</div>
+	<!-- end wrapper-->
+
 
 	<script type="text/javascript" src="js/framework.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
 
 	<script type="text/javascript">
 		//<![CDATA[
+
+		function validateBDate() {
+			var success = true;
+			var errorfield = document.getElementById('inputerror');
+			var errortext = '';
+
+			if (!hasNativeDateInput()) {
+				var birthdate = document.getElementById('birthdate');
+
+				if (birthdate.value.length > 0) {
+
+					var date = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/;
+
+					if (getNormalizedDateString(birthdate).match(date)) {
+						success = true;
+					}
+					success = false;
+					errortext = 'Geben Sie bitte ein gültiges Datum ein! <br />';
+				}
+			}
+			errorfield.innerHTML = errortext;
+
+			return success;
+		}
+
+		function validateUsername() {
+			var errorfield = document.getElementById('inputerror');
+			var errortext = '';
+			var username = document.getElementById('username').value;
+
+			if (username.length > 8 || username.length < 4) {
+				errortext = 'Username muss zwischen 4 und 8 Zeichen lang sein! <br />';
+			}
+			errorfield.innerHTML = errortext;
+			validate();
+		}
+
+		function validatePassword() {
+			var errorfield = document.getElementById('inputerror');
+			var errortext = '';
+			var password = document.getElementById('password').value;
+
+			if (password.length > 8 || password.length < 4) {
+				errortext = 'Password muss zwischen 4 und 8 Zeichen lang sein! <br />';
+			}
+			errorfield.innerHTML = errortext;
+			validate();
+		}
 
 		function validate() {
 			var errorfield = document.getElementById('inputerror');
@@ -101,39 +158,29 @@
 			var username = document.getElementById('username').value;
 			var password = document.getElementById('password').value;
 
-			if (!hasNativeDateInput() && !validateBDate()) {
-				success = success && false;
-				errortext += 'Wählen sie ein gültiges Geburtsdatum! <br />';
-			}
-
 			if (username.length > 8 || username.length < 4) {
 				success = success && false;
-				errortext += 'Username muss zwischen 4 und 8 Zeichen lang sein! <br />';
 			}
 
 			if (password.length > 8 || password.length < 4) {
 				success = success && false;
-				errortext += 'Password muss zwischen 4 und 8 Zeichen lang sein! <br />';
 			}
 
-			errorfield.innerHTML = errortext;
+			if (success) {
+				var registerBtn = document.getElementById('registerBtn');
+				registerBtn.disabled = false;
+				registerBtn.className = "register_active";
+			} else {
+				var registerBtn = document.getElementById('registerBtn');
+				registerBtn.disabled = true;
+				registerBtn.className = "register";
+			}
 
 			return success;
 		}
 
-		function validateBDate() {
-			var birthdate = document.getElementById('birthdate');
-
-			if (birthdate.value.length > 0) {
-
-				var date = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/;
-
-				if (getNormalizedDateString(birthdate).match(date)) {
-					return true;
-				}
-				return false;
-			}
-			return true;
+		function clearErrors() {
+			var errorfield = document.getElementById('inputerror').innerHTML = '';
 		}
 		//]]>
 	</script>
