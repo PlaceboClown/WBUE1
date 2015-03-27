@@ -17,36 +17,40 @@ header {
 	padding: 0.5%;
 }
 
+#bigLogo{
+	vertical-align: middle;
+	margin-right: 0.5%;
+}
+
 #jeoprady{
+	vertical-align: middle;
 	font-weight: bold;
 	font-size: 2em;
 	color: #fff;
-	vertical-align: middle;
 }
 
-#bigLogo{
-	position: relative;
+
+
+#loginBtn, #logoutBtn {
 	vertical-align:middle;
-	/*margin: 0.5%;*/
-}
-
-#loginBtn, #logoutBtn{
 	color: #fff;
 	background-color: #ee7100;
 	text-align: center;
 	text-decoration: none;
-	float:right;
 	/*margin:1.5%;*/
 	width: 10em;
-	height: 1.5em;	
+	height: 1.5em;
+	float: right;
 }
 
 #regData{
-	margin-left:35%;
+	margin-left:auto;
+	margin-right: auto;
+	width: 50em;
 	position: relative;
 }
 
-h2{
+h1{
 		color:#006bbe;	
 }
 
@@ -60,6 +64,7 @@ h2{
 
 .fields{
 			vertical-align:middle;
+			width: auto;
 }
 
 #register{

@@ -12,15 +12,15 @@
 </head>
 <body>
 	<header id="head">
-		<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
-			id="jeoprady">Jeopardy!</a> <a class="button" id="loginBtn"
-			href="./jeopardy.xhtml">Anmelden</a>
+			<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
+				id="jeoprady">Jeopardy!</a>
+			<a id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
 	</header>
 	<section id="regData">
 		<form method="POST" onsubmit="return validate();">
 			<article id="persData">
-				<h2>Persönliche Daten</h2>
-				<p>
+				<h1>Persönliche Daten</h1>
+				<p style="width: auto">
 					<label class="labels" for="firstname">Vorname:</label> <input
 						class="fields" type="text" id="firstname" name="firstname" />
 				</p>
@@ -34,14 +34,14 @@
 				</p>
 				<p>
 					<label class="labels" for="sex">Geschlecht:</label> <input
-						class="fields" type="radio" name="sex" id="male" value="male" />
-					<label class="fields" for="male">Männlich</label> <input
-						class="fields" type="radio" name="sex" id="female" value="female" />
-					<label class="fields" for="female">Weiblich</label>
+						class="radiobox" type="radio" name="sex" id="male" value="male" />
+					<label class="radiolable" for="male">Männlich</label> <input
+						class="radiobox" type="radio" name="sex" id="female" value="female" />
+					<label class="radiolable" for="female">Weiblich</label>
 				</p>
 			</article>
 			<article>
-				<h2>Spielerdaten</h2>
+				<h1>Spielerdaten</h1>
 				<p>
 					<label class="labels" for="avatar">Avatar:</label>
 					<!-- 					<input class="fields" type="file" id="avatar" name="avatar" /> -->
