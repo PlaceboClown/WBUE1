@@ -5,6 +5,7 @@
 html, body {
 	background-image: linear-gradient(#e8ebf3, #d3d8e8);
 	background-repeat: no-repeat;
+	background-attachment: fixed;
 	font-family: verdana, sans-serif;
 	height: 100%;
 	margin: 0;
