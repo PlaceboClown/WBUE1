@@ -1,6 +1,7 @@
 @charset "utf-8";
 /* CSS Document */
 
+/* <---------- General attributes ---------->*/
 html, body {
 	background-image: linear-gradient(#e8ebf3, #d3d8e8);
 	background-repeat: no-repeat;
@@ -37,6 +38,7 @@ header {
 }
 
 #loginBtn, #logoutBtn {
+	width: 10em;
 	vertical-align: middle;
 	color: #fff;
 	background-color: #ee7100;
@@ -45,7 +47,23 @@ header {
 	margin-top: 0.8em;
 	margin-bottom: 0.8em;
 	margin-right: 0.5em;
-	width: 10em;
 	height: 1.5em;
 	float: right;
+}
+
+/* <---------- Wrapper attributes ---------->*/
+#wrapper {
+	overflow:auto;
+	margin-top: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+}
+
+/* <---------- Footer attributes ---------->*/
+footer {
+	width: 100%;
+	height: auto;
+	text-align: center;
+	font-size: 0.8em;
 }
