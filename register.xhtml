@@ -8,10 +8,7 @@
 <meta name="Gruppe 45" content="WEUE1" />
 <title xml:lang="de">Jeopardy!</title>
 
-<link href="styles/style1.css" rel="stylesheet" type="text/css"
-	media="screen and (min-width:600px)" />
-<link href="styles/mobile.css" rel="stylesheet" type="text/css"
-	media="screen and (max-width:601px )" />
+<link href="styles/register.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
@@ -97,7 +94,7 @@
 		</form>
 
 	</div>
-		<footer>@ 2015 BIG Jeopardy</footer>
+	<footer>@ 2015 BIG Jeopardy</footer>
 	<!-- end wrapper-->
 
 
@@ -108,26 +105,26 @@
 		//<![CDATA[
 
 		function validateBDate() {
-			var success = true;
 			var errorfield = document.getElementById('inputerror');
-			var errortext = '';
+
+			if (!validateBDate_intern()) {
+				errorfield.innerHTML = 'Geben Sie bitte ein gültiges Datum ein! <br />';
+			}
+		}
+
+		function validateBDate_intern() {
+			var success = true;
 
 			if (!hasNativeDateInput()) {
 				var birthdate = document.getElementById('birthdate');
 
 				if (birthdate.value.length > 0) {
-
 					var date = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/;
 
-					if (getNormalizedDateString(birthdate).match(date)) {
-						success = true;
+					if (!(getNormalizedDateString(birthdate).match(date))) {
+						success = false;
 					}
-					success = false;
-					errortext = 'Geben Sie bitte ein gültiges Datum ein! <br />';
 				}
-			}
-			if (!success) {
-				errorfield.innerHTML = errortext;
 			}
 			return success;
 		}
@@ -163,7 +160,7 @@
 			var username = document.getElementById('username').value;
 			var password = document.getElementById('password').value;
 
-			if (!validateBDate()) {
+			if (!validateBDate_intern()) {
 				success = success && false;
 			}
 
@@ -190,6 +187,7 @@
 
 		function clearErrors() {
 			var errorfield = document.getElementById('inputerror').innerHTML = '';
+			validate();
 		}
 		//]]>
 	</script>

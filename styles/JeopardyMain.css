@@ -1,0 +1,93 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url("general.css");
+
+.correct {
+	border-style: solid;
+	border-color: #0F3;
+	border-width: 0.1em;
+}
+
+.wrong {
+	border-style: solid;
+	border-color: #F00;
+	border-width: 0.1em;
+}
+
+.standard {
+	border-style: solid;
+	border-color: #000;
+	border-width: 0.1em;
+}
+
+.container {
+	color: #000;
+	background-color: #ee7100;
+	text-align: center;
+	text-decoration: none;
+	float: right;
+	margin: 1.5%;
+	width: 10em;
+	height: 1.5em;
+	border-style: solid;
+	border-width: 0.1em;
+	border-color: #000;
+}
+
+.level {
+	color: #fff;
+	background-color: #2d4883;
+	text-align: center;
+	text-decoration: none;
+	margin: 1.5%;
+	width: 10em;
+	height: 1.5em;
+	border-style: solid;
+	border-width: 0.1em;
+	border-color: #000;
+}
+
+aside {
+	width: 20%;
+	height: 100%;
+	float: right;
+}
+
+#main {
+	width: 80%;
+	height: 100%;
+	float: left;
+}
+
+#history {
+	text-align: center;
+	margin-left: auto;
+	margin-right: auto;
+	width: 80%;
+}
+
+#selection {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+}
+
+#selectionBottom {
+	margin-left: auto;
+	margin-right: auto;
+	width: 90%;
+	position: absolute;
+	bottom: 50%;
+}
+
+#chooseBtn {
+	color: white;
+	border-style: solit;
+	border-width: 0.1em;
+	border-color: #000;
+	border-radius: 0.25em;
+	background-color: #2dc73b;
+	height: 2em;
+	width: 8em;
+}
