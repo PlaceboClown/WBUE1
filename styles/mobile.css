@@ -51,13 +51,12 @@ header {
 }
 
 #sexRadioBox {
-	width:50%;
-	float:right;
+	width: 50%;
+	float: right;
 }
 
-
 #labelSex {
-	width:auto;
+	width: auto;
 }
 
 .register {
@@ -129,11 +128,9 @@ h1 {
 
 footer {
 	text-align: center;
-	position:absolute;
-    bottom: 1%;
-    width: 100%;
-    
-	
+	position: absolute;
+	bottom: 1%;
+	width: 100%;
 }
 
 .correct {
