@@ -17,80 +17,88 @@
 			id="jeoprady">Jeopardy!</a> <a class="button" id="logoutBtn"
 			href="./register.xhtml" onclick="curPlay()">Abmelden</a>
 	</header>
-	<div id="main">
-		<div id="history">
-			<div class="correct">Richtig</div>
-			<div class="wrong">Falsch</div>
-			<div class="standard">History</div>
+	<div id="wrapper">
+		<div id="main">
+			<div id="history">
+				<div class="correct">Du hast richtig geantwortet: +1000€</div>
+				<div class="wrong">Deadpool hat falsch geantwortet: -500€</div>
+				<div class="standard">Deadpool hat TUWIEN für 1000€ gewählt</div>
+			</div>
+			<div id="wrapper_selection">
+				<div id="selection">
+					<div class="container">
+						<label class="category"><a>TV</a></label> <label class="level"><input
+							type="radio" name="toggle" disabled="true" /><a>€ 100</a></label> <label
+							class="level"><input type="radio" name="toggle" /><a>€
+								200</a></label> <label class="level"><input type="radio"
+							name="toggle" /><a>€ 500</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 750</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 1000</a></label>
+					</div>
+					<div class="container">
+						<label class="category"><a>SSD</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 100</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 200</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 500</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 750</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 1000</a></label>
+					</div>
+					<div class="container">
+						<label class="category"><a>Web</a></label> <label class="level"><input
+							type="radio" name="toggle" disabled="true" /><a>€ 100</a></label> <label
+							class="level"><input type="radio" name="toggle" /><a>€
+								200</a></label> <label class="level"><input type="radio"
+							name="toggle" disabled="true" /><a>€ 500</a></label> <label
+							class="level"><input type="radio" name="toggle" /><a>€
+								750</a></label> <label class="level"><input type="radio"
+							name="toggle" /><a>€ 1000</a></label>
+					</div>
+					<div class="container">
+						<label class="category"><a>Sport</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 100</a></label> <label class="level"><input
+							type="radio" name="toggle" disabled="true" /><a>€ 200</a></label> <label
+							class="level"><input type="radio" name="toggle" /><a>€
+								500</a></label> <label class="level"><input type="radio"
+							name="toggle" /><a>€ 750</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 1000</a></label>
+					</div>
+					<div class="container">
+						<label class="category"><a>TUWIEN</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 100</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 200</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 500</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 750</a></label> <label class="level"><input
+							type="radio" name="toggle" disabled="true" /><a>€ 1000</a></label>
+					</div>
+				</div>
+			</div>
+			<div id="selectionBottom">
+				<p i="lastPlayLabel">
+					Letztes Spiel: <a id="lastPlay">22.2.2015 11:07:00</a>
+				</p>
+				<!-- 			<a class="button" href="./nirvana.xhtml" id="chooseBtn">Wählen</a> -->
+				<input class="register" id="chooseBtn" type="submit" value="Wählen"
+					name="action" />
+			</div>
 		</div>
-		<div id="selection">
-			<div class="container">
-				<label class="level"><input type="radio" name="toggle"/><a>TV</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>100</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>200</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>500</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>750</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>1000</a></label>
+		<aside>
+			<div class="player">
+				<img alt="Black Widow (Du) Bild"
+					src="img/avatar/black-widow_head.png" id="pic_pl1"></img>
+				<p>Black Widow (Du)</p>
+				<p>2000 €</p>
 			</div>
-			<div class="container">
-				<label class="level"><input type="radio" name="toggle"/><a>SSD</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>100</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>200</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>500</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>750</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>1000</a></label>
+			<div class="player">
+				<img alt="Deadpool Bild" src="img/avatar/deadpool_head.png"
+					id="pic_pl2"></img>
+				<p>Deadpool</p>
+				<p>400 €</p>
 			</div>
-			<div class="container">
-				<label class="level"><input type="radio" name="toggle"/><a>Web</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>100</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>200</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>500</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>750</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>1000</a></label>
+			<div>
+				<p>Fragen: 2/10</p>
 			</div>
-			<div class="container">
-				<label class="level"><input type="radio" name="toggle"/><a>Sport</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>100</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>200</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>500</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>750</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>1000</a></label>
-			</div>
-			<div class="container">
-				<label class="level"><input type="radio" name="toggle"/><a>TUWIEN</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>100</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>200</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>500</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>750</a></label>
-				<label class="level"><input type="radio" name="toggle"/><a>1000</a></label>
-			</div>
-		</div>
-		<div id="selectionBottom" >
-			<p i="lastPlayLabel">
-				Letztes Spiel: <a id="lastPlay">22.2.2015 11:07:00</a>
-			</p>
-<!-- 			<a class="button" href="./nirvana.xhtml" id="chooseBtn">Wählen</a> -->
-			<input class="register" id="chooseBtn" type="submit"
-						value="Wählen" name="action"/>
-		</div>
+		</aside>
 	</div>
-	<aside>
-		<div class="player">
-			<img alt="Black Widow (Du) Bild"
-				src="img/avatar/black-widow_head.png" id="pic_pl1"></img>
-			<p>Black Widow (Du)</p>
-			<p>2000 €</p>
-		</div>
-		<div class="player">
-			<img alt="Deadpool Bild" src="img/avatar/deadpool_head.png"
-				id="pic_pl2"></img>
-			<p>Deadpool</p>
-			<p>400 €</p>
-		</div>
-		<div>
-			<p>Fragen: 2/10</p>
-		</div>
-	</aside>
 	<footer>@ 2015 BIG Jeopardy</footer>
 	<script type="text/javascript" src="js/framework.js"></script>
 	<script type="text/javascript" src="js/jquery.js"></script>
