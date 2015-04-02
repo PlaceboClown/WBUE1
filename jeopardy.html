@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+
+<head>
+<meta name="Gruppe 45" content="WEUE1" />
+<title>Jeopardy!</title>
+
+<link href="styles/JeopardyMain.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body onload="lastPlay()">
+	<header id="head">
+		<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
+			id="jeoprady">Jeopardy!</a> <a class="button" id="logoutBtn"
+			href="./register.xhtml" onclick="curPlay()">Abmelden</a>
+	</header>
+	<div id="wrapper">
+		<div id="main">
+			<div id="history">
+				<div class="correct">Du hast richtig geantwortet: +1000€</div>
+				<div class="wrong">Deadpool hat falsch geantwortet: -500€</div>
+				<div class="standard">Deadpool hat TUWIEN für 1000€ gewählt</div>
+			</div>
+			<div id="wrapper_selection">
+				<div id="selection">
+					<div class="container">
+						<label class="category"><a class="togglelabel">TV</a></label> 
+						<label class="level"><span class="testlabel">test</span><input type="radio" name="toggle" disabled="disabled" /><a class="togglelabel">€ 100</a></label> 
+						<label class="level"><span class="testlabel">test</span><input type="radio" name="toggle" /><a class="togglelabel">€ 200</a></label> 
+						<label class="level"><span class="testlabel">test</span><input type="radio" name="toggle" /><a class="togglelabel">€ 500</a></label> 
+						<label class="level"><span class="testlabel">test</span><input type="radio" name="toggle" /><a class="togglelabel">€ 750</a></label> 
+						<label class="level"><span class="testlabel">test</span><input type="radio" name="toggle" /><a class="togglelabel">€ 1000</a></label>
+					</div>
+					<!-- <div class="container">
+						<label class="category"><a>SSD</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 100</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 200</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 500</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 750</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 1000</a></label>
+					</div>
+					<div class="container">
+						<label class="category"><a>Web</a></label> <label class="level"><input
+							type="radio" name="toggle" disabled="disabled" /><a>€ 100</a></label> <label
+							class="level"><input type="radio" name="toggle" /><a>€
+								200</a></label> <label class="level"><input type="radio"
+							name="toggle" disabled="disabled" /><a>€ 500</a></label> <label
+							class="level"><input type="radio" name="toggle" /><a>€
+								750</a></label> <label class="level"><input type="radio"
+							name="toggle" /><a>€ 1000</a></label>
+					</div>
+					<div class="container">
+						<label class="category"><a>Sport</a></label> <label class="level"><a>€ 100</a><input
+							type="radio" name="toggle" /></label> <label class="level"><input
+							type="radio" name="toggle" disabled="disabled" /><a>€ 200</a></label> <label
+							class="level"><input type="radio" name="toggle" /><a>€
+								500</a></label> <label class="level"><input type="radio"
+							name="toggle" /><a>€ 750</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 1000</a></label>
+					</div>
+					<div class="container">
+						<label class="category"><a>TUWIEN</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 100</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 200</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 500</a></label> <label class="level"><input
+							type="radio" name="toggle" /><a>€ 750</a></label> <label class="level"><input
+							type="radio" name="toggle" disabled="disabled" /><a>€ 1000</a></label>
+					</div> -->
+				</div>
+			</div>
+			<div id="selectionBottom">
+				<p id="lastPlayLabel">
+					Letztes Spiel: <a id="lastPlay">22.2.2015 11:07:00</a>
+				</p>
+				<!-- 			<a class="button" href="./nirvana.xhtml" id="chooseBtn">Wählen</a> -->
+				<input class="register" id="chooseBtn" type="submit" value="Wählen"
+					name="action" />
+			</div>
+		</div>
+		<aside>
+			<div class="player">
+				<img alt="Black Widow (Du) Bild"
+					src="img/avatar/black-widow_head.png" id="pic_pl1"></img>
+				<p>Black Widow (Du)</p>
+				<p>2000 €</p>
+			</div>
+			<div class="player">
+				<img alt="Deadpool Bild" src="img/avatar/deadpool_head.png"
+					id="pic_pl2"></img>
+				<p>Deadpool</p>
+				<p>400 €</p>
+			</div>
+			<div>
+				<p>Fragen: 2/10</p>
+			</div>
+		</aside>
+	</div>
+	<footer>@ 2015 BIG Jeopardy</footer>
+	<script type="text/javascript" src="js/framework.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+	<script type="text/javascript">
+		//<![CDATA[
+
+		function lastPlay() {
+			if (supportsLocalStorage()) {
+				var storage = localStorage;
+
+				if (storage["lastplay"]) {
+					var timefield = document.getElementById('lastPlay');
+					timefield.innerHTML = storage["lastplay"];
+				}
+			}
+		}
+
+		function curPlay() {
+			if (supportsLocalStorage()) {
+				var storage = localStorage;
+				var time = new Date();
+				var datetime = time.getDate() + "." + (time.getMonth() + 1)
+						+ "." + time.getFullYear() + " " + time.getHours()
+						+ ":" + secToMMSS(time.getSeconds());
+				storage["lastplay"] = datetime;
+			}
+		}
+
+		//]]>
+	</script>
+</body>
+</html>

@@ -75,6 +75,11 @@ aside {
 	overflow: auto;
 }
 
+#selection label span {
+	position: absolute;
+	top: -20px;
+}
+
 #selection label a {
 	text-align: center;
 	font-size: 1em;
