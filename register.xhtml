@@ -2,11 +2,11 @@
 <!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
     "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
 
 <head>
 <meta name="Gruppe 45" content="WEUE1" />
-<title xml:lang="de">Jeopardy!</title>
+<title>Jeopardy!</title>
 
 <link href="styles/register.css" rel="stylesheet" type="text/css" />
 
@@ -20,71 +20,71 @@
 		<form method="POST" onsubmit="return validateBDate()">
 			<div id="inner">
 				<h1>Persönliche Daten</h1>
-				<p class="inputgroups">
+				<div class="inputgroups">
 					<label class="labels" for="firstname">Vorname:</label> <input
 						class="fields" type="text" id="firstname" name="firstname" />
-				</p>
+				</div>
 
-				<p class="inputgroups">
+				<div class="inputgroups">
 					<label class="labels" for="lastname">Nachname:</label> <input
 						class="fields" type="text" id="lastname" name="lastname" />
 
-				</p>
-				<p class="inputgroups">
+				</div>
+				<div class="inputgroups">
 					<label class="labels" for="birthdate">Geburtsdatum:</label> <input
 						class="fields" type="date" id="birthdate" name="birthdate"
 						oninput="validateBDate()" onblur="clearErrors()" />
-				</p>
-
-				<p class="inputgroups">
-					<label class="labels" id="labelSex" for="sex">Geschlecht:</label>
-				<div id="sexRadioBox">
-					<input class="radiobox" type="radio" name="sex" id="male"
-						value="male" /> <label class="radiolable" for="male">Männlich</label>
-
-					<input class="radiobox" type="radio" name="sex" id="female"
-						value="female" /> <label class="radiolable" for="female">Weiblich</label>
 				</div>
-				</p>
+
+				<fieldset class="inputgroups">
+					<label class="labels" id="labelSex">Geschlecht:</label>
+					<div id="sexRadioBox">
+						<input class="radiobox" type="radio" name="sex" id="male"
+							value="male" /> <label class="radiolable" for="male">Männlich</label>
+
+						<input class="radiobox" type="radio" name="sex" id="female"
+							value="female" /> <label class="radiolable" for="female">Weiblich</label>
+					</div >
+				</fieldset>
 				<!-- end fields-->
 
 
 
 				<h1>Spielerdaten</h1>
-				<p class="inputgroups">
+				<div class="inputgroups">
 					<label class="labels" for="avatar">Avatar:</label>
 					<!-- 					<input class="fields" type="file" id="avatar" name="avatar" /> -->
-					<input class="fields" list="avatars" />
+					<input id="avatar" class="fields" list="avatars" />
 					<datalist id="avatars">
-						<option value="Deadpool" />
-						<option value="Black Widow" />
-						<option value="Aldrich Killian" />
+						<option value="Deadpool">Deadpool</option>
+						<option value="Black Widow">Black Widow</option>
+						<option value="Aldrich Killian">Aldrich Killian</option>
 					</datalist>
-				</p>
-				<p class="inputgroups">
+				</div>
+				<div class="inputgroups">
 					<label class="labels" for="username">Benutzername*:</label> <input
 						class="fields" type="text" id="username" name="username"
-						required="true" oninput="validateUsername()"
+						required="required" oninput="validateUsername()"
 						onblur="clearErrors()" />
-				</p>
-				<p class="inputgroups">
+				</div>
+				<div class="inputgroups">
 					<label class="labels" for="password">Passwort*:</label> <input
 						class="fields" type="password" id="password" name="password"
-						required="true" oninput="validatePassword()"
+						required="required" oninput="validatePassword()"
 						onblur="clearErrors()" />
-				</p>
-
-
-				<p class="inputgroups">
-					<input class="register" id="registerBtn" type="submit"
-						value="Registrieren" name="action" disabled="true" />
-				</p>
-				<p class="inputgroups">
-				<div id="hinweis">
-					<a class="pflichtFelder"><p>Mit "*" gekennzeichnete Felder
-							sind Pflichtfelder</p></a>
 				</div>
-				</p>
+
+
+				<div class="inputgroups">
+					<input class="register" id="registerBtn" type="submit"
+						value="Registrieren" name="action" disabled="disabled" />
+				</div>
+				<div class="inputgroups">
+					<div id="hinweis">
+						<a class="pflichtFelder"><div>Mit "*" gekennzeichnete
+								Felder sind Pflichtfelder</div></a>
+					</div>
+				</div>
 
 				<div id="errors">
 					<a id="inputerror"></a>
