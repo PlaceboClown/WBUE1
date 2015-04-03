@@ -33,6 +33,11 @@
 	vertical-align: middle;
 }
 
+#wrapper {
+	overflow: auto;
+
+	}
+
 aside {
 	float: right;
 	width: 300px;
@@ -73,7 +78,7 @@ aside {
 }
 
 #main {
-	width: 1000px;
+	width: 900px;
 }
 
 #history {
