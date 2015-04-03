@@ -182,6 +182,54 @@ aside {
 	color: white;
 }
 
+/* <---------- tablet attributes ---------->*/
+@media screen and (max-width: 1221px) {
+	#wrapper {
+		width: 100%;
+	}
+	aside {
+		width: 98%;
+		margin: 1%;
+	}
+	#players {
+		overflow: auto;
+	}
+	.player {
+		width: 50%;
+		margin-bottom: 0%;
+	}
+	#player1 {
+		float: left;
+	}
+	#player2 {
+		float: right;
+	}
+	.playerpic {
+		margin: 2%;
+	}
+	#playerpic1 {
+		float: left;
+	}
+	#playerpic2 {
+		float: right;
+	}
+	#playertext2 {
+		float: right;
+	}
+	#playertext1 {
+		float: left;
+	}
+	#question {
+		width: 100%;
+		text-align: center;
+		font-weight: bold;
+	}
+	#main {
+		width: 100%;
+		max-width: 900px;
+	}
+}
+
 /* <---------- mobile attributes ---------->*/
 @media screen and (max-width: 601px) {
 	#loginBtn, #logoutBtn {
