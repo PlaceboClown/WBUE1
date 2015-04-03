@@ -35,8 +35,7 @@
 
 #wrapper {
 	overflow: auto;
-
-	}
+}
 
 aside {
 	float: right;
@@ -61,7 +60,6 @@ aside {
 
 .playertext {
 	float: left;
-	
 }
 
 #pic_pl1 {
@@ -195,6 +193,13 @@ aside {
 	aside {
 		width: 98%;
 		margin: 1%;
+		font-size: 0.8em
+	}
+	#players {
+		overflow: auto;
+	}
+	.player {
+		margin-bottom: 0%;
 	}
 	#player1 {
 		float: left;
@@ -202,12 +207,34 @@ aside {
 	#player2 {
 		float: right;
 	}
+	.playerpic {
+		width: 50px;
+		height: 50px;
+		border-width: 0.15em;
+	}
+	#playerpic1 {
+		float: left;
+	}
+	#playerpic2 {
+		float: right;
+	}
+	#playertext1 {
+		float: right;
+	}
+	#playertext2 {
+		float: left;
+	}
+	#question {
+		width: 100%;
+		text-align: center;
+		font-weight: bold;
+	}
 	#main {
 		width: 98%;
 		margin: 1%;
 	}
 	.container {
-		width: 90%;
+		width: 98%;
 		display: block;
 		vertical-align: middle;
 	}
@@ -217,12 +244,12 @@ aside {
 	}
 	#selection {
 		margin: 0 2% 0 0;
-		width: 100%;
+		width: 98%;
 		height: 90%;
 	}
 	#selection label {
 		display: block;
-		width: 90%;
+		width: 100%;
 		margin-left: 1%;
 		margin-right: 1%;
 	}
@@ -231,9 +258,8 @@ aside {
 		display: block;
 	}
 	#selectionBottom {
-		float: right;
 		margin: 0.8%;
-		width: 90%;
+		width: 98%;
 		display: block;
 		vertical-align: middle;
 	}
