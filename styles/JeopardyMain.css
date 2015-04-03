@@ -27,22 +27,53 @@
 
 .container {
 	float: left;
-	margin: 0.8%;
-	width: 10em;
+	margin: 1%;
+	width: 18%;
 	display: inline;
 	vertical-align: middle;
 }
 
 aside {
-	width: 15%;
-	height: 100%;
 	float: right;
+	width: 300px;
+	margin-top: 2%;
+	margin-right: 2%;
+}
+
+.player {
+	overflow: auto;
+	margin-bottom: 3%;
+}
+
+.playerpic {
+	width: 80px;
+	height: 80px;
+	border-style: solid;
+	border-width: 0.2em;
+	float: left;
+	margin-right: 2%;
+}
+
+.playertext {
+	float: left;
+	
+}
+
+#pic_pl1 {
+	border-color: orange;
+}
+
+#playertext1 {
+	font-weight: bold;
+}
+
+#question {
+	float: left;
+	font-weight: bold;
 }
 
 #main {
-	width: 80%;
-	height: 100%;
-	float: left;
+	width: 1000px;
 }
 
 #history {
@@ -53,20 +84,18 @@ aside {
 	width: 80%;
 }
 
-#wrapper_selection{
+#wrapper_selection {
 	width: 100%;
 	margin-top: 2%;
 }
 
 #selection {
-	margin-left:5%;
-	margin-right:5%;
-	width: auto;
+	width: 100%;
 }
 
 #selection label {
 	float: left;
-	width: 10em;
+	width: 100%;
 	margin: 0.2%;
 	border-radius: 4px;
 	border-style: solid;
@@ -145,31 +174,39 @@ aside {
 	border-color: #000;
 	border-radius: 0.25em;
 	background-color: #2dc73b;
-	height: 2em;
-	width: 8em;
+	height: 3em;
+	width: 10em;
 	color: white;
 }
 
 /* <---------- mobile attributes ---------->*/
-@media screen and (max-width: 701px) {
+@media screen and (max-width: 601px) {
+	#loginBtn, #logoutBtn {
+		width: 7em;
+	}
+	#jeoprady {
+		font-size: 1em;
+	}
 	aside {
+		width: 98%;
+		margin: 1%;
+	}
+	#player1 {
 		float: left;
-		width: 100%;
-		height: 15%;
-		display: block;
-		position: relative;
+	}
+	#player2 {
+		float: right;
 	}
 	#main {
-		width: 100%;
+		width: 98%;
+		margin: 1%;
 	}
 	.container {
-		margin: 1%;
-		width: 100%;
+		width: 90%;
 		display: block;
 		vertical-align: middle;
 	}
 	#history {
-		margin: 1%;
 		text-align: center;
 		width: 100%;
 	}
@@ -180,7 +217,7 @@ aside {
 	}
 	#selection label {
 		display: block;
-		width: 100%;
+		width: 90%;
 		margin-left: 1%;
 		margin-right: 1%;
 	}

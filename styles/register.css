@@ -4,16 +4,13 @@
 @import url("general.css");
 
 /* <---------- body attributes ---------->*/
-#wrapper {
-	width: 700px;
+#main {
+	width: 600px;
 }
 
 .labels {
 	color: #000;
 	width: 30%;
-	/*padding: 0;
-	cursor: default;
-	display: inline;*/
 }
 
 .fields {
@@ -96,11 +93,11 @@
 }
 
 /* <---------- mobile attributes ---------->*/
-@media screen and (max-width: 701px) {
+@media screen and (max-width: 601px) {
 	#loginBtn, #logoutBtn {
 		width: 7em;
 	}
-	#wrapper {
+	#main {
 		width: 98%;
 		padding: 1%;
 	}

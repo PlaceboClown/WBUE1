@@ -53,12 +53,12 @@ header {
 }
 
 /* <---------- Wrapper attributes ---------->*/
-#wrapper {
+#main {
 	overflow:auto;
 	margin-top: auto;
 	margin-left: auto;
 	margin-right: auto;
-	margin-bottom: auto;
+	margin-bottom: 3%;
 }
 
 /* <---------- Footer attributes ---------->*/
