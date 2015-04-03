@@ -109,7 +109,7 @@ aside {
 
 #selection label span {
 	position: absolute;
-	top: -20px;
+	left: -100px;
 }
 
 #selection label a {
@@ -121,7 +121,7 @@ aside {
 
 #selection label input {
 	position: absolute;
-	top: -20px;
+	left: -100px;
 }
 
 #selection input:checked+a {
