@@ -190,6 +190,9 @@ aside {
 	#jeoprady {
 		font-size: 1em;
 	}
+	#wrapper {
+		width: 100%;
+	}
 	aside {
 		width: 98%;
 		margin: 1%;
