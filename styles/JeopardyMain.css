@@ -199,6 +199,7 @@ aside {
 		overflow: auto;
 	}
 	.player {
+		width: 40%;
 		margin-bottom: 0%;
 	}
 	#player1 {
@@ -223,6 +224,7 @@ aside {
 	}
 	#playertext2 {
 		float: left;
+		text-align: right;
 	}
 	#question {
 		width: 100%;
