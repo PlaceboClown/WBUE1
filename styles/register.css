@@ -82,14 +82,11 @@
 	line-height: 1.5em;
 	font-size: 0.8em;
 	margin-top: 4%;
+	color: #ff0000;
 }
 
 .pflichtFelder {
 	text-align: center;
-}
-
-#inputerror {
-	color: #ff0000;
 }
 
 /* <---------- mobile attributes ---------->*/

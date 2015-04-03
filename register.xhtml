@@ -21,29 +21,34 @@
 			<div id="inner">
 				<h1>Persönliche Daten</h1>
 				<div class="inputgroups">
-					<label class="labels" for="firstname">Vorname:</label> <input
-						class="fields" type="text" id="firstname" name="firstname" />
+					<label class="labels" for="firstname">Vorname:</label> 
+					<input class="fields" type="text" id="firstname" name="firstname" />
 				</div>
 
 				<div class="inputgroups">
-					<label class="labels" for="lastname">Nachname:</label> <input
-						class="fields" type="text" id="lastname" name="lastname" />
+					<label class="labels" for="lastname">Nachname:</label> 
+					<input class="fields" type="text" id="lastname" name="lastname" />
 
 				</div>
 				<div class="inputgroups">
-					<label class="labels" for="birthdate">Geburtsdatum:</label> <input
-						class="fields" type="date" id="birthdate" name="birthdate"
+					<label class="labels" for="birthdate">Geburtsdatum:</label> 
+					<input class="fields" type="date" id="birthdate" name="birthdate"
 						oninput="validateBDate()" onblur="clearErrors()" />
+					<div id="errors">
+						<a id="inputerrorBDate"></a>
+					</div>
 				</div>
 
 				<fieldset class="inputgroups">
 					<label class="labels" id="labelSex">Geschlecht:</label>
 					<div id="sexRadioBox">
 						<input class="radiobox" type="radio" name="sex" id="male"
-							value="male" /> <label class="radiolable" for="male">Männlich</label>
+							value="male" /> 
+							<label class="radiolable" for="male">Männlich</label>
 
 						<input class="radiobox" type="radio" name="sex" id="female"
-							value="female" /> <label class="radiolable" for="female">Weiblich</label>
+							value="female" /> 
+							<label class="radiolable" for="female">Weiblich</label>
 					</div >
 				</fieldset>
 				<!-- end fields-->
@@ -53,7 +58,7 @@
 				<h1>Spielerdaten</h1>
 				<div class="inputgroups">
 					<label class="labels" for="avatar">Avatar:</label>
-					<!-- 					<input class="fields" type="file" id="avatar" name="avatar" /> -->
+					<!-- <input class="fields" type="file" id="avatar" name="avatar" /> -->
 					<input id="avatar" class="fields" list="avatars" />
 					<datalist id="avatars">
 						<option value="Deadpool">Deadpool</option>
@@ -62,16 +67,22 @@
 					</datalist>
 				</div>
 				<div class="inputgroups">
-					<label class="labels" for="username">Benutzername*:</label> <input
-						class="fields" type="text" id="username" name="username"
+					<label class="labels" for="username">Benutzername*:</label> 
+					<input class="fields" type="text" id="username" name="username"
 						required="required" oninput="validateUsername()"
 						onblur="clearErrors()" />
 				</div>
+					<div id="errors">
+						<a id="inputerrorUser"></a>
+					</div>
 				<div class="inputgroups">
-					<label class="labels" for="password">Passwort*:</label> <input
-						class="fields" type="password" id="password" name="password"
+					<label class="labels" for="password">Passwort*:</label> 
+					<input class="fields" type="password" id="password" name="password"
 						required="required" oninput="validatePassword()"
 						onblur="clearErrors()" />
+					<div id="errors">
+						<a id="inputerrorPW"></a>
+					</div>
 				</div>
 
 
@@ -81,8 +92,9 @@
 				</div>
 				<div class="inputgroups">
 					<div id="hinweis">
-						<a class="pflichtFelder"><div>Mit "*" gekennzeichnete
-								Felder sind Pflichtfelder</div></a>
+						<a class="pflichtFelder">
+							<div>Mit "*" gekennzeichnete Felder sind Pflichtfelder</div>
+						</a>
 					</div>
 				</div>
 
@@ -105,7 +117,7 @@
 		//<![CDATA[
 
 		function validateBDate() {
-			var errorfield = document.getElementById('inputerror');
+			var errorfield = document.getElementById('inputerrorBDate');
 
 			if (!validateBDate_intern()) {
 				errorfield.innerHTML = 'Geben Sie bitte ein gültiges Datum ein! <br />';
@@ -130,7 +142,7 @@
 		}
 
 		function validateUsername() {
-			var errorfield = document.getElementById('inputerror');
+			var errorfield = document.getElementById('inputerrorUser');
 			var errortext = '';
 			var username = document.getElementById('username').value;
 
@@ -142,7 +154,7 @@
 		}
 
 		function validatePassword() {
-			var errorfield = document.getElementById('inputerror');
+			var errorfield = document.getElementById('inputerrorPW');
 			var errortext = '';
 			var password = document.getElementById('password').value;
 
@@ -154,8 +166,6 @@
 		}
 
 		function validate() {
-			var errorfield = document.getElementById('inputerror');
-			var errortext = '';
 			var success = true;
 			var username = document.getElementById('username').value;
 			var password = document.getElementById('password').value;
@@ -186,6 +196,9 @@
 		}
 
 		function clearErrors() {
+			var errorfield = document.getElementById('inputerrorBDate').innerHTML = '';
+			var errorfield = document.getElementById('inputerrorUser').innerHTML = '';
+			var errorfield = document.getElementById('inputerrorPW').innerHTML = '';
 			var errorfield = document.getElementById('inputerror').innerHTML = '';
 			validate();
 		}
