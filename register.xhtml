@@ -53,8 +53,6 @@
 				</fieldset>
 				<!-- end fields-->
 
-
-
 				<h1>Spielerdaten</h1>
 				<div class="inputgroups">
 					<label class="labels" for="avatar">Avatar:</label>
@@ -71,21 +69,25 @@
 					<input class="fields" type="text" id="username" name="username"
 						required="required" oninput="validateUsername()"
 						onblur="clearErrors()" />
+						
 				</div>
-					<div id="errors">
+			
+				<div id="errors">
 						<a id="inputerrorUser"></a>
-					</div>
+				</div>
+				
 				<div class="inputgroups">
 					<label class="labels" for="password">Passwort*:</label> 
 					<input class="fields" type="password" id="password" name="password"
 						required="required" oninput="validatePassword()"
 						onblur="clearErrors()" />
-					<div id="errors">
-						<a id="inputerrorPW"></a>
-					</div>
+				
 				</div>
-
-
+				
+				<div id="errors">
+						<a id="inputerrorPW"></a>
+				</div>
+				
 				<div class="inputgroups">
 					<input class="register" id="registerBtn" type="submit"
 						value="Registrieren" name="action" disabled="disabled" />
