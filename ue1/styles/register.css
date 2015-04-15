@@ -4,20 +4,21 @@
 @import url("general.css");
 
 /* <---------- body attributes ---------->*/
-#wrapper {
-	width: 700px;
+#main {
+	width: 600px;
 }
 
 .labels {
 	color: #000;
 	width: 30%;
+	
 }
 
 .fields {
 	width: 70%;
 	height: 1.5em;
 	float: right;
-	border-style: solit;
+	border-style: solid;
 	border-width: 0.1em;
 	border-color: #000;
 	border-radius: 0.25em;
@@ -26,12 +27,16 @@
 .inputgroups {
 	margin-bottom: 4%;
 	margin-top: 4%;
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0;
+	border: none;
 }
 
 .register {
 	float: right;
 	color: white;
-	border-style: solit;
+	border-style: solid;
 	border-width: 0.1em;
 	border-color: #000;
 	border-radius: 0.25em;
@@ -44,7 +49,7 @@
 .register_active {
 	float: right;
 	color: white;
-	border-style: solit;
+	border-style: solid;
 	border-width: 0.1em;
 	border-color: #000;
 	border-radius: 0.25em;
@@ -72,28 +77,31 @@
 	font-size: 0.8em;
 }
 
-#errors {
-	float: left;
+.errors {
 	text-align: center;
 	line-height: 1.5em;
 	font-size: 0.8em;
 	margin-top: 4%;
+	color: #ff0000;
 }
 
 .pflichtFelder {
 	text-align: center;
 }
 
-#inputerror {
-	color: #ff0000;
+#puffer{
+		width: auto;
+		height: auto;
+		float: left;
+		clear: right;
 }
 
 /* <---------- mobile attributes ---------->*/
-@media screen and (max-width: 701px) {
+@media screen and (max-width: 601px) {
 	#loginBtn, #logoutBtn {
 		width: 7em;
 	}
-	#wrapper {
+	#main {
 		width: 98%;
 		padding: 1%;
 	}

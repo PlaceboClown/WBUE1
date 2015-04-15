@@ -27,22 +27,56 @@
 
 .container {
 	float: left;
-	margin: 0.8%;
-	width: 10em;
+	margin: 1%;
+	width: 18%;
 	display: inline;
 	vertical-align: middle;
 }
 
+#wrapper {
+	overflow: auto;
+}
+
 aside {
-	width: 15%;
-	height: 100%;
 	float: right;
+	width: 300px;
+	margin-top: 2%;
+	margin-right: 2%;
+}
+
+.player {
+	overflow: auto;
+	margin-bottom: 3%;
+}
+
+.playerpic {
+	width: 80px;
+	height: 80px;
+	border-style: solid;
+	border-width: 0.2em;
+	float: left;
+	margin-right: 2%;
+}
+
+.playertext {
+	float: left;
+}
+
+#pic_pl1 {
+	border-color: orange;
+}
+
+#playertext1 {
+	font-weight: bold;
+}
+
+#question {
+	float: left;
+	font-weight: bold;
 }
 
 #main {
-	width: 80%;
-	height: 100%;
-	float: left;
+	width: 900px;
 }
 
 #history {
@@ -53,26 +87,29 @@ aside {
 	width: 80%;
 }
 
-#wrapper_selection{
+#wrapper_selection {
 	width: 100%;
 	margin-top: 2%;
 }
 
 #selection {
-	margin-left:5%;
-	margin-right:5%;
-	width: auto;
+	width: 100%;
 }
 
 #selection label {
 	float: left;
-	width: 10em;
+	width: 100%;
 	margin: 0.2%;
 	border-radius: 4px;
 	border-style: solid;
 	border-width: 0.1em;
 	border-color: #000;
 	overflow: auto;
+}
+
+#selection label span {
+	position: absolute;
+	left: -100px;
 }
 
 #selection label a {
@@ -84,7 +121,7 @@ aside {
 
 #selection label input {
 	position: absolute;
-	top: -20px;
+	left: -100px;
 }
 
 #selection input:checked+a {
@@ -135,43 +172,133 @@ aside {
 #chooseBtn {
 	float: right;
 	color: white;
-	border-style: solit;
+	border-style: solid;
 	border-width: 0.1em;
 	border-color: #000;
 	border-radius: 0.25em;
 	background-color: #2dc73b;
-	height: 2em;
-	width: 8em;
+	height: 3em;
+	width: 10em;
 	color: white;
 }
 
-/* <---------- mobile attributes ---------->*/
-@media screen and (max-width: 701px) {
-	aside {
-		float: left;
+/* <---------- tablet attributes ---------->*/
+@media screen and (max-width: 1221px) {
+	#wrapper {
 		width: 100%;
-		height: 15%;
-		display: block;
-		position: relative;
+	}
+	aside {
+		width: 98%;
+		margin: 1%;
+	}
+	#players {
+		overflow: auto;
+	}
+	.player {
+		width: 50%;
+		margin-bottom: 0%;
+	}
+	#player1 {
+		float: left;
+	}
+	#player2 {
+		float: right;
+	}
+	.playerpic {
+		margin: 2%;
+	}
+	#playerpic1 {
+		float: left;
+	}
+	#playerpic2 {
+		float: right;
+	}
+	#playertext2 {
+		float: right;
+	}
+	#playertext1 {
+		float: left;
+	}
+	#question {
+		width: 100%;
+		text-align: center;
+		font-weight: bold;
 	}
 	#main {
 		width: 100%;
+		max-width: 900px;
+	}
+}
+
+/* <---------- mobile attributes ---------->*/
+@media screen and (max-width: 601px) {
+	#loginBtn, #logoutBtn {
+		width: 7em;
+	}
+	#jeoprady {
+		font-size: 1em;
+	}
+	#wrapper {
+		width: 100%;
+	}
+	aside {
+		width: 98%;
+		margin: 1%;
+		font-size: 0.8em
+	}
+	#players {
+		overflow: auto;
+	}
+	.player {
+		width: 50%;
+		margin-bottom: 0%;
+	}
+	#player1 {
+		float: left;
+	}
+	#player2 {
+		float: right;
+	}
+	.playerpic {
+		width: 50px;
+		height: 50px;
+		border-width: 0.15em;
+		margin: 2%;
+	}
+	#playerpic1 {
+		float: left;
+	}
+	#playerpic2 {
+		float: right;
+	}
+	#playertext2 {
+		float: right;
+	}
+	#playertext1 {
+		float: left;
+	}
+	#question {
+		width: 100%;
+		text-align: center;
+		font-weight: bold;
+	}
+	#main {
+		width: 98%;
+		margin: 1%;
 	}
 	.container {
-		margin: 1%;
-		width: 100%;
+		width: 98%;
 		display: block;
 		vertical-align: middle;
 	}
 	#history {
-		margin: 1%;
 		text-align: center;
 		width: 100%;
 	}
 	#selection {
 		margin: 0 2% 0 0;
-		width: 100%;
-		heigth: 90%;
+		width: 98%;
+		height: 90%;
 	}
 	#selection label {
 		display: block;
@@ -184,9 +311,8 @@ aside {
 		display: block;
 	}
 	#selectionBottom {
-		float: right;
 		margin: 0.8%;
-		width: 90%;
+		width: 98%;
 		display: block;
 		vertical-align: middle;
 	}
