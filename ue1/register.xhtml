@@ -1,0 +1,210 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!-- <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+    "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"> -->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+
+<head>
+<meta name="Gruppe 45" content="WEUE1" />
+<title>Jeopardy!</title>
+
+<link href="styles/register.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+	<header id="head">
+		<img alt="Logo" src="img/big-logo-small.png" id="bigLogo"></img> <a
+			id="jeoprady">Jeopardy!</a> <a id="loginBtn" href="./jeopardy.xhtml">Anmelden</a>
+	</header>
+	<div id="main">
+		<form method="POST" onsubmit="return validateBDate()">
+			<div id="inner">
+				<h1>Persönliche Daten</h1>
+				<div class="inputgroups">
+					<label class="labels" for="firstname">Vorname:</label> 
+					<input class="fields" type="text" id="firstname" name="firstname" />
+				</div>
+
+				<div class="inputgroups">
+					<label class="labels" for="lastname">Nachname:</label> 
+					<input class="fields" type="text" id="lastname" name="lastname" />
+
+				</div>
+				<div class="inputgroups">
+					<label class="labels" for="birthdate">Geburtsdatum:</label> 
+					<input class="fields" type="date" id="birthdate" name="birthdate"
+						oninput="validateBDate()" onblur="clearErrors()" />
+				</div>
+				<div class="errors">
+					<a id="inputerrorBDate"></a>
+				</div>
+
+				<fieldset class="inputgroups">
+					<label class="labels" id="labelSex">Geschlecht:</label>
+					<div id="sexRadioBox">
+						<input class="radiobox" type="radio" name="sex" id="male"
+							value="male" /> 
+							<label class="radiolable" for="male">Männlich</label>
+
+						<input class="radiobox" type="radio" name="sex" id="female"
+							value="female" /> 
+							<label class="radiolable" for="female">Weiblich</label>
+					</div >
+				</fieldset>
+				<!-- end fields-->
+
+				<h1>Spielerdaten</h1>
+				<div class="inputgroups">
+					<label class="labels" for="avatar">Avatar:</label>
+					<!-- <input class="fields" type="file" id="avatar" name="avatar" /> -->
+					<input id="avatar" class="fields" list="avatars" />
+					<datalist id="avatars">
+						<option value="Deadpool">Deadpool</option>
+						<option value="Black Widow">Black Widow</option>
+						<option value="Aldrich Killian">Aldrich Killian</option>
+					</datalist>
+				</div>
+				<div class="inputgroups">
+					<label class="labels" for="username">Benutzername*:</label> 
+					<input class="fields" type="text" id="username" name="username"
+						required="required" oninput="validateUsername()"
+						onblur="clearErrors()" />
+						
+				</div>
+			
+				<div class="errors">
+					<a id="inputerrorUser"></a>
+				</div>
+				
+				<div class="inputgroups">
+					<label class="labels" for="password">Passwort*:</label> 
+					<input class="fields" type="password" id="password" name="password"
+						required="required" oninput="validatePassword()"
+						onblur="clearErrors()" />
+				
+				</div>
+				
+				<div class="errors">
+					<a id="inputerrorPW"></a>
+				</div>
+				
+				<div class="inputgroups">
+					<input class="register" id="registerBtn" type="submit"
+						value="Registrieren" name="action" disabled="disabled" />
+				</div>
+				<div class="inputgroups">
+					<div id="hinweis">
+						<a class="pflichtFelder">
+							<div>Mit "*" gekennzeichnete Felder sind Pflichtfelder</div>
+						</a>
+					</div>
+				</div>
+
+				<div id="errors">
+					<a id="inputerror"></a>
+				</div>
+			</div>
+			<!--inner end-->
+		</form>
+
+	</div>
+	<footer>&#169; 2015 BIG Jeopardy</footer>
+	<!-- end wrapper-->
+
+
+	<script type="text/javascript" src="js/framework.js"></script>
+	<script type="text/javascript" src="js/jquery.js"></script>
+
+	<script type="text/javascript">
+		//<![CDATA[
+
+		function validateBDate() {
+			var errorfield = document.getElementById('inputerrorBDate');
+
+			if (!validateBDate_intern()) {
+				errorfield.innerHTML = 'Geben Sie bitte ein gültiges Datum ein! <br />';
+			}
+		}
+
+		function validateBDate_intern() {
+			var success = true;
+
+			if (!hasNativeDateInput()) {
+				var birthdate = document.getElementById('birthdate');
+
+				if (birthdate.value.length > 0) {
+					var date = /^(\d{1,2})\.(\d{1,2})\.(\d{4})$/;
+
+					if (!(getNormalizedDateString(birthdate).match(date))) {
+						success = false;
+					}
+				}
+			}
+			return success;
+		}
+
+		function validateUsername() {
+			var errorfield = document.getElementById('inputerrorUser');
+			var errortext = '';
+			var username = document.getElementById('username').value;
+
+			if (username.length > 8 || username.length < 4) {
+				errortext = 'Username muss zwischen 4 und 8 Zeichen lang sein! <br />';
+			}
+			errorfield.innerHTML = errortext;
+			validate();
+		}
+
+		function validatePassword() {
+			var errorfield = document.getElementById('inputerrorPW');
+			var errortext = '';
+			var password = document.getElementById('password').value;
+
+			if (password.length > 8 || password.length < 4) {
+				errortext = 'Password muss zwischen 4 und 8 Zeichen lang sein! <br />';
+			}
+			errorfield.innerHTML = errortext;
+			validate();
+		}
+
+		function validate() {
+			var success = true;
+			var username = document.getElementById('username').value;
+			var password = document.getElementById('password').value;
+
+			if (!validateBDate_intern()) {
+				success = success && false;
+			}
+
+			if (username.length > 8 || username.length < 4) {
+				success = success && false;
+			}
+
+			if (password.length > 8 || password.length < 4) {
+				success = success && false;
+			}
+
+			if (success) {
+				var registerBtn = document.getElementById('registerBtn');
+				registerBtn.disabled = false;
+				registerBtn.className = "register_active";
+			} else {
+				var registerBtn = document.getElementById('registerBtn');
+				registerBtn.disabled = true;
+				registerBtn.className = "register";
+			}
+
+			return success;
+		}
+
+		function clearErrors() {
+			var errorfield = document.getElementById('inputerrorBDate').innerHTML = '';
+			var errorfield = document.getElementById('inputerrorUser').innerHTML = '';
+			var errorfield = document.getElementById('inputerrorPW').innerHTML = '';
+			var errorfield = document.getElementById('inputerror').innerHTML = '';
+			validate();
+		}
+		//]]>
+	</script>
+</body>
+</html>

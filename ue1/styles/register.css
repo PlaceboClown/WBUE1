@@ -1,0 +1,126 @@
+@charset "utf-8";
+/* CSS Document */
+
+@import url("general.css");
+
+/* <---------- body attributes ---------->*/
+#main {
+	width: 600px;
+}
+
+.labels {
+	color: #000;
+	width: 30%;
+	
+}
+
+.fields {
+	width: 70%;
+	height: 1.5em;
+	float: right;
+	border-style: solid;
+	border-width: 0.1em;
+	border-color: #000;
+	border-radius: 0.25em;
+}
+
+.inputgroups {
+	margin-bottom: 4%;
+	margin-top: 4%;
+	margin-left: 0;
+	margin-right: 0;
+	padding: 0;
+	border: none;
+}
+
+.register {
+	float: right;
+	color: white;
+	border-style: solid;
+	border-width: 0.1em;
+	border-color: #000;
+	border-radius: 0.25em;
+	background-color: #CCC;
+	margin-top: 0.8em;
+	height: 2em;
+	width: 8em;
+}
+
+.register_active {
+	float: right;
+	color: white;
+	border-style: solid;
+	border-width: 0.1em;
+	border-color: #000;
+	border-radius: 0.25em;
+	background-color: #2dc73b;
+	height: 2em;
+	width: 8em;
+}
+
+#inner {
+	width: auto;
+}
+
+#sexRadioBox {
+	float: right;
+}
+
+#pflichtFelder {
+	float: right;
+}
+
+#hinweis {
+	float: left;
+	text-align: center;
+	line-height: 1.5em;
+	font-size: 0.8em;
+}
+
+.errors {
+	text-align: center;
+	line-height: 1.5em;
+	font-size: 0.8em;
+	margin-top: 4%;
+	color: #ff0000;
+}
+
+.pflichtFelder {
+	text-align: center;
+}
+
+#puffer{
+		width: auto;
+		height: auto;
+		float: left;
+		clear: right;
+}
+
+/* <---------- mobile attributes ---------->*/
+@media screen and (max-width: 601px) {
+	#loginBtn, #logoutBtn {
+		width: 7em;
+	}
+	#main {
+		width: 98%;
+		padding: 1%;
+	}
+	#jeoprady {
+		font-size: 1em;
+	}
+	#sexRadioBox {
+		width: 100%;
+		padding-top: 1%;
+		clear: both;
+		padding-bottom: 2%;
+	}
+	.inputgroups {
+		margin-bottom: 6%;
+	}
+	.labels {
+		width: 100%;
+	}
+	.fields {
+		width: 100%;
+	}
+}
