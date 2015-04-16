@@ -11,9 +11,9 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>BigJeopardy</servlet-name>
-		<url-pattern>/BigJeopardyServlet</url-pattern>
+		<url-pattern>/ue2/*</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
-		<welcome-file>Login.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 </web-app>
