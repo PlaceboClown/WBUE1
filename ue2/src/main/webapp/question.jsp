@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -24,7 +24,7 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">Navigation</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="login.xhtml" accesskey="l">Abmelden</a></li>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="login.jsp" accesskey="l">Abmelden</a></li>
 			</ul>
 		</nav>
       
@@ -66,7 +66,7 @@
             
       <!-- Question -->
       <section id="question" aria-labelledby="questionheading">
-            <form id="questionform" action="jeopardy.xhtml" method="get">
+            <form id="questionform" action="jeopardy.jsp" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
                <p id="questiontype">TUWIEN für € 300</p>
                <p id="questiontext">Diese Lehrveranstaltungen bilden das Modul EWA.</p>

@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -11,7 +11,7 @@
         <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/framework.js" type="text/javascript"></script>
    </head>
-   <body id="selection-page">
+   <body id="selection-page" >
       <a class="accessibility" href="#question-selection">Zur Fragenauswahl springen</a>
       <!-- Header -->
       <header role="banner" aria-labelledby="bannerheading">
@@ -24,7 +24,7 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">Navigation</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="#" accesskey="l">Abmelden</a></li>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="Klicke hier um dich abzumelden" href="login.jsp" accesskey="l">Abmelden</a></li>
 			</ul>
 		</nav>
       
@@ -70,7 +70,7 @@
             <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
-            <form id="questionform" action="question.xhtml" method="post">
+            <form id="questionform" action="question.jsp" method="post">
                <fieldset>
                <legend class="accessibility">Fragenauswahl</legend>
                <section class="questioncategory" aria-labelledby="tvheading">

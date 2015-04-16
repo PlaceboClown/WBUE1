@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+<html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,7 +25,7 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">Navigation</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="loginlink" title="Klicke hier um dich anzumelden" href="login.xhtml" accesskey="l">Anmelden</a></li>
+				<li><a class="orangelink navigationlink" id="loginlink" title="Klicke hier um dich anzumelden" href="login.jsp" accesskey="l">Anmelden</a></li>
 			</ul>
 		</nav>
       
@@ -33,9 +33,9 @@
       <div id="register" role="main"> 
             <!-- Register section -->
             <h2 id="registerheading" class="accessibility">Registrierung</h2>
-            <form action="login.xhtml" method="post">
+            <form action="login.jsp" method="post">
                 <fieldset>
-                    <legend>Persönliche Daten</legend>
+                    <legend>PersÃ¶nliche Daten</legend>
                     <label for="firstname">Vorname:</label>
                     <input id="firstname" type="text" name="firstname"/>
                     
@@ -49,7 +49,7 @@
                     <label>Geschlecht:</label>
                     <fieldset class="inputset">
                         <input type="radio" name="gender" id="male" value="m" checked="checked" />
-                        <label for="male">Männlich</label>
+                        <label for="male">MÃ¤nnlich</label>
                         <input type="radio" name="gender" id="female" value="f" />
                         <label for="female">Weiblich</label>
                     </fieldset>
@@ -118,7 +118,7 @@
         </div>
 
         <!-- Footer -->
-        <footer role="contentinfo">© 2015 BIG Jeopardy</footer>
+        <footer role="contentinfo">Â© 2015 BIG Jeopardy</footer>
         
         <script type="text/javascript">
             //<![CDATA[
