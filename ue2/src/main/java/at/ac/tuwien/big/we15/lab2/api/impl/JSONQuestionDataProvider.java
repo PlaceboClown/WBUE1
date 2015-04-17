@@ -47,6 +47,8 @@ public class JSONQuestionDataProvider implements QuestionDataProvider {
 		}
 	};
 	
+	
+	
 	public JSONQuestionDataProvider(InputStream inputStream, JeopardyFactory factory) {
 		this.inputStream = inputStream;
 		this.factory = factory;

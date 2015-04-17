@@ -2,8 +2,10 @@ package at.ac.tuwien.big.we15.lab2.servlet;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -16,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import at.ac.tuwien.big.we15.lab2.api.Category;
+import at.ac.tuwien.big.we15.lab2.api.Question;
 import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
 
@@ -28,15 +31,13 @@ import com.google.common.reflect.Parameter;
 @WebServlet(name="BigJeopardyServlet", urlPatterns={"/BigJeopardyServlet"})
 public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private List<Category> categories;
+	private List<Category> information = new ArrayList<Category>();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public BigJeopardyServlet() {
 		super();
-	
-
 		
 	}
 	
@@ -46,10 +47,7 @@ public class BigJeopardyServlet extends HttpServlet {
 		ServletContext servletContext = config.getServletContext();
 		ServletJeopardyFactory factory = new ServletJeopardyFactory(servletContext);
 		QuestionDataProvider provider = factory.createQuestionDataProvider();
-		categories = provider.getCategoryData();
-		for(Category c : categories){
-			System.out.println(c.getName());
-		}
+		information.addAll(provider.getCategoryData());
 		
     }	
 
@@ -71,9 +69,11 @@ public class BigJeopardyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		String pw = request.getParameter("password");
 		RequestDispatcher dispatcher;
+
 		if(pw==null){
 			 dispatcher  = getServletContext().getRequestDispatcher("/qestion.jsp");
 		}else{
+						request.setAttribute("information", information);
 			 dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
 		}
 		dispatcher.forward(request, response);

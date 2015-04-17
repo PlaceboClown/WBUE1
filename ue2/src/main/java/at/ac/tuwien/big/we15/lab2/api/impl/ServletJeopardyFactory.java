@@ -25,6 +25,9 @@ public class ServletJeopardyFactory extends SimpleJeopardyFactory {
 	public ServletJeopardyFactory(ServletContext context) {
 		this.context = context;
 	}
+	
+	
+
 
 	@Override
 	public QuestionDataProvider createQuestionDataProvider() {
