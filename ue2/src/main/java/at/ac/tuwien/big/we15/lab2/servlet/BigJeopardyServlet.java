@@ -3,6 +3,7 @@ package at.ac.tuwien.big.we15.lab2.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Enumeration;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
@@ -14,6 +15,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import at.ac.tuwien.big.we15.lab2.api.Category;
+import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
+import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
+
 import com.google.common.reflect.Parameter;
 
 
@@ -23,33 +28,37 @@ import com.google.common.reflect.Parameter;
 @WebServlet(name="BigJeopardyServlet", urlPatterns={"/BigJeopardyServlet"})
 public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private List<Category> categories;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public BigJeopardyServlet() {
 		super();
+	
 
-		// TODO Auto-generated constructor stub
+		
 	}
-
+	
 	@Override
-	public void init(ServletConfig config) throws ServletException {
+    public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		ServletContext servletContext = config.getServletContext();
-	
+		ServletJeopardyFactory factory = new ServletJeopardyFactory(servletContext);
+		QuestionDataProvider provider = factory.createQuestionDataProvider();
+		categories = provider.getCategoryData();
+		for(Category c : categories){
+			System.out.println(c.getName());
+		}
 		
-	}	
-
-
+    }	
 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
+	
 		
 	}
 
@@ -59,21 +68,18 @@ public class BigJeopardyServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-
-	
-		HttpServletRequest re = request;
-		Enumeration<String> en = re.getHeaderNames();
-		
-		String action = request.getRequestURI();
-		
-		if(true){
-			RequestDispatcher dispatcher  = getServletContext().getRequestDispatcher("/question.jsp");
-			dispatcher.forward(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
+		String pw = request.getParameter("password");
+		RequestDispatcher dispatcher;
+		if(pw==null){
+			 dispatcher  = getServletContext().getRequestDispatcher("/qestion.jsp");
+		}else{
+			 dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
 		}
+		dispatcher.forward(request, response);
 
-
+		
+		
 	}
 
 }

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="at.ac.tuwien.big.we15.lab2.servlet.BigJeopardyServlet"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
     <head>
@@ -70,7 +72,7 @@
             <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
-            <form id="questionform" action="question.jsp" method="post">
+            <form id="questionform" action="BigJeopardyServlet" method="post">
                <fieldset>
                <legend class="accessibility">Fragenauswahl</legend>
                <section class="questioncategory" aria-labelledby="tvheading">
