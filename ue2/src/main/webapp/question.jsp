@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="at.ac.tuwien.big.we15.lab2.servlet.BigJeopardyServlet"%>
+<%@ page import="java.util.List"%>
+<%@ page import="at.ac.tuwien.big.we15.lab2.api.Question" %>
+<%@ page import="at.ac.tuwien.big.we15.lab2.api.Answer" %>
 <html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
     <head>
         <meta charset="utf-8"/>
@@ -65,17 +69,24 @@
          </section>
             
       <!-- Question -->
+      <%  Question question =  (Question)request.getAttribute("frage");%>
       <section id="question" aria-labelledby="questionheading">
-            <form id="questionform" action="jeopardy.jsp" method="get">
+            <form id="questionform" action="BigJeopardyServlet" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
                <p id="questiontype">TUWIEN für € 300</p>
-               <p id="questiontext">Diese Lehrveranstaltungen bilden das Modul EWA.</p>
-               <ul id="answers">
-                  <li><input name="answers" id="answer_1" value="1" type="checkbox"/><label class="tile clickable" for="answer_1">Was ist IT Strategie?</label></li>
-                  <li><input name="answers" id="answer_2" value="2" type="checkbox"/><label class="tile clickable" for="answer_2">Was ist Web Engineering?</label></li>
-                  <li><input name="answers" id="answer_3" value="3" type="checkbox"/><label class="tile clickable" for="answer_3">Was ist Semistrukturierte Daten?</label></li>
-                  <li><input name="answers" id="answer_4" value="4" type="checkbox"/><label class="tile clickable" for="answer_4">Was ist Objektorientierte Modellierung?</label></li>
-               </ul>
+               <p id="questiontext"><% out.print(question.getText());%></p>
+               
+                          <ul id="answers">   
+               
+               <%  int i = 0;for(Answer a : question.getAllAnswers()){ %>
+                
+               <li><input name="answers" id="answer_<%out.print(i); %>" value="<%out.print(i); %>" type="checkbox"/><label class="tile clickable" for="answer_<%out.print(i);%>">
+              <%out.print(a.getText()); %></label></li>
+             
+                  <%i++;}%>
+                  
+                  </ul>
+               
                <input id="timeleftvalue" type="hidden" value="100"/>
                <input class="greenlink formlink clickable" name="answer_submit" id="next" type="submit" value="antworten" accesskey="s"/>
             </form>

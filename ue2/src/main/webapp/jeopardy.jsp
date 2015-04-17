@@ -100,8 +100,8 @@
                   <h3 id="<%out.print(category.getName()); %>heading" class="tile category-title"><span class="accessibility">Kategorie: </span><% out.print(category.getName()); %></h3>
                   <ol class="category_questions">
                   <%  for(Question q : category.getQuestions()){ %>
-                     <li><input name="question_selection" id="question_<% out.print(i);%>"  value="<%q.getValue(); %>" type="radio" />
-                     <label class="tile clickable" for="question_<%out.print(i); %>"><% out.println("€ " +q.getValue()); %></label></li>
+                     <li><input name="question_selection" id="question_<% out.print(i);%>"  value="<%out.print(i); %>" type="radio" />
+                     <label class="tile clickable" for="question_<%out.print(i); %>"><% out.print("€ " +q.getValue()); %></label></li>
                  	
                     <%i++;}%>
                   </ol>
@@ -114,7 +114,7 @@
 
 			</fieldset>
 			<input class="greenlink formlink clickable" name="question_submit"
-				id="next" type="submit" value="wählen" accesskey="s" />
+				id="next" type="submit" value="wählen" accesskey="s"  />
 		</form>
 		</section>
 

@@ -38,26 +38,28 @@ public class BigJeopardyServlet extends HttpServlet {
 	 */
 	public BigJeopardyServlet() {
 		super();
-		
+
 	}
-	
+
 	@Override
-    public void init(ServletConfig config) throws ServletException {
+	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		ServletContext servletContext = config.getServletContext();
 		ServletJeopardyFactory factory = new ServletJeopardyFactory(servletContext);
 		QuestionDataProvider provider = factory.createQuestionDataProvider();
 		information.addAll(provider.getCategoryData());
-		
-    }	
+
+	}	
 
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		
+		RequestDispatcher dispatcher;
+		dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
+		dispatcher.forward(request, response);
+
 	}
 
 
@@ -71,15 +73,29 @@ public class BigJeopardyServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 
 		if(pw==null){
-			 dispatcher  = getServletContext().getRequestDispatcher("/qestion.jsp");
+			String id = request.getParameter("question_selection");
+			Integer toFind = Integer.parseInt(id);
+			int j = 0;
+			Question question = null;
+			for(Category c : information){
+				for(Question q : c.getQuestions()){
+					if(j == toFind){
+						question = q;
+					}
+					j++;
+				}
+			}
+			//hier noch kategorie und value fangen dann mitgeben
+			//ueberlegen ob request/session/application sollte man allgemein mal durchdenken
+			request.setAttribute("frage", question);
+			dispatcher  = getServletContext().getRequestDispatcher("/question.jsp");
 		}else{
-						request.setAttribute("information", information);
-			 dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
+			request.setAttribute("information", information);
+			dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
 		}
 		dispatcher.forward(request, response);
 
-		
-		
+
 	}
 
 }
