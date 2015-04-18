@@ -91,9 +91,8 @@
 			<fieldset>
 				<legend class="accessibility">Fragenauswahl</legend>
 
-				<% int i = 0; List<Category> info = (List<Category>) request.getAttribute("information");
-
-				// print the information about every category of the list
+				<% int i = 0;
+				List<Category> info = (List<Category>) request.getAttribute("information");
 					for(Category category : info) {%>
  
  				<section class="questioncategory" aria-labelledby="<%out.print(category.getName()); %>heading">

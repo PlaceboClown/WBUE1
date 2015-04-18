@@ -57,6 +57,8 @@ public class BigJeopardyServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher;
+		request.setAttribute("information", information);
+
 		dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
 		dispatcher.forward(request, response);
 
