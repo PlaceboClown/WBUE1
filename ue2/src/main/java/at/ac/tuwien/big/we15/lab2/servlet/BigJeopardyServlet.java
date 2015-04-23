@@ -1,14 +1,10 @@
 package at.ac.tuwien.big.we15.lab2.servlet;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
-import java.util.TreeMap;
-
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -27,8 +23,6 @@ import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
 import at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion;
 
-import com.google.common.reflect.Parameter;
-
 
 /**
  * Servlet implementation class BigJeopardyservlet
@@ -37,7 +31,19 @@ import com.google.common.reflect.Parameter;
 public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Category> information = new ArrayList<Category>();
-	private HashMap<Integer, HttpSession> sids = new HashMap<Integer, HttpSession>();
+	
+	//used session attributes
+	//round
+	//p1_acc  (achieved € value)
+	//p2_acc
+	//questions_played_p1  (list of choosed questions player 1)
+	//questions_played_p2
+	//last_p1_question
+	//last_p2_question
+	//last_p1_answerr (bool)
+	//last_p2_answer (bool)
+	//p1_avatar 
+	//p2_avatar
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -71,9 +77,12 @@ public class BigJeopardyServlet extends HttpServlet {
 		boolean answer = processKIAnswer(q_p2);
 		session.setAttribute("last_p2_answer", q_p2);
 		
+		int p2_acc = (int)session.getAttribute("p2_acc");
+		
 		if(answer){
-			int p2_acc = (int)session.getAttribute("p2_acc");
-			session.setAttribute("p2_acc", p2_acc+q_p2.getValue());
+			session.setAttribute("p2_acc", p2_acc + q_p2.getValue());
+		} else {
+			session.setAttribute("p2_acc", p2_acc - q_p2.getValue());
 		}
 		
 		//process player answer
@@ -104,6 +113,7 @@ public class BigJeopardyServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 		String user = request.getParameter("username");
 		
+		//TODO: bessere parameter auswaehlen - eventuell ueber session id?
 		if(user==null){
 			//request from jeopardy.jsp
 			
@@ -197,6 +207,10 @@ public class BigJeopardyServlet extends HttpServlet {
 	}
 	
 	private void processWinner(HttpServletRequest request) {
+		// TODO Auto-generated method stub
+	}
+	
+	private void processPlace(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 	}
 

@@ -44,24 +44,36 @@
 		<!-- info -->
 
 		<section id="gameinfo" aria-labelledby="gameinfoinfoheading">
+		<!-- TODO: vereinfachen (doppelt auf question.jsp) --> 
+		<!-- TODO: Ranking -->
 		<h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
-		<% Avatar p1_avatar = (Avatar)session.getAttribute("p1_avatar");%>
-		<% Avatar p2_avatar = (Avatar)session.getAttribute("p2_avatar");%>
+		<%
+			Avatar p1_avatar = (Avatar)session.getAttribute("p1_avatar");
+		%> <%
+ 	Avatar p2_avatar = (Avatar)session.getAttribute("p2_avatar");
+ %>
 		<section id="firstplayer" class="playerinfo leader"
 			aria-labelledby="firstplayerheading">
 		<h3 id="firstplayerheading" class="accessibility">Führender
 			Spieler</h3>
-		<img class="avatar" src="img/avatar/<% out.print(p1_avatar.getImageHead());%>"
-			alt="Spieler-Avatar <% out.print(p1_avatar.getName());%>" />
+		<img class="avatar"
+			src="img/avatar/<%out.print(p1_avatar.getImageHead());%>"
+			alt="Spieler-Avatar <%out.print(p1_avatar.getName());%>" />
 		<table>
 			<tr>
 				<th class="accessibility">Spielername</th>
-				<td class="playername"><% out.print(p1_avatar.getName());%> (Du)</td>
+				<td class="playername">
+					<%
+						out.print(p1_avatar.getName());
+					%> (Du)
+				</td>
 			</tr>
 			<tr>
 				<th class="accessibility">Spielerpunkte</th>
 				<td class="playerpoints">
-					<% out.print(session.getAttribute("p1_acc"));%> €
+					<%
+						out.print(session.getAttribute("p1_acc"));
+					%> €
 				</td>
 			</tr>
 		</table>
@@ -69,22 +81,35 @@
 			aria-labelledby="secondplayerheading">
 		<h3 id="secondplayerheading" class="accessibility">Zweiter
 			Spieler</h3>
-		<img class="avatar" src="img/avatar/<% out.print(p2_avatar.getImageHead());%>"
-			alt="Spieler-Avatar <% out.print(p1_avatar.getName());%>" />
+		<img class="avatar"
+			src="img/avatar/<%out.print(p2_avatar.getImageHead());%>"
+			alt="Spieler-Avatar <%out.print(p1_avatar.getName());%>" />
 		<table>
 			<tr>
 				<th class="accessibility">Spielername</th>
-				<td class="playername"><% out.print(p2_avatar.getName());%></td>
+				<td class="playername">
+					<%
+						out.print(p2_avatar.getName());
+					%>
+				</td>
 			</tr>
 			<tr>
 				<th class="accessibility">Spielerpunkte</th>
 				<td class="playerpoints">
-					<% out.print(session.getAttribute("p2_acc"));%> €
+					<%
+						out.print(session.getAttribute("p2_acc"));
+					%> €
 				</td>
 			</tr>
 		</table>
 		</section>
-		<p id="round">Fragen: <%out.print(session.getAttribute("round"));%> / 10</p>
+		<p id="round">
+			Fragen:
+			<%
+			out.print(session.getAttribute("round"));
+		%>
+			/ 10
+		</p>
 		</section>
 
 		<!-- Question -->
@@ -99,40 +124,48 @@
 			<fieldset>
 				<legend class="accessibility">Fragenauswahl</legend>
 
-				<% int i = 0;
-				List<Category> info = (List<Category>) session.getAttribute("information");
-					for(Category category : info) {%>
+				<%
+					int i = 0;
+						List<Category> info = (List<Category>) session.getAttribute("information");
+							for(Category category : info) {
+				%>
 
 				<section class="questioncategory"
-					aria-labelledby="<%out.print(category.getName()); %>heading">
-				<h3 id="<%out.print(category.getName()); %>heading"
+					aria-labelledby="<%out.print(category.getName());%>heading">
+				<h3 id="<%out.print(category.getName());%>heading"
 					class="tile category-title">
 					<span class="accessibility">Kategorie: </span>
-					<% out.print(category.getName()); %>
+					<%
+						out.print(category.getName());
+					%>
 				</h3>
 				<ol class="category_questions">
-					<%  for(Question q : category.getQuestions()){ %>
+					<%
+						for(Question q : category.getQuestions()){
+					%>
 					<li><input name="question_selection"
-						id="question_<% out.print(i);%>" 
-						value="<%out.print(i); %>"
-						type="radio" 
-						<%
-						ArrayList<Question> played_p1 = (ArrayList<Question>)session.getAttribute("questions_played_p1");
+						id="question_<%out.print(i);%>" value="<%out.print(i);%>"
+						type="radio"
+						<%ArrayList<Question> played_p1 = (ArrayList<Question>)session.getAttribute("questions_played_p1");
 						ArrayList<Question> played_p2 = (ArrayList<Question>)session.getAttribute("questions_played_p2");
 						if((played_p1 != null && played_p1.contains(q)) || (played_p2 != null && played_p2.contains(q))){
 							out.print("disabled = true");
-						}
-						%>
-						/> 
-						<label class="tile clickable" for="question_<%out.print(i); %>"> <% out.print("€ " +q.getValue()); %>
-						</label>
-					</li>
+						}%> />
+						<label class="tile clickable" for="question_<%out.print(i);%>">
+							<%
+								out.print("€ " +q.getValue());
+							%>
+					</label></li>
 
-					<%i++;}%>
+					<%
+						i++;}
+					%>
 				</ol>
 				</section>
 
-				<%}%>
+				<%
+					}
+				%>
 
 
 
@@ -153,24 +186,25 @@
 	<footer role="contentinfo">© 2015 BIG Jeopardy!</footer>
 
 	<script type="text/javascript">
-            //<![CDATA[
-            
-            // initialize time
-            $(document).ready(function() {
-                // set last game
-                if(supportsLocalStorage()) {
-	                var lastGameMillis = parseInt(localStorage['lastGame'])
-	                if(!isNaN(parseInt(localStorage['lastGame']))){
-	                    var lastGame = new Date(lastGameMillis);
-	                	$("#lastgame p").replaceWith('<p>Letztes Spiel: <time datetime="'
-	                			+ lastGame.toUTCString()
-	                			+ '">'
-	                			+ lastGame.toLocaleString()
-	                			+ '</time></p>')
-	                }
-            	}
-            });            
-            //]]>
-        </script>
+		//<![CDATA[
+
+		// initialize time
+		$(document).ready(
+				function() {
+					// set last game
+					if (supportsLocalStorage()) {
+						var lastGameMillis = parseInt(localStorage['lastGame'])
+						if (!isNaN(parseInt(localStorage['lastGame']))) {
+							var lastGame = new Date(lastGameMillis);
+							$("#lastgame p").replaceWith(
+									'<p>Letztes Spiel: <time datetime="'
+											+ lastGame.toUTCString() + '">'
+											+ lastGame.toLocaleString()
+											+ '</time></p>')
+						}
+					}
+				});
+		//]]>
+	</script>
 </body>
 </html>
