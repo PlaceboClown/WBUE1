@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.TreeMap;
 
 import javax.servlet.RequestDispatcher;
@@ -17,10 +19,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import at.ac.tuwien.big.we15.lab2.api.Answer;
+import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import at.ac.tuwien.big.we15.lab2.api.Category;
 import at.ac.tuwien.big.we15.lab2.api.Question;
 import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion;
 
 import com.google.common.reflect.Parameter;
 
@@ -32,6 +37,7 @@ import com.google.common.reflect.Parameter;
 public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Category> information = new ArrayList<Category>();
+	private HashMap<Integer, HttpSession> sids = new HashMap<Integer, HttpSession>();
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -56,25 +62,53 @@ public class BigJeopardyServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//request from question.jsp
 		RequestDispatcher dispatcher;
-		request.setAttribute("information", information);
-
-		dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
+		HttpSession session = request.getSession(true);
+		
+		//process KI answer
+		Question q_p2 = (Question)session.getAttribute("last_p2_question");
+		boolean answer = processKIAnswer(q_p2);
+		session.setAttribute("last_p2_answer", q_p2);
+		
+		if(answer){
+			int p2_acc = (int)session.getAttribute("p2_acc");
+			session.setAttribute("p2_acc", p2_acc+q_p2.getValue());
+		}
+		
+		//process player answer
+		Question q_p1 = (Question)session.getAttribute("last_p1_question");
+		List<Answer> corrects = q_p1.getCorrectAnswers();
+		String[] answers = request.getParameterValues("answers");
+		Integer answer_ids;
+		
+		// TODO antwort auswerten
+		
+		int rounds = (int)session.getAttribute("round");
+		
+		if(rounds >= 10){
+			processWinner(request);
+			dispatcher  = getServletContext().getRequestDispatcher("/winner.jsp");
+		} else {
+			dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
+		}
+		
 		dispatcher.forward(request, response);
 
 	}
-
-
-
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
-		String pw = request.getParameter("password");
 		RequestDispatcher dispatcher;
-
-		if(pw==null){
+		String user = request.getParameter("username");
+		
+		if(user==null){
+			//request from jeopardy.jsp
+			
+			HttpSession session = request.getSession(true);
+			
 			String id = request.getParameter("question_selection");
 			Integer toFind = Integer.parseInt(id);
 			int j = 0;
@@ -87,17 +121,83 @@ public class BigJeopardyServlet extends HttpServlet {
 					j++;
 				}
 			}
-			//hier noch kategorie und value fangen dann mitgeben
-			//ueberlegen ob request/session/application sollte man allgemein mal durchdenken
-			request.setAttribute("frage", question);
+			
+			int rounds = (int)session.getAttribute("round");
+			session.setAttribute("round", rounds+1);
+	
+			//communicate player data
+			((ArrayList<Question>)session.getAttribute("questions_played_p1")).add(question);
+			session.setAttribute("last_p1_question", question);
+			
+			//process KI choose and communicate it
+			Question q_p2 = processKIQuestion(session);
+			((ArrayList<Question>)session.getAttribute("questions_played_p2")).add(q_p2);
+			session.setAttribute("last_p2_question", q_p2);
+			
 			dispatcher  = getServletContext().getRequestDispatcher("/question.jsp");
 		}else{
-			request.setAttribute("information", information);
+			//request from login.jsp
+			//setup game data in session		
+			
+			HttpSession session = request.getSession(true);
+			initNewGame(session);
+			session.setAttribute("user", user);		
+			session.setAttribute("information", information);
+			
 			dispatcher  = getServletContext().getRequestDispatcher("/jeopardy.jsp");
 		}
 		dispatcher.forward(request, response);
 
 
+	}
+
+	
+	private void initNewGame(HttpSession session){
+		session.setAttribute("round", 0);
+		session.setAttribute("p1_acc", 0);
+		session.setAttribute("p2_acc", 0);
+		session.setAttribute("questions_played_p2", new ArrayList<SimpleQuestion>());
+		session.setAttribute("questions_played_p1", new ArrayList<SimpleQuestion>());	
+		
+		Avatar p1_avatar = Avatar.BLACK_WIDOW;
+		
+		session.setAttribute("p1_avatar", p1_avatar);
+		session.setAttribute("p2_avatar", Avatar.getOpponent(p1_avatar));	
+	}
+	
+	private boolean processKIAnswer(Question q_p2) {
+		Random random = new Random();
+		return random.nextFloat() < 0.5;
+	}
+
+	private Question processKIQuestion(HttpSession session) {
+		List<Category> info = (List<Category>) session.getAttribute("information");
+		ArrayList<Question> played_p1 = (ArrayList<Question>)session.getAttribute("questions_played_p1");
+		ArrayList<Question> played_p2 = (ArrayList<Question>)session.getAttribute("questions_played_p2");
+		boolean found = false;
+		Random random = new Random();
+		Question choose = null;
+		
+		List<Question> questions = new ArrayList<Question>();
+		
+		for(Category q: info){
+			questions.addAll(q.getQuestions());
+		}
+		
+		while(!found){
+			int rand = random.nextInt(questions.size()-1 - 1) + 0;
+			choose = questions.get(rand);
+			
+			if(!played_p1.contains(choose) && !played_p2.contains(choose)){
+				found = true;
+			}
+		}
+		
+		return choose;
+	}
+	
+	private void processWinner(HttpServletRequest request) {
+		// TODO Auto-generated method stub
 	}
 
 }

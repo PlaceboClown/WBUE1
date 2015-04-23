@@ -5,6 +5,7 @@
 <%@ page import="java.util.List"%>
 <%@ page import="at.ac.tuwien.big.we15.lab2.api.Question" %>
 <%@ page import="at.ac.tuwien.big.we15.lab2.api.Answer" %>
+<%@ page import="at.ac.tuwien.big.we15.lab2.api.Avatar"%>
 <html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
     <head>
         <meta charset="utf-8"/>
@@ -35,45 +36,56 @@
       <!-- Content -->
       <div role="main"> 
          <!-- info -->
-         <section id="gameinfo" aria-labelledby="gameinfoinfoheading">
-            <h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
-            <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
-               <h3 id="firstplayerheading" class="accessibility">Führender Spieler</h3>
-               <img class="avatar" src="img/avatar/black-widow_head.png" alt="Spieler-Avatar Black Widow" />
-               <table>
-                  <tr>
-                     <th class="accessibility">Spielername</th>
-                     <td class="playername">Black Widow (Du)</td>
-                  </tr>
-                  <tr>
-                     <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">2000 €</td>
-                  </tr>
-               </table>
-            </section>
-            <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
-               <h3 id="secondplayerheading" class="accessibility">Zweiter Spieler</h3>
-               <img class="avatar" src="img/avatar/deadpool_head.png" alt="Spieler-Avatar Deadpool" />
-               <table>
-                  <tr>
-                     <th class="accessibility">Spielername</th>
-                     <td class="playername">Deadpool</td>
-                  </tr>
-                  <tr>
-                     <th class="accessibility">Spielerpunkte</th>
-                     <td class="playerpoints">400 €</td>
-                  </tr>
-               </table>
-            </section>
-            <p id="round">Frage: 3 / 10</p>
-         </section>
+         		<section id="gameinfo" aria-labelledby="gameinfoinfoheading">
+		<h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
+		<% Avatar p1_avatar = (Avatar)session.getAttribute("p1_avatar");%>
+		<% Avatar p2_avatar = (Avatar)session.getAttribute("p2_avatar");%>
+		<section id="firstplayer" class="playerinfo leader"
+			aria-labelledby="firstplayerheading">
+		<h3 id="firstplayerheading" class="accessibility">Führender
+			Spieler</h3>
+		<img class="avatar" src="img/avatar/<% out.print(p1_avatar.getImageHead());%>"
+			alt="Spieler-Avatar <% out.print(p1_avatar.getName());%>" />
+		<table>
+			<tr>
+				<th class="accessibility">Spielername</th>
+				<td class="playername"><% out.print(p1_avatar.getName());%> (Du)</td>
+			</tr>
+			<tr>
+				<th class="accessibility">Spielerpunkte</th>
+				<td class="playerpoints">
+					<% out.print(session.getAttribute("p1_acc"));%> €
+				</td>
+			</tr>
+		</table>
+		</section> <section id="secondplayer" class="playerinfo"
+			aria-labelledby="secondplayerheading">
+		<h3 id="secondplayerheading" class="accessibility">Zweiter
+			Spieler</h3>
+		<img class="avatar" src="img/avatar/<% out.print(p2_avatar.getImageHead());%>"
+			alt="Spieler-Avatar <% out.print(p1_avatar.getName());%>" />
+		<table>
+			<tr>
+				<th class="accessibility">Spielername</th>
+				<td class="playername"><% out.print(p2_avatar.getName());%></td>
+			</tr>
+			<tr>
+				<th class="accessibility">Spielerpunkte</th>
+				<td class="playerpoints">
+					<% out.print(session.getAttribute("p2_acc"));%> €
+				</td>
+			</tr>
+		</table>
+		</section>
+		<p id="round">Fragen: <%out.print(session.getAttribute("round"));%> / 10</p>
+		</section>
             
       <!-- Question -->
-      <%  Question question =  (Question)request.getAttribute("frage");%>
+      <%  Question question =  (Question)session.getAttribute("last_p1_question");%>
       <section id="question" aria-labelledby="questionheading">
             <form id="questionform" action="BigJeopardyServlet" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
-               <p id="questiontype">TUWIEN für € 300</p>
+               <p id="questiontype"><% out.print(question.getCategory().getName());%> für € <% out.print(question.getValue());%></p>
                <p id="questiontext"><% out.print(question.getText());%></p>
                
                           <ul id="answers">   

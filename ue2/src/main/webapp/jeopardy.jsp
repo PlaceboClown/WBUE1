@@ -1,11 +1,12 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<%@page import="at.ac.tuwien.big.we15.lab2.api.Question"%>
-<%@page import="at.ac.tuwien.big.we15.lab2.api.Category"%>
+<%@ page import="at.ac.tuwien.big.we15.lab2.api.Question"%>
+<%@ page import="at.ac.tuwien.big.we15.lab2.api.Category"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@page import="at.ac.tuwien.big.we15.lab2.servlet.BigJeopardyServlet"%>
+<%@ page import="at.ac.tuwien.big.we15.lab2.servlet.BigJeopardyServlet"%>
+<%@ page import="at.ac.tuwien.big.we15.lab2.api.Avatar"%>
 <%@ page import="java.util.List"%>
-
+<%@ page import="java.util.ArrayList"%>
 
 
 <html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
@@ -41,42 +42,49 @@
 	<!-- Content -->
 	<div role="main">
 		<!-- info -->
+
 		<section id="gameinfo" aria-labelledby="gameinfoinfoheading">
 		<h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
+		<% Avatar p1_avatar = (Avatar)session.getAttribute("p1_avatar");%>
+		<% Avatar p2_avatar = (Avatar)session.getAttribute("p2_avatar");%>
 		<section id="firstplayer" class="playerinfo leader"
 			aria-labelledby="firstplayerheading">
 		<h3 id="firstplayerheading" class="accessibility">Führender
 			Spieler</h3>
-		<img class="avatar" src="img/avatar/black-widow_head.png"
-			alt="Spieler-Avatar Black Widow" />
+		<img class="avatar" src="img/avatar/<% out.print(p1_avatar.getImageHead());%>"
+			alt="Spieler-Avatar <% out.print(p1_avatar.getName());%>" />
 		<table>
 			<tr>
 				<th class="accessibility">Spielername</th>
-				<td class="playername">Black Widow (Du)</td>
+				<td class="playername"><% out.print(p1_avatar.getName());%> (Du)</td>
 			</tr>
 			<tr>
 				<th class="accessibility">Spielerpunkte</th>
-				<td class="playerpoints">2000 €</td>
+				<td class="playerpoints">
+					<% out.print(session.getAttribute("p1_acc"));%> €
+				</td>
 			</tr>
 		</table>
 		</section> <section id="secondplayer" class="playerinfo"
 			aria-labelledby="secondplayerheading">
 		<h3 id="secondplayerheading" class="accessibility">Zweiter
 			Spieler</h3>
-		<img class="avatar" src="img/avatar/deadpool_head.png"
-			alt="Spieler-Avatar Deadpool" />
+		<img class="avatar" src="img/avatar/<% out.print(p2_avatar.getImageHead());%>"
+			alt="Spieler-Avatar <% out.print(p1_avatar.getName());%>" />
 		<table>
 			<tr>
 				<th class="accessibility">Spielername</th>
-				<td class="playername">Deadpool</td>
+				<td class="playername"><% out.print(p2_avatar.getName());%></td>
 			</tr>
 			<tr>
 				<th class="accessibility">Spielerpunkte</th>
-				<td class="playerpoints">400 €</td>
+				<td class="playerpoints">
+					<% out.print(session.getAttribute("p2_acc"));%> €
+				</td>
 			</tr>
 		</table>
 		</section>
-		<p id="round">Fragen: 2 / 10</p>
+		<p id="round">Fragen: <%out.print(session.getAttribute("round"));%> / 10</p>
 		</section>
 
 		<!-- Question -->
@@ -92,28 +100,46 @@
 				<legend class="accessibility">Fragenauswahl</legend>
 
 				<% int i = 0;
-				List<Category> info = (List<Category>) request.getAttribute("information");
+				List<Category> info = (List<Category>) session.getAttribute("information");
 					for(Category category : info) {%>
- 
- 				<section class="questioncategory" aria-labelledby="<%out.print(category.getName()); %>heading">
-                  <h3 id="<%out.print(category.getName()); %>heading" class="tile category-title"><span class="accessibility">Kategorie: </span><% out.print(category.getName()); %></h3>
-                  <ol class="category_questions">
-                  <%  for(Question q : category.getQuestions()){ %>
-                     <li><input name="question_selection" id="question_<% out.print(i);%>"  value="<%out.print(i); %>" type="radio" />
-                     <label class="tile clickable" for="question_<%out.print(i); %>"><% out.print("€ " +q.getValue()); %></label></li>
-                 	
-                    <%i++;}%>
-                  </ol>
-               </section>
- 
-<%}%>
+
+				<section class="questioncategory"
+					aria-labelledby="<%out.print(category.getName()); %>heading">
+				<h3 id="<%out.print(category.getName()); %>heading"
+					class="tile category-title">
+					<span class="accessibility">Kategorie: </span>
+					<% out.print(category.getName()); %>
+				</h3>
+				<ol class="category_questions">
+					<%  for(Question q : category.getQuestions()){ %>
+					<li><input name="question_selection"
+						id="question_<% out.print(i);%>" 
+						value="<%out.print(i); %>"
+						type="radio" 
+						<%
+						ArrayList<Question> played_p1 = (ArrayList<Question>)session.getAttribute("questions_played_p1");
+						ArrayList<Question> played_p2 = (ArrayList<Question>)session.getAttribute("questions_played_p2");
+						if((played_p1 != null && played_p1.contains(q)) || (played_p2 != null && played_p2.contains(q))){
+							out.print("disabled = true");
+						}
+						%>
+						/> 
+						<label class="tile clickable" for="question_<%out.print(i); %>"> <% out.print("€ " +q.getValue()); %>
+						</label>
+					</li>
+
+					<%i++;}%>
+				</ol>
+				</section>
+
+				<%}%>
 
 
 
 
 			</fieldset>
 			<input class="greenlink formlink clickable" name="question_submit"
-				id="next" type="submit" value="wählen" accesskey="s"  />
+				id="next" type="submit" value="wählen" accesskey="s" />
 		</form>
 		</section>
 
