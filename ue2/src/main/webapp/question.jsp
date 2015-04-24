@@ -110,13 +110,13 @@
 
 			<ul id="answers">
 
-				<%  int i = 0;for(Answer a : question.getAllAnswers()){ %>
+				<%  for(Answer a : question.getAllAnswers()){ %>
 
-				<li><input name="answers" id="answer_<%out.print(i); %>"
-					value="<%out.print(i); %>" type="checkbox" /><label
-					class="tile clickable" for="answer_<%out.print(i);%>"> <%out.print(a.getText()); %></label></li>
+				<li><input name="answers" id="answer_<%out.print(a.getId());%>"
+					value="<%out.print(a.getId());%>" type="checkbox" /><label
+					class="tile clickable" for="answer_<%out.print(a.getId());%>"> <%out.print(a.getText()); %></label></li>
 
-				<%i++;}%>
+				<%}%>
 
 			</ul>
 
