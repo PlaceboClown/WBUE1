@@ -6,6 +6,10 @@
 <%@ page import="at.ac.tuwien.big.we15.lab2.api.Question"%>
 <%@ page import="at.ac.tuwien.big.we15.lab2.api.Answer"%>
 <%@ page import="at.ac.tuwien.big.we15.lab2.api.Avatar"%>
+
+<jsp:useBean id="game" scope="session"
+	class="at.ac.tuwien.big.we15.lab2.api.impl.SimpleGame" />
+
 <html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
 <head>
 <meta charset="utf-8" />
@@ -40,28 +44,31 @@
 	<div role="main">
 		<!-- info -->
 		<section id="gameinfo" aria-labelledby="gameinfoinfoheading">
-		<!-- TODO: vereinfachen (doppelt auf jeopardy.jsp) --> 
-		<!-- TODO: Ranking -->
+		<!-- TODO: vereinfachen (doppelt auf question.jsp) --> <!-- TODO: Ranking -->
 		<h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
-		<% Avatar p1_avatar = (Avatar)session.getAttribute("p1_avatar");%> <% Avatar p2_avatar = (Avatar)session.getAttribute("p2_avatar");%>
+
 		<section id="firstplayer" class="playerinfo leader"
 			aria-labelledby="firstplayerheading">
 		<h3 id="firstplayerheading" class="accessibility">Führender
 			Spieler</h3>
 		<img class="avatar"
-			src="img/avatar/<% out.print(p1_avatar.getImageHead());%>"
-			alt="Spieler-Avatar <% out.print(p1_avatar.getName());%>" />
+			src="img/avatar/<%out.print(game.getFirstPlayer().getAvatar().getImageHead());%>"
+			alt="Spieler-Avatar <%out.print(game.getFirstPlayer().getAvatar().getName());%>" />
 		<table>
 			<tr>
 				<th class="accessibility">Spielername</th>
 				<td class="playername">
-					<% out.print(p1_avatar.getName());%> (Du)
+					<%
+						out.print(game.getFirstPlayer().getAvatar().getName() + (game.getFirstPlayer().isComputed() ?"" : "(Du)"));
+					%>
 				</td>
 			</tr>
 			<tr>
 				<th class="accessibility">Spielerpunkte</th>
 				<td class="playerpoints">
-					<% out.print(session.getAttribute("p1_acc"));%> €
+					<%
+						out.print(game.getFirstPlayer().getAcc());
+					%> €
 				</td>
 			</tr>
 		</table>
@@ -70,53 +77,75 @@
 		<h3 id="secondplayerheading" class="accessibility">Zweiter
 			Spieler</h3>
 		<img class="avatar"
-			src="img/avatar/<% out.print(p2_avatar.getImageHead());%>"
-			alt="Spieler-Avatar <% out.print(p1_avatar.getName());%>" />
+			src="img/avatar/<%out.print(game.getSecoundPlayer().getAvatar().getImageHead());%>"
+			alt="Spieler-Avatar <%out.print(game.getSecoundPlayer().getAvatar().getName());%>" />
 		<table>
 			<tr>
 				<th class="accessibility">Spielername</th>
 				<td class="playername">
-					<% out.print(p2_avatar.getName());%>
+					<%
+						out.print(game.getSecoundPlayer().getAvatar().getName() + (game.getSecoundPlayer().isComputed() ?"" : "(Du)"));
+					%>
 				</td>
 			</tr>
 			<tr>
 				<th class="accessibility">Spielerpunkte</th>
 				<td class="playerpoints">
-					<% out.print(session.getAttribute("p2_acc"));%> €
+					<%
+						out.print(game.getSecoundPlayer().getAcc());
+					%> €
 				</td>
 			</tr>
 		</table>
 		</section>
 		<p id="round">
 			Fragen:
-			<%out.print(session.getAttribute("round"));%>
+			<%
+			out.print(game.getRound());
+		%>
 			/ 10
 		</p>
 		</section>
 
 		<!-- Question -->
-		<%  Question question =  (Question)session.getAttribute("last_p1_question");%>
+		<%
+			Question question = game.getUserPlayer().getLastQuestion();
+		%>
 		<section id="question" aria-labelledby="questionheading">
 		<form id="questionform" action="BigJeopardyServlet" method="get">
 			<h2 id="questionheading" class="accessibility">Frage</h2>
 			<p id="questiontype">
-				<% out.print(question.getCategory().getName());%>
+				<%
+					out.print(question.getCategory().getName());
+				%>
 				für €
-				<% out.print(question.getValue());%>
+				<%
+					out.print(question.getValue());
+				%>
 			</p>
 			<p id="questiontext">
-				<% out.print(question.getText());%>
+				<%
+					out.print(question.getText());
+				%>
 			</p>
 
 			<ul id="answers">
 
-				<%  for(Answer a : question.getAllAnswers()){ %>
+				<%
+					for(Answer a : question.getAllAnswers()){
+				%>
 
 				<li><input name="answers" id="answer_<%out.print(a.getId());%>"
 					value="<%out.print(a.getId());%>" type="checkbox" /><label
-					class="tile clickable" for="answer_<%out.print(a.getId());%>"> <%out.print(a.getText()); %></label></li>
+					class="tile clickable" for="answer_<%out.print(a.getId());%>">
+						<%
+							out.print(a.getText());
+						%>
+				</label></li>
 
-				<%}%>
+				<%
+					}
+				%>
 
 			</ul>
 
@@ -139,45 +168,45 @@
 	<footer role="contentinfo">© 2015 BIG Jeopardy!</footer>
 
 	<script type="text/javascript">
-            //<![CDATA[
-            
-            // initialize time
-            $(document).ready(function() {
-                var maxtime = 30;
-                var hiddenInput = $("#timeleftvalue");
-                var meter = $("#timer meter");
-                var timeleft = $("#timeleft");
-                
-                hiddenInput.val(maxtime);
-                meter.val(maxtime);
-                meter.attr('max', maxtime);
-                meter.attr('low', maxtime/100*20);
-                timeleft.text(secToMMSS(maxtime));
-            });
-            
-            // update time
-            function timeStep() {
-                var hiddenInput = $("#timeleftvalue");
-                var meter = $("#timer meter");
-                var timeleft = $("#timeleft");
-                
-                var value = $("#timeleftvalue").val();
-                if(value > 0) {
-                    value = value - 1;   
-                }
-                
-                hiddenInput.val(value);
-                meter.val(value);
-                timeleft.text(secToMMSS(value));
-                
-                if(value <= 0) {
-                    $('#questionform').submit();
-                }
-            }
-            
-            window.setInterval(timeStep, 1000);
-            
-            //]]>
-        </script>
+		//<![CDATA[
+
+		// initialize time
+		$(document).ready(function() {
+			var maxtime = 30;
+			var hiddenInput = $("#timeleftvalue");
+			var meter = $("#timer meter");
+			var timeleft = $("#timeleft");
+
+			hiddenInput.val(maxtime);
+			meter.val(maxtime);
+			meter.attr('max', maxtime);
+			meter.attr('low', maxtime / 100 * 20);
+			timeleft.text(secToMMSS(maxtime));
+		});
+
+		// update time
+		function timeStep() {
+			var hiddenInput = $("#timeleftvalue");
+			var meter = $("#timer meter");
+			var timeleft = $("#timeleft");
+
+			var value = $("#timeleftvalue").val();
+			if (value > 0) {
+				value = value - 1;
+			}
+
+			hiddenInput.val(value);
+			meter.val(value);
+			timeleft.text(secToMMSS(value));
+
+			if (value <= 0) {
+				$('#questionform').submit();
+			}
+		}
+
+		window.setInterval(timeStep, 1000);
+
+		//]]>
+	</script>
 </body>
 </html>

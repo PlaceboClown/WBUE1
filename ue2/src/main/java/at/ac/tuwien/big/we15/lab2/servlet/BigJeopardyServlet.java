@@ -2,6 +2,7 @@ package at.ac.tuwien.big.we15.lab2.servlet;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -18,9 +19,12 @@ import javax.servlet.http.HttpSession;
 import at.ac.tuwien.big.we15.lab2.api.Answer;
 import at.ac.tuwien.big.we15.lab2.api.Avatar;
 import at.ac.tuwien.big.we15.lab2.api.Category;
+import at.ac.tuwien.big.we15.lab2.api.Game;
+import at.ac.tuwien.big.we15.lab2.api.Player;
 import at.ac.tuwien.big.we15.lab2.api.Question;
 import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.impl.SimpleGame;
 import at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion;
 
 /**
@@ -72,40 +76,31 @@ public class BigJeopardyServlet extends HttpServlet {
 		// request from question.jsp
 		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession(true);
+		Game game = (Game) session.getAttribute("game");
 
 		// process KI answer
-		Question q_p2 = (Question) session.getAttribute("last_p2_question");
-		boolean p2_answer = processKIAnswer(q_p2);
-		session.setAttribute("last_p2_answer", q_p2);
-
-		int p2_acc = (int) session.getAttribute("p2_acc");
-
-		if (p2_answer) {
-			session.setAttribute("p2_acc", p2_acc + q_p2.getValue());
-		} else {
-			session.setAttribute("p2_acc", p2_acc - q_p2.getValue());
-		}
+		Question q_p2 = game.getComputerPlayer().getLastQuestion();
+		game.getComputerPlayer().setLastAnswer(processKIAnswer(q_p2));
+		calcAcc(game.getComputerPlayer());
 
 		// process player answer
-		Question q_p1 = (Question) session.getAttribute("last_p1_question");
-
+		Question q_p1 = game.getFirstPlayer().getLastQuestion();
 		List<Answer> corrects = q_p1.getCorrectAnswers();
+		List<Integer> correctIDs = new LinkedList<Integer>();
+		for (Answer a : corrects) {
+			correctIDs.add(a.getId());
+		}
 		String[] answers = request.getParameterValues("answers");
 		boolean p1_answer = corrects.size() == answers.length;
 		for (int i = 0; p1_answer && i < answers.length; i++) {
-			corrects.contains(Integer.parseInt(answers[i]));
+			if (!correctIDs.contains(Integer.parseInt(answers[i]))) {
+				p1_answer = false;
+			}
 		}
+		game.getUserPlayer().setLastAnswer(p1_answer);
+		calcAcc(game.getUserPlayer());
 
-		int p1_acc = (int) session.getAttribute("p1_acc");
-		if (p1_answer) {
-			session.setAttribute("p1_acc", p1_acc + q_p1.getValue());
-		} else {
-			session.setAttribute("p1_acc", p1_acc - q_p1.getValue());
-		}
-
-		int rounds = (int) session.getAttribute("round");
-
-		if (rounds >= 10) {
+		if (game.getRound() >= 10) {
 			processWinner(request);
 			dispatcher = getServletContext()
 					.getRequestDispatcher("/winner.jsp");
@@ -125,13 +120,13 @@ public class BigJeopardyServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher;
-		String user = request.getParameter("username");
+		HttpSession session = request.getSession(true);
 
-		// TODO: bessere parameter auswaehlen - eventuell ueber session id?
-		if (user == null) {
+		Game game = (Game) session.getAttribute("game");
+
+		// TODO: vl gehts noch etwas besser? (Überprüfung schon gestartet)
+		if (game != null) {
 			// request from jeopardy.jsp
-
-			HttpSession session = request.getSession(true);
 
 			String id = request.getParameter("question_selection");
 			Integer toFind = Integer.parseInt(id);
@@ -146,19 +141,14 @@ public class BigJeopardyServlet extends HttpServlet {
 				}
 			}
 
-			int rounds = (int) session.getAttribute("round");
-			session.setAttribute("round", rounds + 1);
+			game.setRound(game.getRound() + 1);
 
 			// communicate player data
-			((ArrayList<Question>) session.getAttribute("questions_played_p1"))
-					.add(question);
-			session.setAttribute("last_p1_question", question);
+			game.getUserPlayer().setLastQuestion(question);
 
 			// process KI choose and communicate it
-			Question q_p2 = processKIQuestion(session);
-			((ArrayList<Question>) session.getAttribute("questions_played_p2"))
-					.add(q_p2);
-			session.setAttribute("last_p2_question", q_p2);
+			Question q_p2 = processKIQuestion(game);
+			game.getComputerPlayer().setLastQuestion(q_p2);
 
 			dispatcher = getServletContext().getRequestDispatcher(
 					"/question.jsp");
@@ -166,9 +156,8 @@ public class BigJeopardyServlet extends HttpServlet {
 			// request from login.jsp
 			// setup game data in session
 
-			HttpSession session = request.getSession(true);
 			initNewGame(session);
-			session.setAttribute("user", user);
+			session.setAttribute("user", request.getParameter("username"));
 			session.setAttribute("information", information);
 
 			dispatcher = getServletContext().getRequestDispatcher(
@@ -179,18 +168,11 @@ public class BigJeopardyServlet extends HttpServlet {
 	}
 
 	private void initNewGame(HttpSession session) {
-		session.setAttribute("round", 0);
-		session.setAttribute("p1_acc", 0);
-		session.setAttribute("p2_acc", 0);
-		session.setAttribute("questions_played_p2",
-				new ArrayList<SimpleQuestion>());
-		session.setAttribute("questions_played_p1",
-				new ArrayList<SimpleQuestion>());
-
-		Avatar p1_avatar = Avatar.BLACK_WIDOW;
-
-		session.setAttribute("p1_avatar", p1_avatar);
-		session.setAttribute("p2_avatar", Avatar.getOpponent(p1_avatar));
+		Game game = new SimpleGame();
+		game.getUserPlayer().setAvatar(Avatar.BLACK_WIDOW);
+		game.getComputerPlayer().setAvatar(
+				Avatar.getOpponent(game.getUserPlayer().getAvatar()));
+		session.setAttribute("game", game);
 	}
 
 	private boolean processKIAnswer(Question q_p2) {
@@ -198,20 +180,21 @@ public class BigJeopardyServlet extends HttpServlet {
 		return random.nextFloat() < 0.5;
 	}
 
-	private Question processKIQuestion(HttpSession session) {
-		List<Category> info = (List<Category>) session
-				.getAttribute("information");
-		ArrayList<Question> played_p1 = (ArrayList<Question>) session
-				.getAttribute("questions_played_p1");
-		ArrayList<Question> played_p2 = (ArrayList<Question>) session
-				.getAttribute("questions_played_p2");
+	private void calcAcc(Player p) {
+		p.setAcc(p.getAcc() + p.getLastQuestion().getValue()
+				* (p.getLastAnswer() ? 1 : -1));
+	}
+
+	private Question processKIQuestion(Game game) {
+		List<Question> playedQuestion = game.getAllQuestions();
+
 		boolean found = false;
 		Random random = new Random();
 		Question choose = null;
 
 		List<Question> questions = new ArrayList<Question>();
 
-		for (Category q : info) {
+		for (Category q : information) {
 			questions.addAll(q.getQuestions());
 		}
 
@@ -219,7 +202,7 @@ public class BigJeopardyServlet extends HttpServlet {
 			int rand = random.nextInt(questions.size() - 1 - 1) + 0;
 			choose = questions.get(rand);
 
-			if (!played_p1.contains(choose) && !played_p2.contains(choose)) {
+			if (!playedQuestion.contains(choose)) {
 				found = true;
 			}
 		}

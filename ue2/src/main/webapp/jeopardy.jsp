@@ -1,13 +1,16 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@page import="java.util.List"%>
+<%@page import="at.ac.tuwien.big.we15.lab2.api.Player"%>
 <%@ page import="at.ac.tuwien.big.we15.lab2.api.Question"%>
 <%@ page import="at.ac.tuwien.big.we15.lab2.api.Category"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ page import="at.ac.tuwien.big.we15.lab2.servlet.BigJeopardyServlet"%>
 <%@ page import="at.ac.tuwien.big.we15.lab2.api.Avatar"%>
-<%@ page import="java.util.List"%>
 <%@ page import="java.util.ArrayList"%>
 
+<jsp:useBean id="game" scope="session"
+	class="at.ac.tuwien.big.we15.lab2.api.impl.SimpleGame" />
 
 <html xmlns="http://www.w3.org/1999/jsp" xml:lang="de" lang="de">
 <head>
@@ -44,35 +47,30 @@
 		<!-- info -->
 
 		<section id="gameinfo" aria-labelledby="gameinfoinfoheading">
-		<!-- TODO: vereinfachen (doppelt auf question.jsp) --> 
-		<!-- TODO: Ranking -->
+		<!-- TODO: vereinfachen (doppelt auf question.jsp) --> <!-- TODO: Ranking -->
 		<h2 id="gameinfoinfoheading" class="accessibility">Spielinformationen</h2>
-		<%
-			Avatar p1_avatar = (Avatar)session.getAttribute("p1_avatar");
-		%> <%
- 	Avatar p2_avatar = (Avatar)session.getAttribute("p2_avatar");
- %>
+
 		<section id="firstplayer" class="playerinfo leader"
 			aria-labelledby="firstplayerheading">
 		<h3 id="firstplayerheading" class="accessibility">Führender
 			Spieler</h3>
 		<img class="avatar"
-			src="img/avatar/<%out.print(p1_avatar.getImageHead());%>"
-			alt="Spieler-Avatar <%out.print(p1_avatar.getName());%>" />
+			src="img/avatar/<%out.print(game.getFirstPlayer().getAvatar().getImageHead());%>"
+			alt="Spieler-Avatar <%out.print(game.getFirstPlayer().getAvatar().getName());%>" />
 		<table>
 			<tr>
 				<th class="accessibility">Spielername</th>
 				<td class="playername">
 					<%
-						out.print(p1_avatar.getName());
-					%> (Du)
+						out.print(game.getFirstPlayer().getAvatar().getName() + (game.getFirstPlayer().isComputed() ?"" : "(Du)"));
+					%>
 				</td>
 			</tr>
 			<tr>
 				<th class="accessibility">Spielerpunkte</th>
 				<td class="playerpoints">
 					<%
-						out.print(session.getAttribute("p1_acc"));
+						out.print(game.getFirstPlayer().getAcc());
 					%> €
 				</td>
 			</tr>
@@ -82,14 +80,14 @@
 		<h3 id="secondplayerheading" class="accessibility">Zweiter
 			Spieler</h3>
 		<img class="avatar"
-			src="img/avatar/<%out.print(p2_avatar.getImageHead());%>"
-			alt="Spieler-Avatar <%out.print(p1_avatar.getName());%>" />
+			src="img/avatar/<%out.print(game.getSecoundPlayer().getAvatar().getImageHead());%>"
+			alt="Spieler-Avatar <%out.print(game.getSecoundPlayer().getAvatar().getName());%>" />
 		<table>
 			<tr>
 				<th class="accessibility">Spielername</th>
 				<td class="playername">
 					<%
-						out.print(p2_avatar.getName());
+						out.print(game.getSecoundPlayer().getAvatar().getName() + (game.getSecoundPlayer().isComputed() ?"" : "(Du)"));
 					%>
 				</td>
 			</tr>
@@ -97,7 +95,7 @@
 				<th class="accessibility">Spielerpunkte</th>
 				<td class="playerpoints">
 					<%
-						out.print(session.getAttribute("p2_acc"));
+						out.print(game.getSecoundPlayer().getAcc());
 					%> €
 				</td>
 			</tr>
@@ -106,7 +104,7 @@
 		<p id="round">
 			Fragen:
 			<%
-			out.print(session.getAttribute("round"));
+			out.print(game.getRound());
 		%>
 			/ 10
 		</p>
@@ -126,8 +124,9 @@
 
 				<%
 					int i = 0;
-						List<Category> info = (List<Category>) session.getAttribute("information");
-							for(Category category : info) {
+							List<Question> playedQuestion = game.getAllQuestions();
+							List<Category> information = (List<Category>) session.getAttribute("information");
+							for(Category category : information) {
 				%>
 
 				<section class="questioncategory"
@@ -146,9 +145,7 @@
 					<li><input name="question_selection"
 						id="question_<%out.print(i);%>" value="<%out.print(i);%>"
 						type="radio"
-						<%ArrayList<Question> played_p1 = (ArrayList<Question>)session.getAttribute("questions_played_p1");
-						ArrayList<Question> played_p2 = (ArrayList<Question>)session.getAttribute("questions_played_p2");
-						if((played_p1 != null && played_p1.contains(q)) || (played_p2 != null && played_p2.contains(q))){
+						<%if(playedQuestion.contains(q)){
 							out.print("disabled = true");
 						}%> />
 						<label class="tile clickable" for="question_<%out.print(i);%>">
