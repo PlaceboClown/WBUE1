@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -84,13 +85,18 @@ public class BigJeopardyServlet extends HttpServlet {
 		calcAcc(game.getComputerPlayer());
 
 		// process player answer
-		Question q_p1 = game.getFirstPlayer().getLastQuestion();
+		Question q_p1 = game.getUserPlayer().getLastQuestion();
 		List<Answer> corrects = q_p1.getCorrectAnswers();
 		List<Integer> correctIDs = new LinkedList<Integer>();
 		for (Answer a : corrects) {
 			correctIDs.add(a.getId());
 		}
 		String[] answers = request.getParameterValues("answers");
+		if (answers == null) {
+			answers = new String[0];
+		}
+		System.out.println(java.util.Arrays.toString(correctIDs.toArray()));
+		System.out.println(java.util.Arrays.toString(answers));
 		boolean p1_answer = corrects.size() == answers.length;
 		for (int i = 0; p1_answer && i < answers.length; i++) {
 			if (!correctIDs.contains(Integer.parseInt(answers[i]))) {
@@ -124,35 +130,9 @@ public class BigJeopardyServlet extends HttpServlet {
 
 		Game game = (Game) session.getAttribute("game");
 
+		System.out.println(request.getParameterNames());
 		// TODO: vl gehts noch etwas besser? (Überprüfung schon gestartet)
-		if (game != null) {
-			// request from jeopardy.jsp
-
-			String id = request.getParameter("question_selection");
-			Integer toFind = Integer.parseInt(id);
-			int j = 0;
-			Question question = null;
-			for (Category c : information) {
-				for (Question q : c.getQuestions()) {
-					if (j == toFind) {
-						question = q;
-					}
-					j++;
-				}
-			}
-
-			game.setRound(game.getRound() + 1);
-
-			// communicate player data
-			game.getUserPlayer().setLastQuestion(question);
-
-			// process KI choose and communicate it
-			Question q_p2 = processKIQuestion(game);
-			game.getComputerPlayer().setLastQuestion(q_p2);
-
-			dispatcher = getServletContext().getRequestDispatcher(
-					"/question.jsp");
-		} else {
+		if (game == null) {
 			// request from login.jsp
 			// setup game data in session
 
@@ -162,9 +142,42 @@ public class BigJeopardyServlet extends HttpServlet {
 
 			dispatcher = getServletContext().getRequestDispatcher(
 					"/jeopardy.jsp");
+			dispatcher.forward(request, response);
+		} else {
+
+			String id = request.getParameter("question_selection");
+			if (id != null) {
+				// request from jeopardy.jsp
+				Integer toFind = Integer.parseInt(id);
+				int j = 0;
+				Question question = null;
+				for (Category c : information) {
+					for (Question q : c.getQuestions()) {
+						if (j == toFind) {
+							question = q;
+						}
+						j++;
+					}
+				}
+
+				game.setRound(game.getRound() + 1);
+
+				// communicate player data
+				game.getUserPlayer().setLastQuestion(question);
+
+				// process KI choose and communicate it
+				Question q_p2 = processKIQuestion(game);
+				game.getComputerPlayer().setLastQuestion(q_p2);
+
+				dispatcher = getServletContext().getRequestDispatcher(
+						"/question.jsp");
+			} else {
+				initNewGame(session);
+				dispatcher = getServletContext().getRequestDispatcher(
+						"/jeopardy.jsp");
+			}
 		}
 		dispatcher.forward(request, response);
-
 	}
 
 	private void initNewGame(HttpSession session) {
