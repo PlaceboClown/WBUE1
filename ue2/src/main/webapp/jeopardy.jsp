@@ -151,7 +151,6 @@
 			%>
 			€
 		</p>
-		<p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
 		<form id="questionform" action="BigJeopardyServlet" method="post">
 			<fieldset>
 				<legend class="accessibility">Fragenauswahl</legend>
