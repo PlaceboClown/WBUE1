@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import javax.annotation.PostConstruct;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletContext;
@@ -26,7 +25,6 @@ import at.ac.tuwien.big.we15.lab2.api.Question;
 import at.ac.tuwien.big.we15.lab2.api.QuestionDataProvider;
 import at.ac.tuwien.big.we15.lab2.api.impl.ServletJeopardyFactory;
 import at.ac.tuwien.big.we15.lab2.api.impl.SimpleGame;
-import at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion;
 
 /**
  * Servlet implementation class BigJeopardyservlet
@@ -35,7 +33,6 @@ import at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion;
 public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Category> information = new ArrayList<Category>();
-	private int lastRound = -1;
 	private boolean processed = false;
 
 	/**
