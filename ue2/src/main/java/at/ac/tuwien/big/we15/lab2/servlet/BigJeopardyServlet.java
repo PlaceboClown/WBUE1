@@ -35,6 +35,8 @@ import at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion;
 public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Category> information = new ArrayList<Category>();
+	private int lastRound = -1;
+	private boolean processed = false;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -145,6 +147,7 @@ public class BigJeopardyServlet extends HttpServlet {
 
 			dispatcher = getServletContext().getRequestDispatcher(
 					"/question.jsp");
+			processed = false;
 		} else {
 			//no question selected, do nothing
 			dispatcher = getServletContext().getRequestDispatcher(
@@ -157,7 +160,14 @@ public class BigJeopardyServlet extends HttpServlet {
 		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession(true);
 		Game game = (Game) session.getAttribute("game");
-
+		
+		if(processed){
+			dispatcher = getServletContext().getRequestDispatcher(
+					"/jeopardy.jsp");
+			return dispatcher;	
+		}
+		
+		
 		// process KI answer
 		Question q_p2 = game.getComputerPlayer().getLastQuestion();
 		game.getComputerPlayer().setLastAnswer(processKIAnswer(q_p2));
@@ -190,7 +200,8 @@ public class BigJeopardyServlet extends HttpServlet {
 			dispatcher = getServletContext().getRequestDispatcher(
 					"/jeopardy.jsp");
 		}
-
+		
+		processed = true;
 		return dispatcher;
 	}
 
