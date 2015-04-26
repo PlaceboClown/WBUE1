@@ -36,25 +36,11 @@ public class BigJeopardyServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Category> information = new ArrayList<Category>();
 
-	// used session attributes
-	// round
-	// p1_acc (achieved € value)
-	// p2_acc
-	// questions_played_p1 (list of choosed questions player 1)
-	// questions_played_p2
-	// last_p1_question
-	// last_p2_question
-	// last_p1_answerr (bool)
-	// last_p2_answer (bool)
-	// p1_avatar
-	// p2_avatar
-
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public BigJeopardyServlet() {
 		super();
-
 	}
 
 	@Override
@@ -75,6 +61,99 @@ public class BigJeopardyServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		// request from question.jsp
+		RequestDispatcher dispatcher = processQuestionRequest(request, response);
+		dispatcher.forward(request, response);
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
+
+		RequestDispatcher dispatcher;
+		HttpSession session = request.getSession(true);
+		Game game = (Game) session.getAttribute("game");
+
+		if(game == null){
+			// request from login.jsp
+			dispatcher = processLoginToJeopardy(request, response);
+		} else {
+			if(game.isFinished()){
+				// request from winner.jsp
+				dispatcher = processWinnerToJeopardy(request, response);
+			} else {
+				// request from jeopardy.jsp
+				dispatcher = processJeopardyToQuestion(request, response);
+			}
+		}
+		dispatcher.forward(request, response);
+	}
+
+	private void initNewGame(HttpSession session) {
+		Game game = new SimpleGame();
+		game.getUserPlayer().setAvatar(Avatar.BLACK_WIDOW);
+		game.getComputerPlayer().setAvatar(
+				Avatar.getOpponent(game.getUserPlayer().getAvatar()));
+		session.setAttribute("game", game);
+
+	}
+
+	private RequestDispatcher processLoginToJeopardy(HttpServletRequest request, HttpServletResponse response){
+		// create session
+		// setup game data in session
+
+		RequestDispatcher dispatcher;
+		HttpSession session = request.getSession(true);
+
+		initNewGame(session);
+		session.setAttribute("user", request.getParameter("username"));
+		session.setAttribute("information", information);
+
+		dispatcher = getServletContext().getRequestDispatcher("/jeopardy.jsp");
+		return dispatcher;
+	}
+
+	private RequestDispatcher processJeopardyToQuestion(HttpServletRequest request, HttpServletResponse response){
+		RequestDispatcher dispatcher;
+		HttpSession session = request.getSession(true);
+		Game game = (Game) session.getAttribute("game");
+
+		String id = request.getParameter("question_selection");
+		if (id != null) {
+			Integer toFind = Integer.parseInt(id);
+			int j = 0;
+			Question question = null;
+			for (Category c : information) {
+				for (Question q : c.getQuestions()) {
+					if (j == toFind) {
+						question = q;
+					}
+					j++;
+				}
+			}
+
+			game.setRound(game.getRound() + 1);
+
+			// communicate player data
+			game.getUserPlayer().setLastQuestion(question);
+
+			// process KI choose and communicate it
+			Question q_p2 = processKIQuestion(game);
+			game.getComputerPlayer().setLastQuestion(q_p2);
+
+			dispatcher = getServletContext().getRequestDispatcher(
+					"/question.jsp");
+		} else {
+			//no question selected, do nothing
+			dispatcher = getServletContext().getRequestDispatcher(
+					"/jeopardy.jsp");
+		}
+		return dispatcher;
+	}
+
+	private RequestDispatcher processQuestionRequest(HttpServletRequest request, HttpServletResponse response){
 		RequestDispatcher dispatcher;
 		HttpSession session = request.getSession(true);
 		Game game = (Game) session.getAttribute("game");
@@ -105,7 +184,6 @@ public class BigJeopardyServlet extends HttpServlet {
 		calcAcc(game.getUserPlayer());
 
 		if (game.getRound() >= 10) {
-			processWinner(request);
 			dispatcher = getServletContext()
 					.getRequestDispatcher("/winner.jsp");
 		} else {
@@ -113,76 +191,23 @@ public class BigJeopardyServlet extends HttpServlet {
 					"/jeopardy.jsp");
 		}
 
-		dispatcher.forward(request, response);
-
+		return dispatcher;
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+	private RequestDispatcher processWinnerToJeopardy(HttpServletRequest request, HttpServletResponse response){
+		// create new session
+		// setup game data in session
+
 		RequestDispatcher dispatcher;
+		request.getSession().invalidate();
 		HttpSession session = request.getSession(true);
 
-		Game game = (Game) session.getAttribute("game");
+		initNewGame(session);
+		session.setAttribute("user", request.getParameter("username"));
+		session.setAttribute("information", information);
 
-		// TODO: vl gehts noch etwas besser? (Überprüfung schon gestartet)
-		if (game == null) {
-			// request from login.jsp
-			// setup game data in session
-
-			initNewGame(session);
-			session.setAttribute("user", request.getParameter("username"));
-			session.setAttribute("information", information);
-
-			dispatcher = getServletContext().getRequestDispatcher(
-					"/jeopardy.jsp");
-			dispatcher.forward(request, response);
-		} else {
-
-			String id = request.getParameter("question_selection");
-			if (id != null) {
-				// request from jeopardy.jsp
-				Integer toFind = Integer.parseInt(id);
-				int j = 0;
-				Question question = null;
-				for (Category c : information) {
-					for (Question q : c.getQuestions()) {
-						if (j == toFind) {
-							question = q;
-						}
-						j++;
-					}
-				}
-
-				game.setRound(game.getRound() + 1);
-
-				// communicate player data
-				game.getUserPlayer().setLastQuestion(question);
-
-				// process KI choose and communicate it
-				Question q_p2 = processKIQuestion(game);
-				game.getComputerPlayer().setLastQuestion(q_p2);
-
-				dispatcher = getServletContext().getRequestDispatcher(
-						"/question.jsp");
-			} else {
-				initNewGame(session);
-				dispatcher = getServletContext().getRequestDispatcher(
-						"/jeopardy.jsp");
-			}
-		}
-		dispatcher.forward(request, response);
-	}
-
-	private void initNewGame(HttpSession session) {
-		Game game = new SimpleGame();
-		game.getUserPlayer().setAvatar(Avatar.BLACK_WIDOW);
-		game.getComputerPlayer().setAvatar(
-				Avatar.getOpponent(game.getUserPlayer().getAvatar()));
-		session.setAttribute("game", game);
+		dispatcher = getServletContext().getRequestDispatcher("/jeopardy.jsp");
+		return dispatcher;
 	}
 
 	private boolean processKIAnswer(Question q_p2) {
@@ -218,14 +243,6 @@ public class BigJeopardyServlet extends HttpServlet {
 		}
 
 		return choose;
-	}
-
-	private void processWinner(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-	}
-
-	private void processPlace(HttpServletRequest request) {
-		// TODO Auto-generated method stub
 	}
 
 }

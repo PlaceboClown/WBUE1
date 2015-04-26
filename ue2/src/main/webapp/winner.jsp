@@ -32,6 +32,8 @@
 	</ul>
 	</nav>
 
+	<% game.setFinished(true); %>
+
 	<!-- Content -->
 	<div role="main">
 		<section id="gameinfo" aria-labelledby="winnerinfoheading">

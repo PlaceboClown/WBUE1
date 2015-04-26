@@ -12,6 +12,7 @@ public class SimpleGame implements Game {
 	private int round = 0;
 	private Player userPlayer = new SimplePlayer(false);
 	private Player computerPlayer = new SimplePlayer(true);
+	private boolean finished = false;
 
 	/*
 	 * (non-Javadoc)
@@ -97,6 +98,24 @@ public class SimpleGame implements Game {
 	public Player getSecoundPlayer() {
 		return computerPlayer.getAcc() < userPlayer.getAcc() ? computerPlayer
 				: userPlayer;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see at.ac.tuwien.big.we15.lab2.api.impl.Game#isFinished()
+	 */
+	public boolean isFinished() {
+		return finished;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see at.ac.tuwien.big.we15.lab2.api.impl.Game#setFinished()
+	 */
+	public void setFinished(boolean finished) {
+		this.finished = finished;
 	}
 
 	@Override

@@ -21,4 +21,8 @@ public interface Game {
 	public Player getSecoundPlayer();
 
 	public List<Question> getAllQuestions();
+	
+	public boolean isFinished();
+	
+	public void setFinished(boolean finished);
 }
