@@ -95,8 +95,6 @@ public class BigJeopardyServlet extends HttpServlet {
 		if (answers == null) {
 			answers = new String[0];
 		}
-		System.out.println(java.util.Arrays.toString(correctIDs.toArray()));
-		System.out.println(java.util.Arrays.toString(answers));
 		boolean p1_answer = corrects.size() == answers.length;
 		for (int i = 0; p1_answer && i < answers.length; i++) {
 			if (!correctIDs.contains(Integer.parseInt(answers[i]))) {
@@ -130,7 +128,6 @@ public class BigJeopardyServlet extends HttpServlet {
 
 		Game game = (Game) session.getAttribute("game");
 
-		System.out.println(request.getParameterNames());
 		// TODO: vl gehts noch etwas besser? (Überprüfung schon gestartet)
 		if (game == null) {
 			// request from login.jsp
