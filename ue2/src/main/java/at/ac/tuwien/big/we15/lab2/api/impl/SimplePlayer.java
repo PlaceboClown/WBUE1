@@ -11,7 +11,7 @@ public class SimplePlayer implements Player {
 
 	private int acc = 0;
 	private Question lastQuestion;
-	private boolean lastAnswer;
+	private boolean lastAnswer = true;
 	private Avatar avatar;
 
 	private LinkedList<Question> questions = new LinkedList<>();

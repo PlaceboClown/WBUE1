@@ -113,10 +113,44 @@
 		<!-- Question -->
 		<section id="question-selection" aria-labelledby="questionheading">
 		<h2 id="questionheading" class="black accessibility">Jeopardy</h2>
-		<p class="user-info positive-change">Du hast richtig geantwortet:
-			+1000 €</p>
-		<p class="user-info negative-change">Deadpool hat falsch
-			geantwortet: -500 €</p>
+		<%
+			boolean p1_answer = game.getUserPlayer().getLastAnswer();
+		%>
+		<p
+			class="user-info <%out.print(p1_answer ? "positive" : "negative");%>-change">
+			<%
+				out.print(game.getUserPlayer().getAvatar().getName());
+			%>
+			(Du) hat
+			<%
+				out.print(p1_answer ? "richtig" : "falsch");
+			%>
+			geantwortet:
+			<%
+				out.print(p1_answer ? "+" : "-");
+				out.print(game.getUserPlayer().getLastQuestion() == null ? "0" : game.getUserPlayer().getLastQuestion().getValue());
+			%>
+			€
+		</p>
+		<%
+			boolean p2_answer = game.getComputerPlayer().getLastAnswer();
+		%>
+		<p
+			class="user-info <%out.print(p2_answer ? "positive" : "negative");%>-change">
+			<%
+				out.print(game.getComputerPlayer().getAvatar().getName());
+			%>
+			hat
+			<%
+				out.print(p2_answer ? "richtig" : "falsch");
+			%>
+			geantwortet:
+			<%
+				out.print(p2_answer ? "+" : "-");
+								out.print(game.getComputerPlayer().getLastQuestion() == null ? "0" : game.getComputerPlayer().getLastQuestion().getValue());
+			%>
+			€
+		</p>
 		<p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
 		<form id="questionform" action="BigJeopardyServlet" method="post">
 			<fieldset>
@@ -124,9 +158,9 @@
 
 				<%
 					int i = 0;
-							List<Question> playedQuestion = game.getAllQuestions();
-							List<Category> information = (List<Category>) session.getAttribute("information");
-							for(Category category : information) {
+									List<Question> playedQuestion = game.getAllQuestions();
+									List<Category> information = (List<Category>) session.getAttribute("information");
+									for(Category category : information) {
 				%>
 
 				<section class="questioncategory"
