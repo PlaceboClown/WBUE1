@@ -1,0 +1,52 @@
+@(form: Form[models.User])
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
+    <head>
+        <meta charset="utf-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>@Messages("head.title") - @Messages("login")</title>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/base.css")"/>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/screen.css")"/>
+        <script src="@routes.Assets.at("javascripts/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/framework.js")" type="text/javascript"></script>
+    </head>
+    <body id="login-page">
+    <a class="accessibility" href="#login">@Messages("loginpage")</a>
+    <a class="accessibility" title="@Messages("registerlink")" href="register.xhtml" accesskey="r">@Messages("reg")</a>
+    <!-- Header -->
+    <header role="banner" aria-labelledby="bannerheading">
+        <h1 id="bannerheading">
+            <span class="accessibility">@Messages("header.banner") </span><span class="gametitle">@Messages("jeopardy")</span>
+        </h1>
+    </header>
+
+    <!-- Content -->
+    <div role="main">
+        <section id="login" aria-labelledby="loginheading">
+            <h2 id="loginheading" class="accessibility">@Messages("login")</h2>
+            @import views.formView._
+            @helper.form(routes.Application.login()) {
+            <fieldset>
+                <legend id="loginheading">@Messages("login")</legend>
+                @for(error <- form("formError").errors) {
+                <div id="error_msg_name" class="error" role="alert"> @error.message </div>
+                }
+                @helper.inputText(form("username"), 'id -> "username", '_showConstraints -> false, '_label -> Messages("username"))(textInput, implicitly[Lang])
+                @helper.inputPassword(form("password"), 'id -> "password", '_showConstraints -> false, '_label -> Messages("password"))(textInput, implicitly[Lang])
+                <input id="loginsubmit" type="submit" value="@Messages("LoginButton")"/>
+            </fieldset>
+            }
+        </section>
+        <!-- Register section -->
+        <section id="registerforward" aria-labelledby="registerheading">
+            <h2 id="registerheading" class="accessibility">@Messages("register")</h2>
+            <p id="registerhint">@Messages("not.register")</p>
+            <a class="contentlink orangelink" title="@Messages("registerlink")" href="@routes.Application.registration()" accesskey="r">@Messages("for.register")</a>
+        </section>
+    </div>
+
+    <!-- footer -->
+    <footer role="contentinfo">@Messages("footer")</footer>
+    </body>
+</html>

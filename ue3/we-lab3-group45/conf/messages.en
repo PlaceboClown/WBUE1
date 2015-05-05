@@ -1,0 +1,71 @@
+json.file = data.en.json
+
+head.title = Business Informatics Group Quiz - Login
+header.banner = Business Informatics Group
+quiz = Quiz
+loginpage = Skip to login
+navigation = Navigation
+registerlink = Click here for registration
+loginlink =  Click here for login
+logoutlink = Click here for logout
+login = Login
+username = Username:
+usernameRequired = Username*:
+password = Password:
+passwordRequired = Password*:
+LoginButton = Login
+register = Register
+not.register = Not registered yet?
+for.register = Skip to registration
+
+required.username = Username is required!
+toShort.username = Your username must contain at least 4 characters!
+toLong.username = Your username must not contain more than 8 characters!
+
+required.password = Password is required!
+toShort.password = Your password must contain at least 4 characters!
+toLong.password = Your password must not contain more than 8 characters!
+
+requiredFields = Fields marked with a "*" are required
+
+passwordUsernameWrong = Username or Password wrong!
+usernameAlreadyExists = Username already exists!
+birthdateFormat = Please use the following date format: dd.mm.yyyy (z.B. 24.12.2012).
+
+personalData = Personal Data
+firstname = First name:
+lastname = Last name:
+birthdate = Birthdate:
+gender = Gender:
+female = Female
+male = Male
+loginData = Login Data
+
+startQuiz = Start Quiz
+question = Question
+true = True
+false = False
+unknown = Unknown
+remainingTime = Remaining Time:
+lastGame = Last Game:
+never = Never
+next = next
+logout = Logout
+newGame = new Game
+jumpQuestion = Jump to question
+category = Category
+wins = wins
+roundwins={0} wins Round {1}!
+undecidedRound = Round {0} undecided!
+finalscore = Final Score
+playerinfo = Player Information
+gamesWon = Games won:
+jumpScore = Jump to score
+gameEnd= End of the game
+jumpRegister = Jump to Register
+userGameWon = {0} wins!
+undecidedGame = Game undecided!
+score = Score
+roundScore = Game Score
+round = round
+jumpRound = Jump to Game Score

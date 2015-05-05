@@ -1,0 +1,144 @@
+json.file = data.de.json
+loginpage = Zum Login springen
+register = Registierung
+reg = Registrieren
+header.banner = Business Informatics Group
+jeopardy = Jeopardy!
+head.title = Business Informatics Group Quiz - Login
+login = Login
+username = Benutzername:
+password = Passwort:
+LoginButton = Anmelden
+not.register = Nicht registriert?
+for.register = Zur Registierung
+registerlink = Klicke hier um dich zu registrieren
+footer =  © 2015 BIG Jeopardy
+jumpRegister = Zur Registrierung springen
+requiredFields = Mit "*" gekennzeichnete Felder sind Pflichtfelder
+navigation = Navigation
+windisplay = Gewinnanzeige
+winjump = Zur Gewinnanzeige springen
+quiz = Quiz
+loginlink = Klicke hier um dich zu anzumelden
+logoutlink = Klicke hier um dich zu abzumelden
+logout = Abmelden
+winnerinfo = Gewinnerinformationen
+winner = Gewinner:
+playername = Spielername
+playerdata = Spielerdaten
+playerinfo = Spielinformationen
+playerpoints = Spielerpunkte
+newGame = neues Spiel
+questions = Fragenbeantwortung
+questionchoise = Fragenauwahl
+jumpQuestion = Zur Fragenauwahl springen
+secondplayer = Zweiter Spieler
+questionlabel = Frage:
+timer = Timer
+lastGame = Letztes Spiel:
+personalData = Persönliche Daten
+avatarlabel = Avatar:
+
+
+
+usernameRequired = Benutzername*:
+
+passwordRequired = Passwort*:
+
+
+
+
+
+required.username = Der Benutzername ist ein Pflichtfeld!
+toShort.username = Der Benutzername muss mindestens 4 Zeichen haben!
+toLong.username = Der Benutzername darf maximal 8 Zeichen haben!
+
+required.password = Das Passwort ist ein Pflichtfeld!
+toShort.password = Das Passwort muss mindestens 4 Zeichen haben!
+toLong.password = Das Passwort darf maximal 8 Zeichen haben!
+
+
+
+passwordUsernameWrong = Benutzername oder Passwort falsch!
+usernameAlreadyExists = Benutzername ist bereits vorhanden!
+birthdateFormat = Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2012).
+
+
+firstname = Vorname:
+lastname = Nachname:
+birthdate = Geburtstag:
+gender = Geschlecht:
+female = Weiblich
+male = Männlich
+loginData = Login Daten
+
+startQuiz = Quiz starten
+question = Frage
+true = Richtig
+false = Falsch
+unknown = Unbekannt
+remainingTime = Verbleibende Zeit:
+
+never = Nie
+next = weiter
+
+
+category = Kategorie
+wins = gewinnt
+roundwins = {0} gewinnt Runde {1}!
+undecidedRound = Runde {0} unentschieden!
+finalscore = Endstand
+gamesWon = Gewonnene Runden:
+jumpScore = Zur Spielwertung springen
+gameEnd= Spielende
+userGameWins = {0} gewinnt!
+undecidedGame = Spiel unentschieden!
+
+score = Zwischenstand
+roundScore = Rundenzwischenstand
+round = Runde
+jumpRound = Zur Rundenwertung springen
+
+
+aldrich-killian = Aldrich Killian
+beetle = Beetle
+blackwidow = Black Widow
+captainamerica = Captain America
+cyclops = Cyclops
+deadpool = Deadpool
+doctordoom = Doctor Doom
+doctoroctopus = Doctor Octopus
+drax = Drax
+electro = Electro
+extremissoldier = Extremis Soldier
+falcon = Falcon
+gamora = Gamora
+greengoblin = Green Goblin
+groot = Groot
+hawkeye = Hawkeye
+hulk = Hulk
+hydrahenchman = Hydra Henchman
+ironfist = Iron Fist
+ironman = Iron Man
+jjonahjameson = J.Jonah Jameson
+loki = Loki
+magneto = Magneto
+maryjanewatson = Mary Jane Watson
+modok = MODOK
+nebula = Nebula
+nickfury = Nick Fury
+nova = Nova
+pepperpotts = Pepper Potts
+powerman = Power Man
+redskull = Red Skull
+rocket = Rocket Raccoon
+ronan = Ronan
+spiderman = Spiderman
+starlord = Starlord
+taskmaster = Taskmaster
+themandarin = The Mandarin
+thor = Thor
+tonystark = Tony Stark
+venom = Venom
+warmachine = War Machine
+wolverine = Wolverine
