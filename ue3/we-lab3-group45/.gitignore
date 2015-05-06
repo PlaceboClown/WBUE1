@@ -33,3 +33,7 @@ tmp/*
 tmp/bytecode/*
 test-result/*
 server.pid
+
+activator
+activator.bat
+activator-launch-1.3.2.jar
