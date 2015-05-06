@@ -24,6 +24,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Elisabeth on 04.05.2014.
@@ -32,7 +33,6 @@ public class QuizController extends Controller {
 
 
     private static int counter = 0;
-    private static Question question;
 
     @Security.Authenticated(QuizSecurity.class)
     public static Result startGame() {
@@ -54,21 +54,35 @@ public class QuizController extends Controller {
         //set richtig falsch stack
         //set kontostand spieler
         //set verfuegbare kategorien
+        //fragen auswerten
         JeopardyGame game = (JeopardyGame) Cache.get("game");
         if(counter==game.getMaxQuestions()){
             return gameOver();
         }
+        Map<String, String[]> values = Controller.request().queryString();
+        Question chosen = (Question) Cache.get("chosenQuestion");
+       for(String s : values.keySet()){
+           if(s.equals("answers")){
+                    int chosenAnsers = values.get(s).length;
 
-        for(String s :    Controller.request().queryString().keySet()){
-            System.out.println(s);
-        }
+               //wrong amount of answers so definately wront
+               if(chosenAnsers != chosen.getCorrectAnswers().size()){
+
+               }else{//right amount of answers maybe right
+                   for(int i = 0; i < values.get(s).length; i++) {
+
+                   }
+               }
+
+
+           }
+       }
+
 
 
 
         game.getHumanPlayer().getAnsweredQuestions();
-        question.getCorrectAnswers();
         String answ = Controller.request().getQueryString("answers");
-        System.out.println(answ);
         return ok(jeopardy.render(game, ""+counter++));
 
     }
@@ -91,8 +105,8 @@ public class QuizController extends Controller {
                 i++;
             }
         }
-       question = chosen;
         game.hasBeenChosen(chosen);
+        Cache.set("chosenQuestion", chosen);
         return ok(question.render(game, chosen, ""+counter));
     }
 
