@@ -1,6 +1,10 @@
 logs
 project/project
 project/target
+project/.sbtserver
+project/.sbtserver.lock
+project/play-fork-run.sbt
+project/sbt-ui.sbt
 target
 tmp
 .history
@@ -13,3 +17,4 @@ dist
 /.project
 /RUNNING_PID
 /.settings
+/.sbtserver
