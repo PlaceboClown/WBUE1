@@ -2,478 +2,478 @@
     { "name": "Web Engineering",
       "questions": [
         { "id": 1,
-          "text": "Which of the following are valid HTTP methods?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "RETRIEVE" },
-            {	"text" : "CHECK" },
-            {	"text" : "REMOVE" },
-            {	"text" : "CREATE" }
+          "text": "These are valid HTTP-Methoden.",
+          "value": 10,
+          "wrongAnswers": [
+            {	"text" : "What is RETRIEVE?" },
+            {	"text" : "What is CHECK?" },
+            {	"text" : "What is REMOVE?" },
+            {	"text" : "What is CREATE?" }
           ],
-          "correctChoices": [ // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
-            {	"text" : "POST" },
-            {	"text" : "HEAD" }
+          "rightAnswers": [ // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+            {	"text" : "What is POST?" },
+            {	"text" : "What is HEAD?" }
           ]
         },
         { "id": 2,
-          "text": "Which principles are part of the \"Web Accessibility Guidelines\"?",
-          "maxTime": 40,
-          "wrongChoices": [
-            {	"text" : "Clear" },
-            {	"text" : "Maintainable" },
-            {	"text" : "Observable" },
-            {	"text" : "Implementable" }
+          "text": "These are web design methods.",
+          "value": 10,
+          "wrongAnswers": [
+            {	"text" : "What is Regressive shrinkage?" }
           ],
-          "correctChoices": [ // Perceivable, Operable, Understandable, Robust
-            {	"text" : "Perceivable" },
-            {	"text" : "Robust" }
+          "rightAnswers": [
+            {	"text" : "What is Graceful degradation?" },
+            {	"text" : "What is Progressive enhancement?" },
+            {	"text" : "What is Responsive design?" }
           ]
         },
         { "id": 3,
-          "text": "Which elements have been newly introduced by the HTML5 specification?",
-          "maxTime": 35,
-          "wrongChoices": [
-            {	"text" : "fieldset" },
-            {	"text" : "caption" },
-            {	"text" : "textarea" }
+          "text": "These elements have been newly introduced in HTMl5.",
+          "value": 20,
+          "wrongAnswers": [
+            {	"text" : "What is fieldset?" },
+            {	"text" : "What is caption?" },
+            {	"text" : "What is textarea?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "canvas" },
-            {	"text" : "header" },
-            {	"text" : "meter" }
+          "rightAnswers": [ 
+            {	"text" : "What is canvas?" },
+            {	"text" : "What is header?" },
+            {	"text" : "What is meter?" }
           ]
         },
         { "id": 4,
-          "text": "Which of the following languages are ECMAScript implementations?",
-          "maxTime": 40,
-          "wrongChoices": [
-            {	"text" : "F-Script" },
-            {	"text" : "AppleScript" },
-            {	"text" : "VBScript" }
+          "text": "These principles are part of the \"Web Accessibility Guidelines\".",
+          "value": 20,
+          "wrongAnswers": [
+            {	"text" : "What is Clear?" },
+            {	"text" : "What is Maintainable?" },
+            {	"text" : "What is Observable?" },
+            {	"text" : "What is Implementable?" }
           ],
-          "correctChoices": [
-            {	"text" : "JScript" },
-            {	"text" : "JavaScript" },
-            {	"text" : "QtScript" }
+          "rightAnswers": [ // Perceivable, Operable, Understandable, Robust
+            {	"text" : "What is Perceivable?" },
+            {	"text" : "What is Robust?" }
           ]
         },
         { "id": 5,
-          "text": "Which technologies are used in the \"Semantic Web\"?",
-          "maxTime": 45,
-          "wrongChoices": [
-            {	"text" : "SQL" },
-            {	"text" : "CAT" }
+          "text": "These technologies are used in the \"Semantic Web\".",
+          "value": 30,
+          "wrongAnswers": [
+            {	"text" : "What is SQL?" },
+            {	"text" : "What is CAT?" }
           ],
-          "correctChoices": [
-            {	"text" : "RDF" },
-            {	"text" : "OWL" },
-            {	"text" : "SPARQL" }
+          "rightAnswers": [
+            {	"text" : "What is RDF?" },
+            {	"text" : "What is OWL?" },
+            {	"text" : "What is SPARQL?" }
           ]
         },
         { "id": 6,
-          "text": "JavaScript...",
-          "maxTime": 60,
-          "wrongChoices": [
-            {	"text" : "has static types." },
-            {	"text" : "always runs on the server side." },
-            {	"text" : "has classes and objects." }
+          "text": "JavaScript.",
+          "value": 40,
+          "wrongAnswers": [
+            {	"text" : "What language has static types?" },
+            {	"text" : "What is always executed on server side?" },
+            {	"text" : "What has classes and objects?" }
           ],
-          "correctChoices": [
-            {	"text" : "is object-oriented." },
-            {	"text" : "is interpreted." },
-            {	"text" : "has dynamic types." }
+          "rightAnswers": [
+            {	"text" : "What is object-oriented?" },
+            {	"text" : "What is interpreted?" },
+            {	"text" : "What language has dynamic types?" }
           ]
         },
         { "id": 7,
-          "text": "Which are possible Web Design methods mentioned in the lecture?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "Regressive shrinkage" }
+          "text": "These languages are ECMAScript implementations",
+          "value": 50,
+          "wrongAnswers": [
+            {	"text" : "What is F-Script?" },
+            {	"text" : "What is AppleScript?" },
+            {	"text" : "What is VBScript?" }
           ],
-          "correctChoices": [
-            {	"text" : "Graceful degradation" },
-            {	"text" : "Progressive enhancement" },
-            {	"text" : "Responsive design" }
+          "rightAnswers": [
+            {	"text" : "What is JScript?" },
+            {	"text" : "What is JavaScript?" },
+            {	"text" : "What is QtScript?" }
           ]
         }
       ]
     },
-    { "name": "TU Vienna",
+    { "name": "TU Wien",
       "questions": [
         { "id": 8,
-          "text": "Which faculties are part of the TU Vienna?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "Medicine" }
+          "text": "The TU Wien is located at these places.",
+          "value": 10,
+          "wrongAnswers": [
+            {	"text" : "What is the Freyung?" },
+            {	"text" : "What is the Universitätsring?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "Technical Chemistry" },
-            {	"text" : "Physics" },
-            {	"text" : "Informatics" }
+          "rightAnswers": [
+            {	"text" : "What are the Freihausgründe?" },
+            {	"text" : "What is the Favoritenstraße?" }
           ]
         },
         { "id": 9,
-          "text": "Which institutes are part of the Faculty of Informatics at the TU Vienna?",
-          "maxTime": 40,
-          "wrongChoices": [
-            {	"text" : "Traffic Technology" },
-            {	"text" : "Computer Technology" },
-            {	"text" : "Micro Electronics" }
+          "text": "He/She is the rector of the TU Wien.",
+          "value": 10,
+          "wrongAnswers": [
+            {	"text" : "Who is Dr. Adalbert Prechtl?" },
+            {	"text" : "Who is Mag. Anna Steiger?" },
+            {	"text" : "Who is Dr. Peter Skalicky?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "Design and Assessment of Technology" },
-            {	"text" : "Software Technology and Interactive Systems" }
+          "rightAnswers": [ 
+            {	"text" : "Who is Dr. Sabine Seidler?" }
           ]
         },
         { "id": 10,
-          "text": "Who is the headmaster of the TU Vienna?",
-          "maxTime": 40,
-          "wrongChoices": [
-            {	"text" : "Dr. Adalbert Prechtl" },
-            {	"text" : "Mag. Anna Steiger" },
-            {	"text" : "Dr. Peter Skalicky" }
+          "text": "So many inscribed students has the TU Wien in the SS15?",
+          "value": 20,
+          "wrongAnswers": [
+            {	"text" : "What is 15.000 - 20.000?" },
+            {	"text" : "What is 10.000 - 15.000?" },
+            {	"text" : "What is 20.000 - 25.000?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "Dr. Sabine Seidler" }
+          "rightAnswers": [
+            {	"text" : "What is 25.000 - 30.000?" }
           ]
         },
         { "id": 11,
-          "text": "When was the TU Vienna founded?",
-          "maxTime": 20,
-          "wrongChoices": [
-            {	"text" : "1915" },
-            {	"text" : "1955" },
-            {	"text" : "1845" }
+          "text": "In this year the TU Wien was founded",
+          "value": 20,
+          "wrongAnswers": [
+            {	"text" : "What is 1915?" },
+            {	"text" : "What is 1955?" },
+            {	"text" : "What is 1845?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "1815" }
+          "rightAnswers": [ 
+            {	"text" : "What is 1815?" }
           ]
         },
         { "id": 12,
-          "text": "Among the Top 3 study programms in terms of applied students are...",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "Civil Engineering" },
-            {	"text" : "Mechanical Engineering" },
-            {	"text" : "Business Informatics" }
+          "text": "These faculties are part of the TU Wien",
+          "value": 30,
+          "wrongAnswers": [
+            {	"text" : "What is medicine?" }
           ],
-          "correctChoices": [ // http://www.tuwien.ac.at/wir_ueber_uns/zahlen_und_fakten/
-            {	"text" : "Informatics" },
-            {	"text" : "Architecture" },
-            {	"text" : "Electrical Engineering" }
+          "rightAnswers": [ 
+            {	"text" : "What is technical chemistry?" },
+            {	"text" : "What is physics?" },
+            {	"text" : "What is informatics?" }
           ]
         },
         { "id": 13,
-          "text": "The TU Vienna is located at which places?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "Freyung" },
-            {	"text" : "Universitätsring" }
+          "text": "These are the top 3 studies at the TU Wien",
+          "value": 40,
+          "wrongAnswers": [
+            {	"text" : "What is Bauingenieurwesen?" },
+            {	"text" : "What is Maschinenbau?" },
+            {	"text" : "What is Wirtschaftsinformatik?" }
           ],
-          "correctChoices": [
-            {	"text" : "Freihausgründe" },
-            {	"text" : "Favoritenstraße" }
+          "rightAnswers": [ // http://www.tuwien.ac.at/wir_ueber_uns/zahlen_und_fakten/
+            {	"text" : "What is Informatik?" },
+            {	"text" : "What is Architektur?" },
+            {	"text" : "What is Elektrotechnik?" }
           ]
         },
         { "id": 14,
-          "text": "How many enrolled students are at the TU Vienna in the summer term 2014?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "15,000 - 20,000" },
-            {	"text" : "10,000 - 15,000" },
-            {	"text" : "25,000 - 30,000" }
+          "text": "These institutes are part of the faculty of informatics.",
+          "value": 50,
+          "wrongAnswers": [
+            {	"text" : "What is Verkehrswissenschaften?" },
+            {	"text" : "What is Computertechnik?" },
+            {	"text" : "What is Mikroelektronik?" }
           ],
-          "correctChoices": [
-            {	"text" : "20,000 - 25,000" }
+          "rightAnswers": [ 
+            {	"text" : "What is Gestaltuns- und Wirkungsforschung?" },
+            {	"text" : "What is Softwaretechnik und Interaktive Systeme?" }
           ]
         }
       ]
     },
-    { "name": "Semistructured Data",
+    { "name": "Semi-sructured Data",
       "questions": [
         { "id": 15,
-          "text": "XML is...",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "a programming language" },
-            {	"text" : "a network protocol" },
-            {	"text" : "a database" }
+          "text": "XML",
+          "value": 10,
+          "wrongAnswers": [
+            {	"text" : "What is a programing language?" },
+            {	"text" : "What is a network protocol?" },
+            {	"text" : "What is a database?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "a markup language" }
+          "rightAnswers": [ 
+            {	"text" : "What is a markup language?" }
           ]
         },
-        { "id": 16,
-          "text": "Which languages are used to query XML?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "JAQL" }
-          ],
-          "correctChoices": [ 
-            {	"text" : "XPath" },
-            {	"text" : "XQuery" },
-            {	"text" : "XSLT" }
-          ]
-        },
-        { "id": 17,
-          "text": "Which languages are used to query JSON?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "XSLT" },
-            {	"text" : "JSON Find" }
-          ],
-          "correctChoices": [ 
-            {	"text" : "JSON Path" },
-            {	"text" : "JSON Query" }
-          ]
-        },
+		{ "id": 16,
+		  "text": "These are well-known parsers for XML.",
+		  "value": 10,
+		  "wrongAnswers": [
+		    { "text" : "What is MGF?" },
+		    { "text" : "What is XMP?" }
+		  ],
+		  "rightAnswers": [
+		    { "text" : "What is SAX?" },
+		    { "text" : "What is DOM?" }
+		  ]
+		},
+		{ "id": 17,
+		  "text": "These languages are used to define schemas in XML.",
+		  "value": 20,
+		  "wrongAnswers": [
+		    { "text" : "What is XML Definition?" },
+		    { "text" : "What is DTD Schema?" }
+		  ],
+		  "rightAnswers": [
+		    { "text" : "What is XML Schema?" },
+		    { "text" : "What is Document Type Definition?" }
+		  ]
+		},
         { "id": 18,
-          "text": "Which languages can be used to define semistructured data?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "Schema" }
+          "text": "These languages are used to query JSON.",
+          "value": 20,
+          "wrongAnswers": [
+            {	"text" : "What is XSLT?" },
+            {	"text" : "What is JSON Find?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "XML" },
-            {	"text" : "JSON" },
-            {	"text" : "YAML" }
+          "rightAnswers": [ 
+            {	"text" : "What is JSON Path?" },
+            {	"text" : "What is JSON Query?" }
           ]
         },
         { "id": 19,
-          "text": "Which languages can be used to define a schema in XML?",
-          "maxTime": 20,
-          "wrongChoices": [
-            {	"text" : "XML Definition" },
-            {	"text" : "DTD Schema" }
+          "text": "These languages are used to define semi-structured data.",
+          "value": 30,
+          "wrongAnswers": [
+            {	"text" : "What is Schema?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "XML Schema" },
-            {	"text" : "Document Type Definition" }
+          "rightAnswers": [ 
+            {	"text" : "What is XML?" },
+            {	"text" : "What is JSON?" },
+            {	"text" : "What is YAML?" }
           ]
         },
         { "id": 20,
-          "text": "Which of the following are well-known parsers for XML?",
-          "maxTime": 20,
-          "wrongChoices": [
-            {	"text" : "MGF" },
-            {	"text" : "XMP" }
+          "text": "These are DTD attribute types.",
+          "value": 40,
+          "wrongAnswers": [
+            { "text" : "What is BDATA?" },
+            { "text" : "What is REFERENCE?" },
+            { "text" : "What is ELEMENT?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "SAX" },
-            {	"text" : "DOM" }
+          "rightAnswers": [
+            { "text" : "What is CDATA?" },
+            { "text" : "What is ENTITY?" },
+            { "text" : "What is ID?" }
           ]
         },
         { "id": 21,
-          "text": "Which attribute types are possible in DTDs?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "BDATA" },
-            {	"text" : "REFERENCE" },
-            {	"text" : "ELEMENT" }
+          "text": "These languages are used to query XML.",
+          "value": 50,
+          "wrongAnswers": [
+            {	"text" : "What is JAQL?" }
           ],
-          "correctChoices": [ 
-            {	"text" : "CDATA" },
-            {	"text" : "ENTITY" },
-            {	"text" : "ID" }
+          "rightAnswers": [ 
+            {	"text" : "What is XPath?" },
+            {	"text" : "What is XQuery?" },
+            {	"text" : "What is XSLT?" }
           ]
         }
-      ]
-    },
-    { "name": "Internet Technologies",
-      "questions": [
-        { "id": 22,
-          "text": "Which versions of the Internet Protocol are in use today?",
-          "maxTime": 15,
-          "wrongChoices": [
-            {	"text" : "IPv9" },
-            {	"text" : "IPv0" }
-          ],
-          "correctChoices": [ 
-            {	"text" : "IPv4" },
-            {	"text" : "IPv6" }
-          ]
-        },
-        { "id": 23,
-          "text": "Which IPv4 adress is part of the private range that is not routed in the Internet?",
-          "maxTime": 40,
-          "wrongChoices": [
-            {	"text" : "192.166.2.1" },
-            {	"text" : "172.33.250.250" },
-            {	"text" : "11.0.0.1" }
-          ],
-          "correctChoices": [
-            {	"text" : "192.168.252.3" },
-            {	"text" : "10.0.0.1" },
-            {	"text" : "172.31.255.1" }
-          ]
-        },
-        { "id": 24,
-          "text": "Which protocols are part of the Transport layer?",
-          "maxTime": 20,
-          "wrongChoices": [
-            {	"text" : "IP" },
-            {	"text" : "PTPP" },
-            {	"text" : "DHCP" },
-            {	"text" : "NTP" }
-          ],
-          "correctChoices": [ 
-            {	"text" : "TCP" },
-            {	"text" : "UDP" }
-          ]
-        },
-        { "id": 25,
-          "text": "Which protocols are part of the Application layer?",
-          "maxTime": 35,
-          "wrongChoices": [
-            {	"text" : "PTPP" },
-            {	"text" : "UDP" },
-            {	"text" : "IP" }
-          ],
-          "correctChoices": [ 
-            {	"text" : "DNS" },
-            {	"text" : "FTP" },
-            {	"text" : "SOCKS" },
-            {	"text" : "HTTP" },
-            {	"text" : "SSH" }
-          ]
-        },
-        { "id": 26,
-          "text": "Which protocols are part of the Internet layer?",
-          "maxTime": 20,
-          "wrongChoices": [
-            {	"text" : "UDP" },
-            {	"text" : "TCP" },
-            {	"text" : "FTP" },
-            {	"text" : "HTTP" },
-            {	"text" : "SSH" }
-          ],
-          "correctChoices": [
-            {	"text" : "IP" }
-          ]
-        },
-        { "id": 27,
-          "text": "Which protocols are part of the Link layer?",
-          "maxTime": 20,
-          "wrongChoices": [
-            {	"text" : "SOCKS" },
-            {	"text" : "POP" },
-            {	"text" : "FTP" },
-            {	"text" : "IP" }
-          ],
-          "correctChoices": [
-            {	"text" : "Ethernet" },
-            {	"text" : "Token Ring" }
-          ]
-        },
-        { "id": 28,
-          "text": "Which layers are part of the TCP/IP reference model?",
-          "maxTime": 35,
-          "wrongChoices": [
-            {	"text" : "Session" },
-            {	"text" : "Physical" },
-            {	"text" : "Presentation" },
-            {	"text" : "Data link" }
-          ],
-          "correctChoices": [
-            {	"text" : "Application" },
-            {	"text" : "Internet" },
-            {	"text" : "Link" },
-            {	"text" : "Transport" }
-          ]
-        }
-      ]
-    },
-    { "name": "Internet and Internet usage",
-      "questions": [
-        { "id": 29,
-          "text": "Among the Top 5 countries whith the most internet users are...",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "United Kingdom" },
-            {	"text" : "Russia" },
-            {	"text" : "Germany" }
-          ],
-          "correctChoices": [ // http://www.internetworldstats.com/top20.htm
-            {	"text" : "United States" },
-            {	"text" : "India" },
-            {	"text" : "Japan" }
-          ]
-        },
-        { "id": 30,
-          "text": "The most internet users in absolute numbers are live in...",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "Europe" },
-            {	"text" : "North America" },
-            {	"text" : "Africa" }
-          ],
-          "correctChoices": [ // http://www.internetworldstats.com/stats.htm
-            {	"text" : "Asia" }
-          ]
-        },
-        { "id": 31,
-          "text": "The most used Social Network is...",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "Google+" },
-            {	"text" : "Twitter" },
-            {	"text" : "Instagramm" },
-            {	"text" : "Pinterest" }
-          ],
-          "correctChoices": [
-            {	"text" : "Facebook" }
-          ]
-        },
-        { "id": 32,
-          "text": "How many unique visitors does Youtube have approximately per month?",
-          "maxTime": 30,
-          "wrongChoices": [
-            {	"text" : "Over a million" },
-            {	"text" : "Over ten millions" },
-            {	"text" : "Over a hundred millions" }
-          ],
-          "correctChoices": [ // http://www.youtube.com/yt/press/statistics.html
-            {	"text" : "Over a billion" }
-          ]
-        },
-        { "id": 33,
-          "text": "Which companies belong to Facebook?",
-          "maxTime": 20,
-          "wrongChoices": [
-            {	"text" : "Pinterest" },
-            {	"text" : "Twitter" }
-          ],
-          "correctChoices": [
-            {	"text" : "Instagramm" },
-            {	"text" : "WhatsApp" }
-          ]
-        },
-        { "id": 34,
-          "text": "Which of the following people founded Google?",
-          "maxTime": 40,
-          "wrongChoices": [
-            {	"text" : "Eric Schmidt" },
-            {	"text" : "Dustin Moskovitz" },
-            {	"text" : "Andrew McCollum" },
-            {	"text" : "Mark Zuckerberg" }
-          ],
-          "correctChoices": [
-            {	"text" : "Larry Page" },
-            {	"text" : "Sergey Brin" }
-          ]
-        },
-        { "id": 35,
-          "text": "How many homes in Austria have broadband internet access?",
-          "maxTime": 20,
-          "wrongChoices": [
-            {	"text" : "50\% - 75\%" },
-            {	"text" : "0\% - 50\%" },
-            {	"text" : "85\%+" }
-          ],
-          "correctChoices": [ // http://www.statistik.at/web_en/statistics/information_society/ict_usage_in_households/041018.html
-            {	"text" : "75\% - 85\%" }
-          ]
-        }
-      ]
-    }
+     ]
+   },
+    { "name": "Internet Technology",
+     "questions": [
+       { "id": 22,
+         "text": "These versions of the Internet Protokolls are used today.",
+         "value": 10,
+         "wrongAnswers": [
+           { "text" : "What is IPv9?" },
+           { "text" : "What is IPv0?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is IPv4?" },
+           { "text" : "What is IPv6?" }
+         ]
+       },
+       { "id": 23,
+         "text": "These IPv4 addresses are private and are not routed in the internet.",
+         "value": 20,
+         "wrongAnswers": [
+           { "text" : "What is 192.166.2.1?" },
+           { "text" : "What is 172.33.250.250?" },
+           { "text" : "What is 11.0.0.1?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is 192.168.252.3?" },
+           { "text" : "What is 10.0.0.1?" },
+           { "text" : "What is 172.31.255.1?" }
+         ]
+       },
+       { "id": 24,
+         "text": "These protocols are part of the transport layer.",
+         "value": 30,
+         "wrongAnswers": [
+           { "text" : "What is IP?" },
+           { "text" : "What is PTPP?" },
+           { "text" : "What is DHCP?" },
+           { "text" : "What is NTP?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is TCP?" },
+           { "text" : "What is UDP?" }
+         ]
+       },
+       { "id": 25,
+         "text": "These protocols are part of the application layer.",
+         "value": 40,
+         "wrongAnswers": [
+           { "text" : "What is PTPP?" },
+           { "text" : "What is UDP?" },
+           { "text" : "What is IP?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is DNS?" },
+           { "text" : "What is FTP?" },
+           { "text" : "What is SOCKS?" },
+           { "text" : "What is HTTP?" },
+           { "text" : "What is SSH?" }
+         ]
+       },
+       { "id": 26,
+         "text": "These protocols are part of the internet layer.",
+         "value": 40,
+         "wrongAnswers": [
+           { "text" : "What is UDP?" },
+           { "text" : "What is TCP?" },
+           { "text" : "What is FTP?" },
+           { "text" : "What is HTTP?" },
+           { "text" : "What is SSH?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is IP?" }
+         ]
+       },
+       { "id": 27,
+         "text": "The protocols are part of the link layer.",
+         "value": 50,
+         "wrongAnswers": [
+           { "text" : "What is SOCKS?" },
+           { "text" : "What is POP?" },
+           { "text" : "What is FTP?" },
+           { "text" : "What is IP?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is Ethernet?" },
+           { "text" : "What is Token Ring?" }
+         ]
+       },
+       { "id": 28,
+         "text": "These layers are defined in the TCP/IP reference model.",
+         "value": 30,
+         "wrongAnswers": [
+           { "text" : "What is the session layer?" },
+           { "text" : "What is the bit transfer layer?" },
+           { "text" : "What is the presentation layer?" },
+           { "text" : "What is the connection layer?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is the application layer?" },
+           { "text" : "What is the internet layer?" },
+           { "text" : "What is the application layer?" },
+           { "text" : "What is the transport layer?" }
+         ]
+       }
+     ]
+   },
+   { "name": "Internet and Internet usage",
+     "questions": [
+       { "id": 29,
+         "text": "These countries are part of the top 5 countries with the most internet users.",
+         "value": 40,
+         "wrongAnswers": [
+           { "text" : "What is United Kingdom?" },
+           { "text" : "What is Russia?" },
+           { "text" : "What is Germany?" }
+         ],
+         "rightAnswers": [ // http://www.internetworldstats.com/top20.htm
+           { "text" : "What is USA?" },
+           { "text" : "What is India?" },
+           { "text" : "What is Japan?" }
+         ]
+       },
+       { "id": 30,
+         "text": "This continent has the most absolute internet users.",
+         "value": 20,
+         "wrongAnswers": [
+           { "text" : "What is Europe?" },
+           { "text" : "What is North America?" },
+           { "text" : "What is Africa?" }
+         ],
+         "rightAnswers": [ // http://www.internetworldstats.com/stats.htm
+           { "text" : "What is Asia?" }
+         ]
+       },
+       { "id": 31,
+         "text": "This is the most used social network.",
+         "value": 10,
+         "wrongAnswers": [
+           { "text" : "What is Google+?" },
+           { "text" : "What is Twitter?" },
+           { "text" : "What is Instagramm?" },
+           { "text" : "What is Pinterest?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is Facebook?" }
+         ]
+       },
+       { "id": 32,
+         "text": "Youtube has around that many users per month.",
+         "value": 30,
+         "wrongAnswers": [
+           { "text" : "What is over a million?" },
+           { "text" : "What is over ten millions?" },
+           { "text" : "What is over hundret millions?" }
+         ],
+         "rightAnswers": [ // http://www.youtube.com/yt/press/statistics.html
+           { "text" : "What is over a billion?" }
+         ]
+       },
+       { "id": 33,
+         "text": "These companies are owned by Facebook.",
+         "value": 40,
+         "wrongAnswers": [
+           { "text" : "What is Pinterest?" },
+           { "text" : "What is Twitter?" }
+         ],
+         "rightAnswers": [
+           { "text" : "What is Instagramm?" },
+           { "text" : "What is WhatsApp?" }
+         ]
+       },
+       { "id": 34,
+         "text": "These people (co-)founded Google.",
+         "value": 50,
+         "wrongAnswers": [
+           { "text" : "Who is Eric Schmidt?" },
+           { "text" : "Who is Dustin Moskovitz?" },
+           { "text" : "Who is Andrew McCollum?" },
+           { "text" : "Who is Mark Zuckerberg?" }
+         ],
+         "rightAnswers": [
+           { "text" : "Who is Larry Page?" },
+           { "text" : "Who is Sergey Brin?" }
+         ]
+       },
+       { "id": 35,
+        "text": "These is the percentage of households in Austria which have broadband internet access.",
+        "value": 30,
+        "wrongAnswers": [
+          { "text" : "What is 50\% - 75\%?" },
+          { "text" : "What is 0\% - 50\%?" },
+          { "text" : "What is 85\%+?" }
+        ],
+        "rightAnswers": [ //http://www.statistik.at/web_en/statistics/information_society/ict_usage_in_households/041018.html
+          { "text" : "What is 75\% - 85\%?" }
+        ]
+      }
+     ]
+   }
 ]

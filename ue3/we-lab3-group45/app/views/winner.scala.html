@@ -1,14 +1,14 @@
-
+@(game :at.ac.tuwien.big.we15.lab2.api.JeopardyGame)
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
     <head>
         <meta charset="utf-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@Messages("header.banner") @Messages("windisplay")</title>
-        <link rel="stylesheet" type="text/css" href="style/base.css" />
-        <link rel="stylesheet" type="text/css" href="style/screen.css" />
-		  <script src="js/jquery.js" type="text/javascript"></script>
-        <script src="js/framework.js" type="text/javascript"></script>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/base.css")"/>
+        <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/screen.css")"/>
+        <script src="@routes.Assets.at("javascripts/jquery.js")" type="text/javascript"></script>
+        <script src="@routes.Assets.at("javascripts/framework.js")" type="text/javascript"></script>
     </head>
     <body id="winner-page">
       <a class="accessibility" href="#winner">@Messages("winjump")</a>
@@ -35,29 +35,29 @@
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
                <h3 id="winnerannouncement">@Messages("Winner") Black Widow</h3>
-               <img class="avatar" src="img/avatar/black-widow.png" alt="Spieler-Avatar Black Widow" />
+               <img class="avatar" src="@routes.Assets.at("images/avatar/")@game.getWinner().getUser().getAvatar().getImageFull()" alt="@game.getWinner().getUser().getName()" />
                <table>
                   <tr>
                      <th class="accessibility">@Messages("playername")</th>
-                     <td class="playername">Black Widow</td>
+                     <td class="playername">@game.getWinner().getUser().getName()</td>
                   </tr>
                   <tr>
                      <th class="accessibility">@Messages("playerpoints")</th>
-                     <td class="playerpoints">€ 2000</td>
+                     <td class="playerpoints">@Messages("currency") @game.getWinner().getProfit()</td>
                   </tr>
                </table>
             </section>
             <section class="playerinfo" aria-labelledby="loserheading">
-               <h3 id="loserheading" class="accessibility">Verlierer: Deadpool</h3>
-               <img class="avatar" src="img/avatar/deadpool_head.png" alt="Spieler-Avatar Deadpool" />
+               <h3 id="loserheading" class="accessibility">@Messages("looser") @game.getSecond().getUser().getName()</h3>
+               <img class="avatar" src="@routes.Assets.at("images/avatar/")@game.getSecond().getUser().getAvatar().getImageFull()" alt="@game.getSecond().getUser().getName()" />
                <table>
                   <tr>
                      <th class="accessibility">@Messages("playername")</th>
-                     <td class="playername">Deadpool</td>
+                     <td class="playername">@game.getSecond().getUser().getName()</td>
                   </tr>
                   <tr>
                      <th class="accessibility">@Messages("playerpoints")</th>
-                     <td class="playerpoints">€ 400</td>
+                     <td class="playerpoints">@Messages("currency") @game.getSecond().getProfit()</td>
                   </tr>
                </table>
             </section>

@@ -1,4 +1,4 @@
-
+@(game :at.ac.tuwien.big.we15.lab2.api.JeopardyGame, question :at.ac.tuwien.big.we15.lab2.api.Question ,counter :String)
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
     <head>
@@ -23,7 +23,7 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">@Messages("navigation")</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="logoutlink" title="@Messages("logoutlink")" href="login.xhtml" accesskey="l">@Messages("logout")</a></li>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="@Messages("logoutlink")" href="@routes.Application.authentication()" accesskey="l">@Messages("logout")</a></li>
 			</ul>
 		</nav>
       
@@ -32,35 +32,38 @@
          <!-- info -->
          <section id="gameinfo" aria-labelledby="gameinfoinfoheading">
             <h2 id="gameinfoinfoheading" class="accessibility">@Messages("playerinfo")</h2>
-            <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
-               <h3 id="firstplayerheading" class="accessibility">Führender Spieler</h3>
-               <img class="avatar" src="img/avatar/black-widow_head.png" alt="Spieler-Avatar Black Widow" />
-               <table>
-                  <tr>
-                     <th class="accessibility">@Messages("playername")</th>
-                     <td class="playername">Black Widow (Du)</td>
-                  </tr>
-                  <tr>
-                     <th class="accessibility">@Messages("playerpoints")</th>
-                     <td class="playerpoints">2000 €</td>
-                  </tr>
-               </table>
-            </section>
-            <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
-               <h3 id="secondplayerheading" class="accessibility">@Messages("secondplayer")</h3>
-               <img class="avatar" src="img/avatar/deadpool_head.png" alt="Spieler-Avatar Deadpool" />
-               <table>
-                  <tr>
-                     <th class="accessibility">@Messages("playername")</th>
-                     <td class="playername">Deadpool</td>
-                  </tr>
-                  <tr>
-                     <th class="accessibility">@Messages("playerpoints")</th>
-                     <td class="playerpoints">400 €</td>
-                  </tr>
-               </table>
-            </section>
-            <p id="round">@Messages("questionlabel")3 / 10</p>
+                 <section id="firstplayer" class="playerinfo leader" aria-labelledby="firstplayerheading">
+                     <h3 id="firstplayerheading" class="accessibility">@Messages("leadingPlayer")</h3>
+                     <img class="avatar" src="@routes.Assets.at("images/avatar/")@game.getLeader().getUser().getAvatar().getImageHead()" alt="@game.getLeader().getUser().getAvatar().getName()" />
+                     <table>
+                         <tr>
+                             <th class="accessibility">@game.getLeader().getUser().getAvatar().getName()</th>
+                             <td class="playername">@game.getLeader().getUser().getAvatar().getName()</td>
+                         </tr>
+                         <tr>
+                             <th class="accessibility">@Messages("playerpoints")</th>
+                             <td class="playerpoints">@game.getLeader().getProfit() @Messages("currency")</td>
+                         </tr>
+                     </table>
+                 </section>
+
+                 <section id="secondplayer" class="playerinfo" aria-labelledby="secondplayerheading">
+                     <h3 id="secondplayerheading" class="accessibility">@Messages("secondplayer")</h3>
+                     <img class="avatar" src="@routes.Assets.at("images/avatar/")@game.getSecond().getUser().getAvatar().getImageHead()" alt="@game.getSecond().getUser().getAvatar().getName()" />
+                     <table>
+                         <tr>
+                             <th class="accessibility">@game.getSecond().getProfit() @Messages("currency")</th>
+                             <td class="playername">@game.getSecond().getUser().getAvatar().getName</td>
+                         </tr>
+                         <tr>
+                             <th class="accessibility">@game.getSecond().getProfit() @Messages("currency")</th>
+                             <td class="playerpoints">@game.getSecond().getProfit() @Messages("currency")</td>
+                         </tr>
+                     </table>
+                 </section>
+
+                 <p id="round">@Messages("questionlabel") @counter @Messages("seperator") @game.getMaxQuestions()</p>
+
          </section>
             
       <!-- Question -->
@@ -68,13 +71,18 @@
             <form id="questionform" action="@routes.QuizController.roundover()" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
                <p id="questiontype">TUWIEN für € 300</p>
-               <p id="questiontext">Diese Lehrveranstaltungen bilden das Modul EWA.</p>
-               <ul id="answers">
-                  <li><input name="answers" id="answer_1" value="1" type="checkbox"/><label class="tile clickable" for="answer_1">Was ist IT Strategie?</label></li>
-                  <li><input name="answers" id="answer_2" value="2" type="checkbox"/><label class="tile clickable" for="answer_2">Was ist Web Engineering?</label></li>
-                  <li><input name="answers" id="answer_3" value="3" type="checkbox"/><label class="tile clickable" for="answer_3">Was ist Semistrukturierte Daten?</label></li>
-                  <li><input name="answers" id="answer_4" value="4" type="checkbox"/><label class="tile clickable" for="answer_4">Was ist Objektorientierte Modellierung?</label></li>
-               </ul>
+               <p id="questiontext">@question.getText()</p>
+                <ul id="answers">
+                   @import java.math.BigInteger; var i=0;
+                   @for(a <- question.getAllAnswers()){
+
+                   <li>
+                       <input name="answers" id="answer_@i" value="@i" type="checkbox"/><label class="tile clickable" for="answer_@i">@a.getText()</label>
+                   </li>
+                    @(i+=1)
+
+                   }
+                </ul>
                <input id="timeleftvalue" type="hidden" value="100"/>
                <input class="greenlink formlink clickable" name="answer_submit" id="next" type="submit" value="antworten" accesskey="s"/>
             </form>

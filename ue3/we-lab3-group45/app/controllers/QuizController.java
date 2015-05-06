@@ -1,9 +1,15 @@
 package controllers;
 
-import at.ac.tuwien.big.we15.lab2.api.*;
+import at.ac.tuwien.big.we15.lab2.api.Avatar;
+import at.ac.tuwien.big.we15.lab2.api.JeopardyFactory;
+import at.ac.tuwien.big.we15.lab2.api.JeopardyGame;
+import at.ac.tuwien.big.we15.lab2.api.User;
 import at.ac.tuwien.big.we15.lab2.api.impl.PlayJeopardyFactory;
 import at.ac.tuwien.big.we15.lab2.api.impl.SimpleJeopardyGame;
+import at.ac.tuwien.big.we15.lab2.api.impl.SimpleQuestion;
 import at.ac.tuwien.big.we15.lab2.api.impl.SimpleUser;
+import at.ac.tuwien.big.we15.lab2.api.*;
+import play.Play;
 import play.cache.Cache;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -13,6 +19,9 @@ import play.mvc.Result;
 import play.mvc.Security;
 import views.html.*;
 
+import java.io.File;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,55 +31,81 @@ import java.util.List;
 public class QuizController extends Controller {
 
 
+    private static int counter = 0;
+    private static Question question;
+
     @Security.Authenticated(QuizSecurity.class)
     public static Result startGame() {
-        String username = session("username");
-        User userHuman = new SimpleUser();
-        userHuman.setName(username);
-
-        String path = "conf/data.de.json";
-        JeopardyFactory factory = new PlayJeopardyFactory(path);
-
-       JeopardyGame game = new SimpleJeopardyGame();
-        return TODO;
+          return TODO;
     }
 
     @Security.Authenticated(QuizSecurity.class)
-    public static Result quiz() {
-        return null;
+    public static Result gameOver() {
+        JeopardyGame game = (JeopardyGame) Cache.get("game");
+
+        game.getWinner().getUser().getName();
+
+        return ok(winner.render(game));
 
     }
 
     @Security.Authenticated(QuizSecurity.class)
     public static Result roundover() {
-        //set fragen +1
         //set richtig falsch stack
         //set kontostand spieler
         //set verfuegbare kategorien
+        JeopardyGame game = (JeopardyGame) Cache.get("game");
+        if(counter==game.getMaxQuestions()){
+            return gameOver();
+        }
 
-        return TODO;
+        for(String s :    Controller.request().queryString().keySet()){
+            System.out.println(s);
+        }
+
+
+
+        game.getHumanPlayer().getAnsweredQuestions();
+        question.getCorrectAnswers();
+        String answ = Controller.request().getQueryString("answers");
+        System.out.println(answ);
+        return ok(jeopardy.render(game, ""+counter++));
 
     }
 
     @Security.Authenticated(QuizSecurity.class)
     public static Result newRound() {
-        String username = session("username");
-        JeopardyGame quizGame = (JeopardyGame) Cache.get(username + "Game");
+        String postAction = request().body().asFormUrlEncoded().get("question_selection")[0];
 
-        return ok(question.render());
 
+        int id = Integer.parseInt(postAction);
+        int i = 0;
+        JeopardyGame game = (JeopardyGame) Cache.get("game");
+        Question chosen = null;
+        for(Category c : game.getCategories()){
+            for(Question q : c.getQuestions()){
+                if(i==id) {
+                    chosen = q;
+                    break;
+                }
+                i++;
+            }
+        }
+       question = chosen;
+        game.hasBeenChosen(chosen);
+        return ok(question.render(game, chosen, ""+counter));
     }
 
-    @Security.Authenticated(QuizSecurity.class)
     public static Result index() {
         //erter aufruf
         //noch keine history vorhanden
 
-        String username = session("username");
-        String avatarLabel = session("avatarLabel");
-        User userHuman = new SimpleUser();
-        userHuman.setName(username);
-        String pic = session("avatarName");
-        return  ok(jeopardy.render(avatarLabel, pic));
+        JeopardyFactory factory = new PlayJeopardyFactory(Messages.get("json.file"));
+        User user = (User) Cache.get("user");
+        JeopardyGame game = factory.createGame(user);
+
+        Cache.set("user", user);
+        Cache.set("game", game);
+        return  ok(jeopardy.render(game, ""+counter++));
     }
 }

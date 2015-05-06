@@ -11,7 +11,7 @@ GET         /logout                controllers.Application.logout()
 
 GET         /index                 controllers.QuizController.index()
 GET         /startGame             controllers.QuizController.startGame()
-POST        /quiz                  controllers.QuizController.quiz()
+POST        /gameOver             controllers.QuizController.gameOver()
 GET         /roundover             controllers.QuizController.roundover()
 POST         /newRound              controllers.QuizController.newRound()
 

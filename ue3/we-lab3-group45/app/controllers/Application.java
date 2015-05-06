@@ -1,5 +1,7 @@
 package controllers;
 
+import at.ac.tuwien.big.we15.lab2.api.Avatar;
+import at.ac.tuwien.big.we15.lab2.api.impl.SimpleUser;
 import models.User;
 import play.cache.Cache;
 import play.data.Form;
@@ -9,6 +11,7 @@ import play.db.jpa.Transactional;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
+import sun.security.x509.AVA;
 import views.html.authentication;
 import views.html.registration;
 
@@ -40,14 +43,19 @@ public class Application extends Controller {
             if( user != null) {
                 session().clear();
                 session("username", formUser.get().getUsername());
-                String avatarLabel = user.getAvatarName() +" (DU)";
-                String avatarName = user.getAvatarName().toLowerCase();
-                System.out.println(avatarName);
-                avatarName = avatarName.replace(".", "-");
-                avatarName =  avatarName.replaceAll("\\s+","-");
-                System.out.println(avatarName);
-                session("avatarName", avatarName.concat("_head.png"));
+                Avatar userAvatar = Avatar.valueOf(user.getAvatarName());
+                session("avatarName", user.getAvatarName());
+                session("avatarPic", userAvatar.getImageHead());
+                String avatarLabel = userAvatar.getName() +" (DU)";;
                 session("avatarLabel", avatarLabel);
+                Avatar opponent =  userAvatar.getOpponent(userAvatar);
+                session("opponentHead", opponent.getImageHead());
+                session("oponentName", opponent.getName());
+                at.ac.tuwien.big.we15.lab2.api.User neuerUser = new SimpleUser();
+                neuerUser.setAvatar(userAvatar);
+                neuerUser.setName(user.getFirstname());
+                Cache.set("user", neuerUser);
+                Cache.set("opponent", opponent);
                 return redirect(routes.QuizController.index());
             } else {
                 formUser.reject("formError", Messages.get("passwordUsernameWrong"));
@@ -112,7 +120,6 @@ public class Application extends Controller {
         });
 
         Form<User> formUser = Form.form(User.class).bindFromRequest();
-        System.out.println(formUser.get());
         if (formUser.hasErrors()) {
             return badRequest(registration.render(formUser));
         } else {

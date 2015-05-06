@@ -38,15 +38,13 @@ timer = Timer
 lastGame = Letztes Spiel:
 personalData = Persönliche Daten
 avatarlabel = Avatar:
-
-
-
+leadingPlayer = Führender Spieler
+currency = €
+seperator = /
+choose = wählen
 usernameRequired = Benutzername*:
-
 passwordRequired = Passwort*:
-
-
-
+looser = Verlierer:
 
 
 required.username = Der Benutzername ist ein Pflichtfeld!

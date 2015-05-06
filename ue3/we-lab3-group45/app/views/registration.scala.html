@@ -48,7 +48,7 @@
         </fieldset>
         <fieldset>
             <legend>@Messages("playerdata")</legend>
-            @helper.select(form("avatarName"), options = Avatars.values().toList.map(v => (v.text(), v.text())), '_label -> Messages("avatarlabel"))
+            @helper.select(form("avatarName"), options = Avatar.values().toList.map(v => (v.toString(), v.getName())), '_label -> Messages("avatarlabel"))
             @for(error <- form("formError").errors) {
             <div id="error_msg_name" class="error" role="alert"> @error.message </div>
             }
