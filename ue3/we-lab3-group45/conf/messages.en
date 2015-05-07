@@ -1,22 +1,53 @@
 json.file = data.en.json
 
-head.title = Business Informatics Group Quiz - Login
-header.banner = Business Informatics Group
-quiz = Quiz
 loginpage = Skip to login
-navigation = Navigation
-registerlink = Click here for registration
-loginlink =  Click here for login
-logoutlink = Click here for logout
+register = Register
+reg = Register
+header.banner = Business Informatics Group
+jeopardy = Jeopardy!
+head.title = Business Informatics Group Quiz - Login
 login = Login
 username = Username:
-usernameRequired = Username*:
-password = Password:
-passwordRequired = Password*:
+password = Passwort:
 LoginButton = Login
-register = Register
 not.register = Not registered yet?
 for.register = Skip to registration
+registerlink = Click here for registration
+
+footer =  © 2015 BIG Jeopardy
+jumpRegister = Jump to Register
+requiredFields = Fields marked with a "*" are required
+navigation = Navigation
+windisplay = Winner
+winjump = Skipt to Winnersite
+quiz = Quiz
+loginlink = Click here for logout
+logoutlink = Click here for login
+logout = Logout
+winnerinfo = Winnerinfo
+winner = Winner:
+playername = Playername
+playerdata = Playerdata
+playerinfo = Playerinformation
+playerpoints = Playerpoints
+newGame = new Game
+questions = Questions
+questionchoise = Questionchoice
+jumpQuestion = Jump to question
+secondplayer = Player 2
+questionlabel = Question:
+timer = Timer
+lastGame = Last Game:
+personalData = Personal Data
+avatarlabel = Avatar:
+leadingPlayer = Leading Player
+currency = €
+seperator = /
+choose = choose 
+usernameRequired = Username*:
+passwordRequired = Password*:
+looser = Looser
+
 
 required.username = Username is required!
 toShort.username = Your username must contain at least 4 characters!
@@ -26,13 +57,12 @@ required.password = Password is required!
 toShort.password = Your password must contain at least 4 characters!
 toLong.password = Your password must not contain more than 8 characters!
 
-requiredFields = Fields marked with a "*" are required
 
 passwordUsernameWrong = Username or Password wrong!
 usernameAlreadyExists = Username already exists!
 birthdateFormat = Please use the following date format: dd.mm.yyyy (z.B. 24.12.2012).
 
-personalData = Personal Data
+
 firstname = First name:
 lastname = Last name:
 birthdate = Birthdate:
@@ -47,25 +77,67 @@ true = True
 false = False
 unknown = Unknown
 remainingTime = Remaining Time:
-lastGame = Last Game:
+
 never = Never
 next = next
-logout = Logout
-newGame = new Game
-jumpQuestion = Jump to question
+
+
 category = Category
 wins = wins
-roundwins={0} wins Round {1}!
+roundwins = {0} wins Round {1}!
 undecidedRound = Round {0} undecided!
 finalscore = Final Score
-playerinfo = Player Information
 gamesWon = Games won:
 jumpScore = Jump to score
 gameEnd= End of the game
-jumpRegister = Jump to Register
-userGameWon = {0} wins!
+userGameWins = {0} wins!
 undecidedGame = Game undecided!
+
 score = Score
 roundScore = Game Score
 round = round
 jumpRound = Jump to Game Score
+
+
+aldrich-killian = Aldrich Killian
+beetle = Beetle
+blackwidow = Black Widow
+captainamerica = Captain America
+cyclops = Cyclops
+deadpool = Deadpool
+doctordoom = Doctor Doom
+doctoroctopus = Doctor Octopus
+drax = Drax
+electro = Electro
+extremissoldier = Extremis Soldier
+falcon = Falcon
+gamora = Gamora
+greengoblin = Green Goblin
+groot = Groot
+hawkeye = Hawkeye
+hulk = Hulk
+hydrahenchman = Hydra Henchman
+ironfist = Iron Fist
+ironman = Iron Man
+jjonahjameson = J.Jonah Jameson
+loki = Loki
+magneto = Magneto
+maryjanewatson = Mary Jane Watson
+modok = MODOK
+nebula = Nebula
+nickfury = Nick Fury
+nova = Nova
+pepperpotts = Pepper Potts
+powerman = Power Man
+redskull = Red Skull
+rocket = Rocket Raccoon
+ronan = Ronan
+spiderman = Spiderman
+starlord = Starlord
+taskmaster = Taskmaster
+themandarin = The Mandarin
+thor = Thor
+tonystark = Tony Stark
+venom = Venom
+warmachine = War Machine
+wolverine = Wolverine

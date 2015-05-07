@@ -1,4 +1,5 @@
 json.file = data.de.json
+
 loginpage = Zum Login springen
 register = Registierung
 reg = Registrieren
@@ -12,6 +13,7 @@ LoginButton = Anmelden
 not.register = Nicht registriert?
 for.register = Zur Registierung
 registerlink = Klicke hier um dich zu registrieren
+
 footer =  © 2015 BIG Jeopardy
 jumpRegister = Zur Registrierung springen
 requiredFields = Mit "*" gekennzeichnete Felder sind Pflichtfelder

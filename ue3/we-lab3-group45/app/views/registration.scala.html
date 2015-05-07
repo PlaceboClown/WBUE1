@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@Messages("header.banner")  @Messages("jeopardy") @Messages("register")</title>
     <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/base.css")"/>
@@ -56,7 +56,7 @@
             @helper.inputText(form("username"), 'id -> "username", '_showConstraints -> false, '_label -> Messages("usernameRequired"))(textInput, implicitly[Lang])
             @helper.inputPassword(form("password"), 'id -> "password", '_showConstraints -> false, '_label -> Messages("passwordRequired"))(textInput, implicitly[Lang])
 
-            <input id="registersubmit" type="submit" value="@Messages("register")" accesskey="s"/>
+            <input class="greenlink formlink" id="registersubmit" type="submit" value="@Messages("register")" accesskey="s"/>
             <p id="requiredhint">@Messages("requiredFields")</p>
         </fieldset>
         }

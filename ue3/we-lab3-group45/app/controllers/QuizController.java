@@ -19,6 +19,8 @@ import play.mvc.Result;
 import play.mvc.Security;
 import views.html.*;
 
+import views.html.authentication;
+
 import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
@@ -30,9 +32,6 @@ import java.util.Map;
  * Created by Elisabeth on 04.05.2014.
  */
 public class QuizController extends Controller {
-
-
-    private static int counter = 0;
 
     @Security.Authenticated(QuizSecurity.class)
     public static Result startGame() {
@@ -56,7 +55,7 @@ public class QuizController extends Controller {
         //set verfuegbare kategorien
         //fragen auswerten
         JeopardyGame game = (JeopardyGame) Cache.get("game");
-        if(counter==game.getMaxQuestions()){
+        if(game.isGameOver()){
             return gameOver();
         }
         Map<String, String[]> values = Controller.request().queryString();
@@ -78,12 +77,9 @@ public class QuizController extends Controller {
            }
        }
 
-
-
-
         game.getHumanPlayer().getAnsweredQuestions();
         String answ = Controller.request().getQueryString("answers");
-        return ok(jeopardy.render(game, ""+counter++));
+        return ok(jeopardy.render(game));
 
     }
 
@@ -91,35 +87,40 @@ public class QuizController extends Controller {
     public static Result newRound() {
         String postAction = request().body().asFormUrlEncoded().get("question_selection")[0];
 
-
         int id = Integer.parseInt(postAction);
         int i = 0;
         JeopardyGame game = (JeopardyGame) Cache.get("game");
-        Question chosen = null;
-        for(Category c : game.getCategories()){
-            for(Question q : c.getQuestions()){
-                if(i==id) {
-                    chosen = q;
-                    break;
-                }
-                i++;
-            }
-        }
-        game.hasBeenChosen(chosen);
-        Cache.set("chosenQuestion", chosen);
-        return ok(question.render(game, chosen, ""+counter));
+
+        game.chooseHumanQuestion(id);
+        System.out.println(id);
+        Cache.set("chosenQuestion", game.getHumanPlayer().getChosenQuestion());
+        return ok(question.render(game, game.getHumanPlayer().getChosenQuestion()));
     }
 
     public static Result index() {
         //erter aufruf
         //noch keine history vorhanden
 
+        // Generate a unique ID
+        String uuid=session("uuid");
+        if(uuid==null) {
+            uuid=java.util.UUID.randomUUID().toString();
+            session("uuid", uuid);
+        }
+
         JeopardyFactory factory = new PlayJeopardyFactory(Messages.get("json.file"));
         User user = (User) Cache.get("user");
         JeopardyGame game = factory.createGame(user);
 
+        Cache.set("test","das ist ein test");
+
         Cache.set("user", user);
         Cache.set("game", game);
-        return  ok(jeopardy.render(game, ""+counter++));
+        return  ok(views.html.jeopardy.render(game));
+    }
+
+    public static Result logout() {
+        Cache.remove("game");
+        return Application.authentication();
     }
 }

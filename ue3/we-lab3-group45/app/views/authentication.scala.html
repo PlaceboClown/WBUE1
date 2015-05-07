@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="de" lang="de">
     <head>
-        <meta charset="utf-8"/>
+        <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>@Messages("head.title") - @Messages("login")</title>
         <link rel="stylesheet" type="text/css" href="@routes.Assets.at("stylesheets/base.css")"/>
@@ -34,7 +34,7 @@
                 }
                 @helper.inputText(form("username"), 'id -> "username", '_showConstraints -> false, '_label -> Messages("username"))(textInput, implicitly[Lang])
                 @helper.inputPassword(form("password"), 'id -> "password", '_showConstraints -> false, '_label -> Messages("password"))(textInput, implicitly[Lang])
-                <input id="loginsubmit" type="submit" value="@Messages("LoginButton")"/>
+                <input name="login" id="loginsubmit" class="greenlink formlink clickable" type="submit" value="@Messages("LoginButton")"/>
             </fieldset>
             }
         </section>

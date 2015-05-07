@@ -11,9 +11,10 @@ GET         /logout                controllers.Application.logout()
 
 GET         /index                 controllers.QuizController.index()
 GET         /startGame             controllers.QuizController.startGame()
-POST        /gameOver             controllers.QuizController.gameOver()
+POST        /gameOver              controllers.QuizController.gameOver()
 GET         /roundover             controllers.QuizController.roundover()
-POST         /newRound              controllers.QuizController.newRound()
+POST        /newRound              controllers.QuizController.newRound()
+GET         /logout                controllers.QuizController.logout()
 
 
 # Map static resources from the /public folder to the /assets URL path
