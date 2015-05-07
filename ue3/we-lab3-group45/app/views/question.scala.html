@@ -23,7 +23,7 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">@Messages("navigation")</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="logoutlink" title="@Messages("logoutlink")" href="@routes.QuizController.logout()" accesskey="l">@Messages("logout")</a></li>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="@Messages("logoutlink")" href="@routes.JeopardyController.logout()" accesskey="l">@Messages("logout")</a></li>
 			</ul>
 		</nav>
       
@@ -68,7 +68,7 @@
             
       <!-- Question -->
       <section id="question" aria-labelledby="questionheading">
-            <form id="questionform" action="@routes.QuizController.roundover()" method="get">
+            <form id="questionform" action="@routes.JeopardyController.roundover()" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
                <p id="questiontype">TUWIEN für € 300</p>
                <p id="questiontext">@question.getText()</p>

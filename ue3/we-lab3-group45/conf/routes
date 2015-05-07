@@ -9,12 +9,13 @@ GET         /registration          controllers.Application.registration()
 POST        /registration          controllers.Application.newUser()
 GET         /logout                controllers.Application.logout()
 
-GET         /index                 controllers.QuizController.index()
-GET         /startGame             controllers.QuizController.startGame()
-POST        /gameOver              controllers.QuizController.gameOver()
-GET         /roundover             controllers.QuizController.roundover()
-POST        /newRound              controllers.QuizController.newRound()
-GET         /logout                controllers.QuizController.logout()
+GET         /index                 controllers.JeopardyController.index()
+GET         /startGame             controllers.JeopardyController.startGame()
+POST        /gameOver              controllers.JeopardyController.gameOver()
+GET         /roundover             controllers.JeopardyController.roundover()
+POST        /newRound              controllers.JeopardyController.newRound()
+GET         /logout                controllers.JeopardyController.logout()
+POST        /newGame               controllers.JeopardyController.newGame()
 
 
 # Map static resources from the /public folder to the /assets URL path

@@ -30,7 +30,7 @@ playername = Playername
 playerdata = Playerdata
 playerinfo = Playerinformation
 playerpoints = Playerpoints
-newGame = new Game
+newgame = new Game
 questions = Questions
 questionchoise = Questionchoice
 jumpQuestion = Jump to question
@@ -92,6 +92,8 @@ jumpScore = Jump to score
 gameEnd= End of the game
 userGameWins = {0} wins!
 undecidedGame = Game undecided!
+restart = New Game
+for.newgame = Start new game
 
 score = Score
 roundScore = Game Score

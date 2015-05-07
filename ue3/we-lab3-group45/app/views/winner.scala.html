@@ -23,7 +23,7 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">@Messages("navigation")</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="logoutlink" title="@Messages("logoutlink")" href="login.xhtml" accesskey="l">@Messages("logout")</a></li>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="@Messages("logoutlink")" href="@routes.JeopardyController.logout()" accesskey="l">@Messages("logout")</a></li>
 			</ul>
 		</nav>
       
@@ -34,7 +34,7 @@
             <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
-               <h3 id="winnerannouncement">@Messages("Winner") Black Widow</h3>
+               <h3 id="winnerannouncement">@Messages("winner") @game.getWinner().getUser().getName()</h3>
                <img class="avatar" src="@routes.Assets.at("images/avatar/")@game.getWinner().getUser().getAvatar().getImageFull()" alt="@game.getWinner().getUser().getName()" />
                <table>
                   <tr>
@@ -48,26 +48,28 @@
                </table>
             </section>
             <section class="playerinfo" aria-labelledby="loserheading">
-               <h3 id="loserheading" class="accessibility">@Messages("looser") @game.getSecond().getUser().getName()</h3>
-               <img class="avatar" src="@routes.Assets.at("images/avatar/")@game.getSecond().getUser().getAvatar().getImageFull()" alt="@game.getSecond().getUser().getName()" />
+               <h3 id="loserheading" class="accessibility">@Messages("looser") @game.getLoser().getUser().getName()</h3>
+               <img class="avatar" src="@routes.Assets.at("images/avatar/")@game.getLoser().getUser().getAvatar().getImageHead()" alt="@game.getLoser().getUser().getName()" />
                <table>
                   <tr>
-                     <th class="accessibility">@Messages("playername")</th>
-                     <td class="playername">@game.getSecond().getUser().getName()</td>
+                      <th class="accessibility">@Messages("playername")</th>
+                      <td class="playername">@game.getLoser().getUser().getName()</td>
                   </tr>
                   <tr>
                      <th class="accessibility">@Messages("playerpoints")</th>
-                     <td class="playerpoints">@Messages("currency") @game.getSecond().getProfit()</td>
+                     <td class="playerpoints">@Messages("currency") @game.getLoser().getProfit()</td>
                   </tr>
                </table>
             </section>
          </section>
-         <section id="newgame" aria-labelledby="newgameheading">
-             <h2 id="newgameheading" class="accessibility">@Messages("newGame")</h2>
-         	<form action="jeopardy.xhtml" method="post">
-               	<input class="clickable orangelink contentlink" id="new_game" type="submit" name="restart" value="Neues Spiel" />
-            </form>
-         </section>
+          <section id="newgame" aria-labelledby="newgameheading">
+              <h2 id="newgameheading" class="accessibility">@Messages("newgame")</h2>
+              <form action="@routes.JeopardyController.newGame()" method="post">
+                  <input class="clickable orangelink contentlink" id="new_game" type="submit" name="restart" value="@Messages("for.newgame")" />
+              </form>
+          </section>
+
+
       </div>
         <!-- footer -->
         <footer role="contentinfo">@Messages("footer")</footer>

@@ -6,7 +6,7 @@ import play.mvc.Result;
 /**
  * Created by Elisabeth on 10.05.2014.
  */
-public class QuizSecurity extends play.mvc.Security.Authenticator {
+public class JeopardySecurity extends play.mvc.Security.Authenticator {
 
     @Override
     public String getUsername(Http.Context context) {

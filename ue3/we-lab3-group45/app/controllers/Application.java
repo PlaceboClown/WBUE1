@@ -56,7 +56,7 @@ public class Application extends Controller {
                 neuerUser.setName(user.getFirstname());
                 Cache.set("user", neuerUser);
                 Cache.set("opponent", opponent);
-                return redirect(routes.QuizController.index());
+                return redirect(routes.JeopardyController.index());
             } else {
                 formUser.reject("formError", Messages.get("passwordUsernameWrong"));
                 return badRequest(authentication.render(formUser));

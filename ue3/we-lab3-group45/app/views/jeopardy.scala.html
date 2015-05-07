@@ -24,7 +24,7 @@
 		<nav role="navigation" aria-labelledby="navheading">
 			<h2 id="navheading" class="accessibility">@Messages("navigation")</h2>
 			<ul>
-				<li><a class="orangelink navigationlink" id="logoutlink" title="@Messages("logoutlink")" href="@routes.QuizController.logout()" accesskey="l">@Messages("logout")</a></li>
+				<li><a class="orangelink navigationlink" id="logoutlink" title="@Messages("logoutlink")" href="@routes.JeopardyController.logout()" accesskey="l">@Messages("logout")</a></li>
 			</ul>
 		</nav>
       
@@ -70,29 +70,30 @@
             <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
             <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
             <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
-            <form id="questionform" action="@routes.QuizController.newRound()" method="post">
+            <form id="questionform" action="@routes.JeopardyController.newRound()" method="post">
 
                <fieldset>
                <legend class="accessibility">@Messages("questionchoise")</legend>
-                  @import java.math.BigInteger; var i=0;
+                  @import java.math.BigInteger; var i=1;
                   @for(c <- game.getCategories()){
-                  <section class="questioncategory" aria-labelledby="@c.getName()">
-                     <h3 id="@c.getName()" class="tile category-title"><span class="accessibility">Kategorie: </span>@c.getName()</h3>
+                      <section class="questioncategory" aria-labelledby="@c.getName()">
+                     <h3 id="@c.getName()" class="tile category-title"><span class="accessibility">@Messages("category"): </span>@c.getName()</h3>
                      <ol class="category_questions">
 
-                   @for(q <- c.getQuestions()){
+                     @for(q <- c.getQuestions()){
 
                         <li>
-                              @if(game.hasBeenChosen(q)){
-                           <input name="question_selection" id="question_@i" value="@i" type="radio" disabled="disabled" />
+                            @if(game.hasBeenChosen(q)){
+                                <input name="question_selection" id="question_@i" value="@i" type="radio" disabled="disabled" />
                            }else{
-                           <input name="question_selection" id="question_@i" value="@i" type="radio" />
+                                <input name="question_selection" id="question_@i" value="@i" type="radio" />
                            }
-
-                           <label class="tile clickable" for="question_@i">@q.getValue()</label>
+                            <!-- <label class="tile clickable" for="question_@i">@q.getValue()</label>-->
+                            <label class="tile clickable" for="question_@i">@i</label>
                         </li>
-                     @(i+=1)
-                     }
+
+                         @(i+=1)
+                   }
                      </ol>
                   </section>
                   }

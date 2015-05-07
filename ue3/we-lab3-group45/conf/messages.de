@@ -30,7 +30,7 @@ playername = Spielername
 playerdata = Spielerdaten
 playerinfo = Spielinformationen
 playerpoints = Spielerpunkte
-newGame = neues Spiel
+newgame = neues Spiel
 questions = Fragenbeantwortung
 questionchoise = Fragenauwahl
 jumpQuestion = Zur Fragenauwahl springen
@@ -93,6 +93,8 @@ jumpScore = Zur Spielwertung springen
 gameEnd= Spielende
 userGameWins = {0} gewinnt!
 undecidedGame = Spiel unentschieden!
+restart = Neues Spiel
+for.newgame = Neues Spiel beginnen
 
 score = Zwischenstand
 roundScore = Rundenzwischenstand
