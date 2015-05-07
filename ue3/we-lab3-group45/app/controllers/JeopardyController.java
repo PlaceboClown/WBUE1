@@ -58,6 +58,9 @@ public class JeopardyController extends Controller {
                 answerList.add(Integer.parseInt(str_answer));
             }
         }
+        game.getCategories();
+        System.out.println(question.getCorrectAnswers());
+        System.out.println(answerList);
         game.answerHumanQuestion(answerList);
 
         System.out.println("Human choose: ");
@@ -95,20 +98,25 @@ public class JeopardyController extends Controller {
         //noch keine history vorhanden
 
         // Generate a unique ID
-        String uuid=session("uuid");
-        if(uuid==null) {
-            uuid=java.util.UUID.randomUUID().toString();
-            session("uuid", uuid);
-        }
+        String uuid = java.util.UUID.randomUUID().toString();
+        session("uuid", uuid);
 
         JeopardyFactory factory = new PlayJeopardyFactory(Messages.get("json.file"));
-        User user = (User) Cache.get("user");
-        JeopardyGame game = factory.createGame(user);
+        models.User user = (models.User) Cache.get("user");
 
-        Cache.set(uuid+"user", user);
+        User user_api = new SimpleUser();
+        user_api.setAvatar(user.getAvatar());
+        user_api.setName(user.getUsername());
+
+        System.out.println(user_api.getName() + "with Avatar" + user_api.getAvatar());
+        System.out.println(factory);
+
+        JeopardyGame game = factory.createGame(user_api);
+
+        Cache.set(uuid+"user", user_api);
         Cache.set(uuid + "game", game);
 
-        return  ok(views.html.jeopardy.render(game));
+        return ok(views.html.jeopardy.render(game));
     }
 
     @Security.Authenticated(JeopardySecurity.class)

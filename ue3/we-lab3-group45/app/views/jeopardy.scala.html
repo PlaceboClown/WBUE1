@@ -67,14 +67,28 @@
          <!-- Question -->
          <section id="question-selection" aria-labelledby="questionheading">
             <h2 id="questionheading" class="black accessibility">Jeopardy</h2>
-            <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
-            <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
-            <p class="user-info">Deadpool hat TUWIEN für € 1000 gewählt.</p>
+
+             @if(game.getHumanPlayer().getLatestProfitChange() != null) {
+                 @if(game.getHumanPlayer().getLatestProfitChange() > 0) {
+                     <p class="user-info positive-change">@Messages("roundmessage.right", game.getHuman().getName(), "+" + game.getHumanPlayer().getLatestProfitChange()) </p>
+                 } else {
+                     <p class="user-info negative-change">@Messages("roundmessage.false", game.getHuman().getName(), game.getHumanPlayer().getLatestProfitChange()) </p>
+                 }
+
+                 @if(game.getMarvinPlayer().getLatestProfitChange() > 0) {
+                     <p class="user-info positive-change">@Messages("roundmessage.right", game.getMarvin().getName(), "+" + game.getMarvinPlayer().getLatestProfitChange()) </p>
+                 } else {
+                     <p class="user-info negative-change">@Messages("roundmessage.false", game.getMarvin().getName(), game.getMarvinPlayer().getLatestProfitChange()) </p>
+                 }
+             }
+             @if(game.getMarvinPlayer().getChosenQuestion != null){
+                 <p class="user-info">@Messages("roundmessage.marvinturn", game.getMarvin().getName(), game.getMarvinPlayer().getChosenQuestion().getCategory().getName(), game.getMarvinPlayer().getChosenQuestion().getValue()) </p>
+             }
             <form id="questionform" action="@routes.JeopardyController.newRound()" method="post">
 
                <fieldset>
                <legend class="accessibility">@Messages("questionchoise")</legend>
-                  @import java.math.BigInteger; var i=1;
+                  @import java.math.BigInteger;
                   @for(c <- game.getCategories()){
                       <section class="questioncategory" aria-labelledby="@c.getName()">
                      <h3 id="@c.getName()" class="tile category-title"><span class="accessibility">@Messages("category"): </span>@c.getName()</h3>
@@ -84,15 +98,12 @@
 
                         <li>
                             @if(game.hasBeenChosen(q)){
-                                <input name="question_selection" id="question_@i" value="@i" type="radio" disabled="disabled" />
+                                <input name="question_selection" id="question_@q.getId()" value="@q.getId()" type="radio" disabled="disabled" />
                            }else{
-                                <input name="question_selection" id="question_@i" value="@i" type="radio" />
+                                <input name="question_selection" id="question_@q.getId()" value="@q.getId()" type="radio" />
                            }
-                            <!-- <label class="tile clickable" for="question_@i">@q.getValue()</label>-->
-                            <label class="tile clickable" for="question_@i">@i</label>
+                            <label class="tile clickable" for="question_@q.getId()">@q.getValue()</label>
                         </li>
-
-                         @(i+=1)
                    }
                      </ol>
                   </section>

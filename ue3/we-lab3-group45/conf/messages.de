@@ -20,7 +20,6 @@ requiredFields = Mit "*" gekennzeichnete Felder sind Pflichtfelder
 navigation = Navigation
 windisplay = Gewinnanzeige
 winjump = Zur Gewinnanzeige springen
-quiz = Quiz
 loginlink = Klicke hier um dich zu anzumelden
 logoutlink = Klicke hier um dich zu abzumelden
 logout = Abmelden
@@ -48,7 +47,6 @@ usernameRequired = Benutzername*:
 passwordRequired = Passwort*:
 looser = Verlierer:
 
-
 required.username = Der Benutzername ist ein Pflichtfeld!
 toShort.username = Der Benutzername muss mindestens 4 Zeichen haben!
 toLong.username = Der Benutzername darf maximal 8 Zeichen haben!
@@ -57,12 +55,9 @@ required.password = Das Passwort ist ein Pflichtfeld!
 toShort.password = Das Passwort muss mindestens 4 Zeichen haben!
 toLong.password = Das Passwort darf maximal 8 Zeichen haben!
 
-
-
 passwordUsernameWrong = Benutzername oder Passwort falsch!
 usernameAlreadyExists = Benutzername ist bereits vorhanden!
 birthdateFormat = Verwenden Sie bitte folgendes Datumsformat: dd.mm.yyyy (z.B. 24.12.2012).
-
 
 firstname = Vorname:
 lastname = Nachname:
@@ -70,37 +65,23 @@ birthdate = Geburtstag:
 gender = Geschlecht:
 female = Weiblich
 male = Männlich
-loginData = Login Daten
 
-startQuiz = Quiz starten
 question = Frage
 true = Richtig
 false = Falsch
 unknown = Unbekannt
 remainingTime = Verbleibende Zeit:
+question.category = {0} für {1} €
 
 never = Nie
 next = weiter
 
-
 category = Kategorie
-wins = gewinnt
-roundwins = {0} gewinnt Runde {1}!
-undecidedRound = Runde {0} unentschieden!
-finalscore = Endstand
-gamesWon = Gewonnene Runden:
-jumpScore = Zur Spielwertung springen
-gameEnd= Spielende
-userGameWins = {0} gewinnt!
-undecidedGame = Spiel unentschieden!
+roundmessage.right = {0} hat richtig geantwortet: {1} €
+roundmessage.false = {0} hat falsch geantwortet: {1} €
+roundmessage.marvinturn = {0} hat {1} für {2} € gewählt
 restart = Neues Spiel
 for.newgame = Neues Spiel beginnen
-
-score = Zwischenstand
-roundScore = Rundenzwischenstand
-round = Runde
-jumpRound = Zur Rundenwertung springen
-
 
 aldrich-killian = Aldrich Killian
 beetle = Beetle

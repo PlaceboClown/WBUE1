@@ -41,21 +41,30 @@ public class Application extends Controller {
         } else {
             User user = findUserByUsernameAndPassword(formUser.get().getUsername(), formUser.get().getPassword());
             if( user != null) {
+
+                if(user.getAvatar() == null && user.getAvatarName() != null){
+                    user.setAvatar(Avatar.valueOf(user.getAvatarName()));
+                }
+
                 session().clear();
                 session("username", formUser.get().getUsername());
                 Avatar userAvatar = Avatar.valueOf(user.getAvatarName());
                 session("avatarName", user.getAvatarName());
                 session("avatarPic", userAvatar.getImageHead());
-                String avatarLabel = userAvatar.getName() +" (DU)";;
+                String avatarLabel = userAvatar.getName() +" (DU)";
                 session("avatarLabel", avatarLabel);
-                Avatar opponent =  userAvatar.getOpponent(userAvatar);
+                Avatar opponent =  Avatar.getOpponent(userAvatar);
                 session("opponentHead", opponent.getImageHead());
                 session("oponentName", opponent.getName());
                 at.ac.tuwien.big.we15.lab2.api.User neuerUser = new SimpleUser();
                 neuerUser.setAvatar(userAvatar);
                 neuerUser.setName(user.getFirstname());
-                Cache.set("user", neuerUser);
+
+                System.out.println(user);
+
+                Cache.set("user", user);
                 Cache.set("opponent", opponent);
+
                 return redirect(routes.JeopardyController.index());
             } else {
                 formUser.reject("formError", Messages.get("passwordUsernameWrong"));
@@ -137,7 +146,7 @@ public class Application extends Controller {
         EntityManager em = play.db.jpa.JPA.em();
         String queryString = "SELECT u FROM User u where u.username = :username";
 
-        TypedQuery<User> query = em.createQuery(queryString, User.class).setParameter("username", userName);
+        TypedQuery<models.User> query = em.createQuery(queryString, User.class).setParameter("username", userName);
 
         List<User> results = query.getResultList();
         if (results.isEmpty()) {

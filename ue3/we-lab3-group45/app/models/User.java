@@ -11,9 +11,6 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created by Elisabeth on 03.05.2014.
- */
 @Entity
 public class User{
 

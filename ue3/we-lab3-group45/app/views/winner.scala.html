@@ -31,8 +31,19 @@
       <div role="main">
          <section id="gameinfo" aria-labelledby="winnerinfoheading">
             <h2 id="winnerinfoheading" class="accessibility">@Messages("winnerinfo")</h2>
-            <p class="user-info positive-change">Du hast richtig geantwortet: +1000 €</p>
-            <p class="user-info negative-change">Deadpool hat falsch geantwortet: -500 €</p>
+             @if(game.getHumanPlayer().getLatestProfitChange() != null) {
+                 @if(game.getHumanPlayer().getLatestProfitChange() > 0) {
+                     <p class="user-info positive-change">@Messages("roundmessage.right", game.getHuman().getName(), "+" + game.getHumanPlayer().getLatestProfitChange()) </p>
+                 } else {
+                     <p class="user-info negative-change">@Messages("roundmessage.false", game.getHuman().getName(), game.getHumanPlayer().getLatestProfitChange()) </p>
+                 }
+
+                 @if(game.getMarvinPlayer().getLatestProfitChange() > 0) {
+                     <p class="user-info positive-change">@Messages("roundmessage.right", game.getMarvin().getName(), "+" + game.getMarvinPlayer().getLatestProfitChange()) </p>
+                 } else {
+                     <p class="user-info negative-change">@Messages("roundmessage.false", game.getMarvin().getName(), game.getMarvinPlayer().getLatestProfitChange()) </p>
+                 }
+             }
             <section class="playerinfo leader" aria-labelledby="winnerannouncement">
                <h3 id="winnerannouncement">@Messages("winner") @game.getWinner().getUser().getName()</h3>
                <img class="avatar" src="@routes.Assets.at("images/avatar/")@game.getWinner().getUser().getAvatar().getImageFull()" alt="@game.getWinner().getUser().getName()" />

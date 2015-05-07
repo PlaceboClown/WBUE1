@@ -70,14 +70,14 @@
       <section id="question" aria-labelledby="questionheading">
             <form id="questionform" action="@routes.JeopardyController.roundover()" method="get">
                <h2 id="questionheading" class="accessibility">Frage</h2>
-               <p id="questiontype">TUWIEN für € 300</p>
+               <p id="questiontype">@Messages("question.category", question.getCategory().getName(), question.getValue())</p>
                <p id="questiontext">@question.getText()</p>
                 <ul id="answers">
                    @import java.math.BigInteger; var i=0;
                    @for(a <- question.getAllAnswers()){
 
                    <li>
-                       <input name="answers" id="answer_@i" value="@i" type="checkbox"/><label class="tile clickable" for="answer_@i">@a.getText()</label>
+                       <input name="answers" id="answer_@i" value="@a.getId" type="checkbox"/><label class="tile clickable" for="answer_@i">@a.getText()</label>
                    </li>
                     @(i+=1)
 
