@@ -13,8 +13,6 @@ libraryDependencies ++= Seq(
   "com.google.code.gson" % "gson" % "2.2"
 )
 
-enablePlugins(SbtTwirl)
-
 TwirlKeys.templateImports += "scala.collection._"
 
 TwirlKeys.templateImports += "at.ac.tuwien.big.we15.lab2.api._"
