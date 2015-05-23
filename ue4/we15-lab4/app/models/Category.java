@@ -1,5 +1,8 @@
 package models;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -8,6 +11,7 @@ import java.util.List;
 /**
  * Represents a category, which is stored in the DB
  */
+@Entity
 public class Category extends BaseEntity {
 
 
@@ -16,8 +20,9 @@ public class Category extends BaseEntity {
 
 
     //A list of questions in this category
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
     private List<Question> questions = new ArrayList<Question>();
-    
+
     /**
      * Add a new question to the category
      * @param question
@@ -78,7 +83,7 @@ public class Category extends BaseEntity {
     public void setQuestions(List<Question> questions) {
         this.questions = questions;
     }
-    
+
     public void sort() {
     	Collections.sort(questions, new Comparator<Question>() {
 			@Override

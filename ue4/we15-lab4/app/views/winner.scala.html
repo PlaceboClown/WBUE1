@@ -1,4 +1,4 @@
-@(game: models.JeopardyGame)
+@(game: models.JeopardyGame, message: String)
 @import play.i18n._
 @import helper._
 
@@ -6,6 +6,9 @@
       <!-- Content -->
       <div role="main">
 		@gameInfo(game.getLeader(), game.getSecond(), game.getMaxQuestions(), game.isHumanPlayer(game.getLeader().getUser()))
+
+          <p id="tweetMessage" align="center" > @message </p>
+
          <section id="newgame" aria-labelledby="newgameheading">
              <h2 id="newgameheading" class="accessibility">@Messages.get("quizover.newgame")</h2>
              @helper.form(routes.GameController.newGame()) {

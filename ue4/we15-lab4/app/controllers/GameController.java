@@ -1,11 +1,10 @@
 package controllers;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
+import highscore.Failure;
+import highscore.FailureType;
+import highscore.PostHighScore;
 import models.Category;
 import models.JeopardyDAO;
 import models.JeopardyGame;
@@ -19,6 +18,8 @@ import play.db.jpa.Transactional;
 import play.mvc.Controller;
 import play.mvc.Result;
 import play.mvc.Security;
+import twitter.TwitterClientImpl;
+import twitter.TwitterStatusMessage;
 import views.html.jeopardy;
 import views.html.question;
 import views.html.winner;
@@ -99,7 +100,7 @@ public class GameController extends Controller {
 			return ok(question.render(game));
 		} else if(game.isGameOver()) {
 			Logger.info("[" + request().username() + "] Game over... redirect");
-			return ok(winner.render(game));
+			return ok(winner.render(game, ""));
 		}			
 		return ok(jeopardy.render(game));
 	}
@@ -155,8 +156,51 @@ public class GameController extends Controller {
 		JeopardyGame game = cachedGame(request().username());
 		if(game == null || !game.isGameOver())
 			return redirect(routes.GameController.playGame());
-		
-		Logger.info("[" + request().username() + "] Game over.");		
-		return ok(winner.render(game));
+
+        postHighscore();
+        String message = tweet();
+		Logger.info("[" + request().username() + "] Game over.");
+		return ok(winner.render(game, message));
 	}
+
+    private static String postHighscore() {
+        try {
+            String uuid = PostHighScore.create().post(cachedGame(request().username()));
+	        Logger.info("Successfully posted on Highscoreboard");
+            Logger.info("uuid: " + uuid);
+            session("uuid", uuid);
+            return uuid;
+        } catch (Failure failure) {
+            Logger.error("Error posting on Highscoreboard!\n" + failure.getMessage()+ "\n\n"+ failure.getFaultInfo().getReason() + "\n\n" + failure.getFaultInfo().getDetail()+ "\n\n" );
+        }
+        return null;
+    }
+
+    private static String tweet() {
+        String uuid = session("uuid");
+        if (uuid != null) {
+	        JeopardyGame game = cachedGame(request().username());
+	        JeopardyUser user = game.getHuman();
+            String name = user.getFirstName() + " " + user.getLastName();
+            if(name.equals(" ")) {
+                name = user.getName();
+            }
+
+            TwitterStatusMessage message = new TwitterStatusMessage(name, uuid, new Date());
+            TwitterClientImpl twitterClient = new TwitterClientImpl();
+
+            try {
+                twitterClient.publishUuid(message);
+                Logger.info("tweet successful!");
+                Logger.info(message.getTwitterPublicationString());
+                return "UUID " + uuid + " wurde auf Twitter veröffentlicht";
+            } catch (Exception e) {
+                Logger.error("error tweeting");
+                Logger.error(e.getMessage());
+            }
+        } else {
+            Logger.error("uuid is null");
+        }
+        return "Fehler beim Posten des Tweetes aufgetreten!";
+    }
 }
