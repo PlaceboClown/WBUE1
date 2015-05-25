@@ -4,6 +4,7 @@ import models.JeopardyDAO;
 import models.Question;
 import org.junit.*;
 import org.mockito.Mockito;
+import play.cache.Cache;
 import play.db.jpa.JPA;
 import play.db.jpa.JPAPlugin;
 import play.test.FakeApplication;
@@ -11,6 +12,7 @@ import play.test.Helpers;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -58,7 +60,7 @@ public class GameJPATest {
         em.getTransaction().rollback();
     }
 
-    @Test
+//    @Test
     public void createCategory() {
         Category categoryHistory = Mockito.mock(Category.class);
         categoryHistory.setNameDE("Geschichte");
@@ -126,13 +128,19 @@ public class GameJPATest {
     @Test
     public void findAllQuestions() {
         List<Question> questionList = jeopardyDao.findEntities(Question.class);
-        assertEquals(35, questionList.size());
+               assertEquals(35, questionList.size());
+    }
+
+    @Test
+    public void findAllAnswers(){
+       List<Answer> answers = jeopardyDao.findEntities(Answer.class);
+        assertEquals(177, answers.size());
     }
 
     @Test
     public void findAllCategories() {
-        List<Category> questionList = jeopardyDao.findEntities(Category.class);
-        assertEquals(5, questionList.size());
+        List<Category> categoryList = jeopardyDao.findEntities(Category.class);
+        assertEquals(5, categoryList.size());
     }
 
     @Test
@@ -140,7 +148,7 @@ public class GameJPATest {
         Question question = jeopardyDao.findEntity(6L, Question.class);
 
         assertNotNull(question);
-        assertEquals("JavaScript...", question.getTextDE());
+        assertEquals("JavaScript.", question.getTextDE());
     }
 
     @Test
